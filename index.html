@@ -57,8 +57,18 @@
         </table>
         
         <div class="multiUpgradesContainer">
-            <button onclick="AddLetterWord()">+1 letter per word!</button>
-            Cost: <span id="LetterPerWordCost"></span>
+            <div>
+                <button onclick="AddMultiUpgrade(0)">+1 point per word!</button>
+                Cost: <span id="PointPerWordCost"></span>
+            </div>
+            <div>
+                <button onclick="AddMultiUpgrade(1)">+1 letter per word!</button>
+                Cost: <span id="LetterPerWordCost"></span>
+            </div>
+            <div>
+                <button onclick="AddMultiUpgrade(2)">+25% points!</button>
+                Cost: <span id="PointsMultiplier"></span>
+            </div>
         </div>
     </div>
 </body>
