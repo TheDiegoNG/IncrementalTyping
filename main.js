@@ -47,7 +47,7 @@ async function checkText(event) {
         console.log('Success!!!');
         document.getElementById("WordBox").value = "";
         var pointsLetters = textBoxText.length;
-        if(game.upgrades[0][2] == 1)pointsLetters += GetPointsLetters(textBoxText);
+        if(game.upgrades[0][2] == 1)pointsLetters += GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
         game.points += CalculatePoints(pointsLetters); 
         console.log(game.points);
         GenerateWord();
@@ -66,8 +66,7 @@ function CalculatePoints(wordLength) {
     return totalPoints;
 }
 
-function GetPointsLetters(word) {
-    var letters = word.toString().toLowercase().split('');
+function GetPointsLetters(letters) {
     var points = 0;
     letters.forEach(element => {
         if(element === 'a' || 
