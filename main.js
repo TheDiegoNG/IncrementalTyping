@@ -139,7 +139,11 @@ window.setInterval(function(){
     SetCosts()
     document.getElementById("PointsCounter").textContent = Math.round(game.points)
     game.maxLength = game.multiUpgrades[0][1] + 4
-}, 1000); 
+}, 100); 
+
+window.setInterval(function(){
+    
+}, 1000)
 
 function SetCosts()
 {
