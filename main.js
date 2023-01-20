@@ -141,9 +141,37 @@ window.setInterval(function(){
     game.maxLength = game.multiUpgrades[0][1] + 4
 }, 100); 
 
-window.setInterval(function(){
+let letters = 0;
+let startTime;
+let display = document.getElementById("LettersPerSecond");
+
+let input = document.getElementById("WordBox");
+input.addEventListener("keydown", function() {
+    letters++;
+    if (letters === 1) {
+        startTime = Date.now();
+    }
+});
+
+var lettersPressed = 0;
+
+setInterval(function(){
+    let currentTime = Date.now();
+    let elapsedTime = (currentTime - startTime) / 1000;
+    let LPS = letters / elapsedTime;
+    if(lettersPressed === letters)
+    {
+        display.innerHTML = "LPS : 0.00";
+        letters = 0;
+        startTime = Date.now();
+    }
+    else
+    {
+        lettersPressed = letters;
+        display.innerHTML = "LPS : " + LPS.toFixed(2);
+    }
     
-}, 1000)
+}, 1000);
 
 function SetCosts()
 {
