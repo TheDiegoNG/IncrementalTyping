@@ -5,10 +5,19 @@ var wordList;
 var game = {
     points: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 1500, 2000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     multiUpgrades: [[0, 0, 0],
-                    [50, 100, 500]]
+                    [50, 100, 500]],
+    achievements: [ {name: "First Word", description: "Write your first word. Congratulations! You know how to write!", unlocked: false},
+                    {name: "Ten Words", description: "Write ten words. Pay attention, it seems that you are close to your first upgrade.", unlocked: false},
+                    {name: "Fifty Words", description: "Write fifty words.", unlocked: false},
+                    {name: "30 LPS", description: "Reach 30 LPS (Letters Per Second), you could get this by spamming", unlocked: false},
+                    {name: "100 Points", description: "Save 100 points", unlocked: false},
+                    {name: "500 Points", description: "Save 500 Points", unlocked: false},
+                    {name: "1000 Points", description: "Save 1000 points", unlocked: false},
+                    {name: "Best Word", description: "Write the best word possible", unlocked: false} ],
+    wordsAmount: 0
 }
 
 window.onload = async function()
@@ -16,8 +25,24 @@ window.onload = async function()
     wordList = await getWordList();
     LoadGame();
     GenerateWord();
+    console.log(GetBestWord());
 }
 
+function GetBestWord() {
+    var bestPoints = 0;
+    var wordPoints = 0;
+    var bestWord = "";
+    wordList.forEach(element => {
+        wordPoints = GetPointsLetters(new String(element.toLowerCase()).split(''));
+
+        if(bestPoints < wordPoints)
+        {
+            bestPoints = wordPoints;
+            bestWord = element;
+        } 
+    });
+    return bestWord;
+}
 
 async function getWordList() {
     var response = await fetch(wordListUrl);
@@ -50,6 +75,12 @@ async function checkText(event) {
         if(game.upgrades[0][2] == 1)pointsLetters += GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
         game.points += CalculatePoints(pointsLetters); 
         console.log(game.points);
+        game.wordsAmount++;
+        if(textBoxText === "Jack-go-to-bed-at-noon" && !game.achievements[7].unlocked)
+        {
+            game.achievements[7].unlocked = true;
+            ShowAchievement("Best Word");
+        }
         GenerateWord();
     }
 
@@ -62,6 +93,7 @@ function CalculatePoints(wordLength) {
     totalPoints += game.multiUpgrades[0][0];
     if(game.upgrades[0][1] == 1) totalPoints += 10;
     if(game.upgrades[0][0] == 1) totalPoints *= 1.5;
+    if(game.upgrades[0][3] == 1) totalPoints *= 2;
     totalPoints *= (1 + game.multiUpgrades[0][2]*25/100)
     return totalPoints;
 }
@@ -135,10 +167,12 @@ function AddMultiUpgrade(upgradeNumber) {
 }
 
 window.setInterval(function(){
-    console.log(game);
     SetCosts()
+    CheckAchievements()
     document.getElementById("PointsCounter").textContent = Math.round(game.points)
+    if(game.upgrades[0][4] === 1) document.getElementById("LettersPerSecond").style.display = "block";
     game.maxLength = game.multiUpgrades[0][1] + 4
+    
 }, 100); 
 
 let letters = 0;
@@ -159,6 +193,10 @@ setInterval(function(){
     let currentTime = Date.now();
     let elapsedTime = (currentTime - startTime) / 1000;
     let LPS = letters / elapsedTime;
+    if(LPS >= 30 && !game.achievements[3].unlocked) {
+        game.achievements[3].unlocked = true;
+        ShowAchievement("30 LPS");
+    }
     if(lettersPressed === letters)
     {
         display.innerHTML = "LPS : 0.00";
@@ -172,6 +210,50 @@ setInterval(function(){
     }
     
 }, 1000);
+
+function CheckAchievements() {
+
+    if (game.wordsAmount >= 1 && !game.achievements[0].unlocked) {
+        game.achievements[0].unlocked = true;
+      ShowAchievement("First Word");
+    }
+  
+    if (game.wordsAmount >= 10 && !game.achievements[1].unlocked) {
+        game.achievements[1].unlocked = true;
+      ShowAchievement("Ten Words");
+    }
+  
+    if (game.wordsAmount >= 50 && !game.achievements[2].unlocked) {
+        game.achievements[2].unlocked = true;
+      ShowAchievement("Fifty Words");
+    }
+
+    if (game.points >= 100 && !game.achievements[4].unlocked) {
+        game.achievements[4].unlocked = true;
+        ShowAchievement("100 Points");
+    }
+
+    if (game.points >= 500 && !game.achievements[5].unlocked) {
+        game.achievements[5].unlocked = true;
+        ShowAchievement("500 Points");
+    }
+
+    if (game.points >= 1000 && !game.achievements[6].unlocked) {
+        game.achievements[6].unlocked = true;
+        ShowAchievement("1000 Points");
+    }
+  }
+  
+  // Function to show the achievement notification
+  function ShowAchievement(achievementName) {
+    var achievement = game.achievements.find(a => a.name === achievementName);
+    alert(`Congratulations! You've unlocked the "${achievement.name}" achievement: ${achievement.description}`);
+  }
+
+function LogGame() 
+{
+    console.log(game);
+}
 
 function SetCosts()
 {

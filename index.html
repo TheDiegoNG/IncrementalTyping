@@ -15,9 +15,10 @@
         <div class="separator">
         </div>
         <div>
-            <label id="LettersPerSecond"></label>
+            <label id="LettersPerSecond" style="display:none;"></label>
             <input type="text" id="WordBox" name="WordBox">
             <button onclick="SaveGame()">Save</button>
+            <button onclick="LogGame()">Log</button>
         </div>
         <div class="separator">
         </div>
@@ -46,11 +47,11 @@
                         <span>D</span>
                     </td>
                     <td class="upgradeSquare tooltip" onclick="GetUpgrade(4, this)"> 
-                        <span class="tooltiptext">Unlock passive income!</span>
+                        <span class="tooltiptext">Get a letter per minute value</span>
                         <span>E</span>
                     </td>
                     <td class="upgradeSquare tooltip" onclick="GetUpgrade(5, this)">
-                        <span class="tooltiptext">Get a letter per minute value</span>
+                        <span class="tooltiptext">Unlock passive income!</span>
                         <span>F</span>
                     </td>
                 </tr>
