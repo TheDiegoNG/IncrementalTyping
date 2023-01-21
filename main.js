@@ -20,6 +20,8 @@ var game = {
     wordsAmount: 0
 }
 
+var pointsDesc = "";
+
 window.onload = async function()
 {
     wordList = await getWordList();
@@ -73,6 +75,7 @@ async function checkText(event) {
         document.getElementById("WordBox").value = "";
         var pointsLetters = textBoxText.length;
         if(game.upgrades[0][2] == 1)pointsLetters += GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
+        pointsDesc = `Base Points: ${pointsLetters}`; 
         game.points += CalculatePoints(pointsLetters); 
         console.log(game.points);
         game.wordsAmount++;
@@ -81,6 +84,7 @@ async function checkText(event) {
             game.achievements[7].unlocked = true;
             ShowAchievement("Best Word");
         }
+        ShowText();
         GenerateWord();
     }
 
@@ -91,10 +95,24 @@ function CalculatePoints(wordLength) {
     var totalPoints = 0;
     totalPoints += wordLength;
     totalPoints += game.multiUpgrades[0][0];
-    if(game.upgrades[0][1] == 1) totalPoints += 10;
-    if(game.upgrades[0][0] == 1) totalPoints *= 1.5;
-    if(game.upgrades[0][3] == 1) totalPoints *= 2;
-    totalPoints *= (1 + game.multiUpgrades[0][2]*25/100)
+    if(game.multiUpgrades[0][0] > 0) pointsDesc += ` + Extra Points: ${game.multiUpgrades[0][0]}`; 
+    if(game.upgrades[0][1] == 1)
+    {
+        totalPoints += 10;
+        pointsDesc += ` + Upgrade 2: 10 points`; 
+    } 
+    if(game.upgrades[0][0] == 1)
+    {
+        totalPoints *= 1.5;
+        pointsDesc += ` + Upgrade 1: x1.5 points`; 
+    } 
+    if(game.upgrades[0][3] == 1)
+    {
+        totalPoints *= 2;
+        pointsDesc += ` + Upgrade 4: x2 points`; 
+    } 
+    totalPoints *= (1 + game.multiUpgrades[0][2]*0.25)
+    if(game.multiUpgrades[0][2] > 0) pointsDesc += ` + MultiUpgrade 3: x${1 + game.multiUpgrades[0][2]*0.25} points`; 
     return totalPoints;
 }
 
@@ -260,6 +278,21 @@ function SetCosts()
     document.getElementById("PointPerWordCost").textContent = Math.round(game.multiUpgrades[1][0])
     document.getElementById("LetterPerWordCost").textContent = Math.round(game.multiUpgrades[1][1])
     document.getElementById("PointsMultiplier").textContent = Math.round(game.multiUpgrades[1][2])
+}
+
+var textElement = document.getElementById("PointsDesc");
+
+// Function to display the text
+function ShowText() {
+  textElement.innerHTML = pointsDesc;
+  textElement.style.display = "block";
+  setTimeout(HideText, 2000);
+}
+
+// Function to hide the text
+function HideText() {
+  textElement.style.display = "none";
+  pointsDesc = "";
 }
 
 function SaveGame()
