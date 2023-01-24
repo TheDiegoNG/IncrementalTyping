@@ -212,6 +212,12 @@ setInterval(function(){
     
 }, 1000);
 
+document.addEventListener("keydown", function(event) {
+    var randomKey = Math.round(Math.random() * (5 - 1) + 1)
+    var audio = new Audio("https://cors-anywhere.herokuapp.com/https://github.com/DiegoNicolasGomez/IncrementalTyping/blob/main/Keypress/Keystroke" + randomKey + ".mp3");
+    audio.play();
+  });
+
 function CheckAchievements() {
 
     if (game.wordsAmount >= 1 && !game.achievements[0].unlocked) {
