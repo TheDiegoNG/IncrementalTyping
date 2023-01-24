@@ -27,23 +27,6 @@ window.onload = async function()
     wordList = await getWordList();
     LoadGame();
     GenerateWord();
-    console.log(GetBestWord());
-}
-
-function GetBestWord() {
-    var bestPoints = 0;
-    var wordPoints = 0;
-    var bestWord = "";
-    wordList.forEach(element => {
-        wordPoints = GetPointsLetters(new String(element.toLowerCase()).split(''));
-
-        if(bestPoints < wordPoints)
-        {
-            bestPoints = wordPoints;
-            bestWord = element;
-        } 
-    });
-    return bestWord;
 }
 
 async function getWordList() {
