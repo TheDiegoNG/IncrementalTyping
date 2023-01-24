@@ -214,7 +214,7 @@ setInterval(function(){
 
 document.addEventListener("keydown", function(event) {
     var randomKey = Math.round(Math.random() * (5 - 1) + 1)
-    var audio = new Audio("https://cors-anywhere.herokuapp.com/https://github.com/DiegoNicolasGomez/IncrementalTyping/blob/main/Keypress/Keystroke" + randomKey + ".mp3");
+    var audio = new Audio("https://diegonicolasgomez.github.io/main/Keypress/Keystroke" + randomKey + ".mp3");
     audio.play();
   });
 
