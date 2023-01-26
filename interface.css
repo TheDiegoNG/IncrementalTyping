@@ -49,7 +49,25 @@
     display: flex;
     justify-content: space-around;
   }
+  .tabsContainer {
+    display: flex;
+    justify-content: space-around;
+  }
 
-  .multiUpgradesContainer {
+  .fallingAnimationContainer {
+    display: flex;
+    justify-content: space-around;
+  }
 
+  .falling-word {
+    animation: fall 4s infinite;
+  }
+  
+  @keyframes fall {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(500%);
+    }
   }

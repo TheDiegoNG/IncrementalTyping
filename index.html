@@ -29,7 +29,13 @@
             <span id="PointsCounter"></span>
         </div>
     </div>
-    <div class="upgradesContainer">
+    <div class="tabsContainer">
+        <button id="activeMenuButton" onclick="Tab('activeMenu')" style="display:none;">Active</button>
+        <button id="passiveMenuButton" onclick="Tab('passiveMenu')" style="display:none;">Passive</button>
+    </div>
+    <div class="separator">
+    </div>
+    <div id="activeMenu" class="upgradesContainer">
         <table id="upgradesTable" style="display: inline-block;">
             <tbody>
                 <tr>
@@ -75,6 +81,11 @@
                 Cost: <span id="PointsMultiplier"></span>
             </div>
         </div>
+    </div>
+    <div id="passiveMenu">
+        <div id="fallingAnimationContainer" class="fallingAnimationContainer">
+
+            </div>
     </div>
 </body>
 <script type="text/javascript" src="main.js"></script>

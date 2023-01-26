@@ -5,7 +5,7 @@ var wordList;
 var game = {
     points: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 1500, 2000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 1500, 2000, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     multiUpgrades: [[0, 0, 0],
                     [50, 100, 500]],
@@ -17,7 +17,11 @@ var game = {
                     {name: "500 Points", description: "Save 500 Points", unlocked: false},
                     {name: "1000 Points", description: "Save 1000 points", unlocked: false},
                     {name: "Best Word", description: "Write the best word possible", unlocked: false} ],
-    wordsAmount: 0
+    wordsAmount: 0,
+    passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
+    passiveLength: 4
+            
 }
 
 var pointsDesc = "";
@@ -27,6 +31,7 @@ window.onload = async function()
     wordList = await getWordList();
     LoadGame();
     GenerateWord();
+    Tab("activeMenu");
 }
 
 async function getWordList() {
@@ -172,6 +177,10 @@ window.setInterval(function(){
     CheckAchievements()
     document.getElementById("PointsCounter").textContent = Math.round(game.points)
     if(game.upgrades[0][4] === 1) document.getElementById("LettersPerSecond").style.display = "block";
+    if(game.upgrades[0][5] === 1) {
+        document.getElementById("passiveMenuButton").style.display = "flex";
+        document.getElementById("activeMenuButton").style.display = "flex";
+    } 
     game.maxLength = game.multiUpgrades[0][1] + 4
     
 }, 100); 
@@ -212,11 +221,12 @@ setInterval(function(){
     
 }, 1000);
 
-document.addEventListener("keydown", function(event) {
-    var randomKey = Math.round(Math.random() * (5 - 1) + 1)
-    var audio = new Audio("https://diegonicolasgomez.github.io/main/Keypress/Keystroke" + randomKey + ".mp3");
-    audio.play();
-  });
+function Tab(tabName) {
+    document.getElementById("activeMenu").style.display = "none"
+    document.getElementById("passiveMenu").style.display = "none"
+    document.getElementById(tabName).style.display = "flex"
+    document.getElementById(tabName).style.justifyContent = "space-around";
+  }
 
 function CheckAchievements() {
 
@@ -297,4 +307,30 @@ function LoadGame()
     if (typeof savegame.points !== "undefined" && typeof savegame.points !== null) game.points = savegame.points;
     if (typeof savegame.upgrades !== "undefined" && typeof savegame.upgrades !== null) game.upgrades = savegame.upgrades;
     if (typeof savegame.multiUpgrades !== "undefined" && typeof savegame.multiUpgrades !== null) game.multiUpgrades = savegame.multiUpgrades;
+}
+
+//Passive
+
+let container = document.getElementById("fallingAnimationContainer");
+
+function createWord() {
+  let word = document.createElement("div");
+  word.innerHTML = GetRandomString(game.passiveLength);
+  word.classList.add("falling-word");
+  container.appendChild(word);
+  setTimeout(function(){
+      word.remove();
+}, 3000);
+  
+}
+
+setInterval(createWord, 1000);
+
+function GetRandomString(numberLetters) {
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomString = '';
+  for (let i = 0; i < numberLetters; i++) {
+    randomString += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return randomString;
 }
