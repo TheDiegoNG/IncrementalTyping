@@ -54,7 +54,7 @@
     justify-content: space-around;
   }
 
-  .fallingAnimationContainer {
+  /* .fallingAnimationContainer {
     display: flex;
     justify-content: space-around;
   }
@@ -70,4 +70,4 @@
     to {
       transform: translateY(500%);
     }
-  }
+  } */

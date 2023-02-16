@@ -314,14 +314,7 @@ function LoadGame()
 let container = document.getElementById("fallingAnimationContainer");
 
 function createWord() {
-  let word = document.createElement("div");
-  word.innerHTML = GetRandomString(game.passiveLength);
-  word.classList.add("falling-word");
-  container.appendChild(word);
-  setTimeout(function(){
-      word.remove();
-}, 3000);
-  
+    PassivePoints.innerHTML = GetRandomString(game.passiveLength);
 }
 
 setInterval(createWord, 1000);
