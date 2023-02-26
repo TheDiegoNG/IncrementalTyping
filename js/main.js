@@ -5,7 +5,7 @@ var wordList;
 var game = {
     points: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 1500, 2000, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 3, 2500, 6000, 10000, 40000, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     multiUpgrades: [[0, 0, 0],
                     [50, 100, 500]],
@@ -20,8 +20,8 @@ var game = {
     wordsAmount: 0,
     passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                         [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
-    passiveLength: 4
-            
+    passiveLength: 4,
+    passivePoints: 0 
 }
 
 var pointsDesc = "";
@@ -62,7 +62,7 @@ async function checkText(event) {
         console.log('Success!!!');
         document.getElementById("WordBox").value = "";
         var pointsLetters = textBoxText.length;
-        if(game.upgrades[0][2] == 1)pointsLetters += GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
+        if(game.upgrades[0][6] == 1)pointsLetters += GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
         pointsDesc = `Base Points: ${pointsLetters}`; 
         game.points += CalculatePoints(pointsLetters); 
         console.log(game.points);
@@ -72,37 +72,59 @@ async function checkText(event) {
             game.achievements[7].unlocked = true;
             ShowAchievement("Best Word");
         }
-        ShowText();
         GenerateWord();
     }
 
 }
 
+window.setInterval(function(){
+    SetCosts()
+    CheckAchievements()
+    document.getElementById("PointsCounter").textContent = Math.round(game.points);
+    document.getElementById("passivePoints").textContent = Math.round(game.passivePoints);
+    document.getElementById("activeMenuButton").style.display = "flex";
+    document.getElementById("upgradesMenuButton").style.display = "flex";
+    if(game.upgrades[0][2] === 1) document.getElementById("LettersPerSecond").style.display = "block";
+    if(game.upgrades[0][3] === 1) document.getElementById("passiveMenuButton").style.display = "flex";
+    game.maxLength = game.multiUpgrades[0][1] + 4
+    
+}, 100); 
 
-function CalculatePoints(wordLength) {
-    var totalPoints = 0;
-    totalPoints += wordLength;
-    totalPoints += game.multiUpgrades[0][0];
-    if(game.multiUpgrades[0][0] > 0) pointsDesc += ` + Extra Points: ${game.multiUpgrades[0][0]}`; 
-    if(game.upgrades[0][1] == 1)
+let letters = 0;
+let startTime;
+let display = document.getElementById("LettersPerSecond");
+
+let input = document.getElementById("WordBox");
+input.addEventListener("keydown", function() {
+    letters++;
+    if (letters === 1) {
+        startTime = Date.now();
+    }
+});
+
+var lettersPressed = 0;
+
+setInterval(function(){
+    let currentTime = Date.now();
+    let elapsedTime = (currentTime - startTime) / 1000;
+    let LPS = letters / elapsedTime;
+    if(LPS >= 30 && !game.achievements[3].unlocked) {
+        game.achievements[3].unlocked = true;
+        ShowAchievement("30 LPS");
+    }
+    if(lettersPressed === letters)
     {
-        totalPoints += 10;
-        pointsDesc += ` + Upgrade 2: 10 points`; 
-    } 
-    if(game.upgrades[0][0] == 1)
+        display.innerHTML = "LPS : 0.00";
+        letters = 0;
+        startTime = Date.now();
+    }
+    else
     {
-        totalPoints *= 1.5;
-        pointsDesc += ` + Upgrade 1: x1.5 points`; 
-    } 
-    if(game.upgrades[0][3] == 1)
-    {
-        totalPoints *= 2;
-        pointsDesc += ` + Upgrade 4: x2 points`; 
-    } 
-    totalPoints *= (1 + game.multiUpgrades[0][2]*0.25)
-    if(game.multiUpgrades[0][2] > 0) pointsDesc += ` + MultiUpgrade 3: x${1 + game.multiUpgrades[0][2]*0.25} points`; 
-    return totalPoints;
-}
+        lettersPressed = letters;
+        display.innerHTML = "LPS : " + LPS.toFixed(2);
+    }
+    
+}, 1000);
 
 function GetPointsLetters(letters) {
     var points = 0;
@@ -154,118 +176,15 @@ function GetPointsLetters(letters) {
     return points;
 }
 
-function GetUpgrade(upgradeNumber, element) {
-    if(game.upgrades[0][upgradeNumber] == 0 && game.points >= game.upgrades[1][upgradeNumber])
-    {
-        game.points -= game.upgrades[1][upgradeNumber]
-        game.upgrades[0][upgradeNumber] = 1
-        element.style.color = 'gray';
-    } 
-}
-
-function AddMultiUpgrade(upgradeNumber) {
-    if(game.points >= game.multiUpgrades[1][upgradeNumber])
-    {
-        game.points -= game.multiUpgrades[1][upgradeNumber]
-        game.multiUpgrades[0][upgradeNumber]++;
-        game.multiUpgrades[1][upgradeNumber] = game.multiUpgrades[1][upgradeNumber] * (2 ** (1 + game.multiUpgrades[0][upgradeNumber]/10))
-    }
-}
-
-window.setInterval(function(){
-    SetCosts()
-    CheckAchievements()
-    document.getElementById("PointsCounter").textContent = Math.round(game.points)
-    if(game.upgrades[0][4] === 1) document.getElementById("LettersPerSecond").style.display = "block";
-    if(game.upgrades[0][5] === 1) {
-        document.getElementById("passiveMenuButton").style.display = "flex";
-        document.getElementById("activeMenuButton").style.display = "flex";
-    } 
-    game.maxLength = game.multiUpgrades[0][1] + 4
-    
-}, 100); 
-
-let letters = 0;
-let startTime;
-let display = document.getElementById("LettersPerSecond");
-
-let input = document.getElementById("WordBox");
-input.addEventListener("keydown", function() {
-    letters++;
-    if (letters === 1) {
-        startTime = Date.now();
-    }
-});
-
-var lettersPressed = 0;
-
-setInterval(function(){
-    let currentTime = Date.now();
-    let elapsedTime = (currentTime - startTime) / 1000;
-    let LPS = letters / elapsedTime;
-    if(LPS >= 30 && !game.achievements[3].unlocked) {
-        game.achievements[3].unlocked = true;
-        ShowAchievement("30 LPS");
-    }
-    if(lettersPressed === letters)
-    {
-        display.innerHTML = "LPS : 0.00";
-        letters = 0;
-        startTime = Date.now();
-    }
-    else
-    {
-        lettersPressed = letters;
-        display.innerHTML = "LPS : " + LPS.toFixed(2);
-    }
-    
-}, 1000);
-
 function Tab(tabName) {
     document.getElementById("activeMenu").style.display = "none"
     document.getElementById("passiveMenu").style.display = "none"
+    document.getElementById("upgradesMenu").style.display = "none"
+    document.getElementById("cardsMenu").style.display = "none"
     document.getElementById(tabName).style.display = "flex"
     document.getElementById(tabName).style.justifyContent = "space-around";
   }
 
-function CheckAchievements() {
-
-    if (game.wordsAmount >= 1 && !game.achievements[0].unlocked) {
-        game.achievements[0].unlocked = true;
-      ShowAchievement("First Word");
-    }
-  
-    if (game.wordsAmount >= 10 && !game.achievements[1].unlocked) {
-        game.achievements[1].unlocked = true;
-      ShowAchievement("Ten Words");
-    }
-  
-    if (game.wordsAmount >= 50 && !game.achievements[2].unlocked) {
-        game.achievements[2].unlocked = true;
-      ShowAchievement("Fifty Words");
-    }
-
-    if (game.points >= 100 && !game.achievements[4].unlocked) {
-        game.achievements[4].unlocked = true;
-        ShowAchievement("100 Points");
-    }
-
-    if (game.points >= 500 && !game.achievements[5].unlocked) {
-        game.achievements[5].unlocked = true;
-        ShowAchievement("500 Points");
-    }
-
-    if (game.points >= 1000 && !game.achievements[6].unlocked) {
-        game.achievements[6].unlocked = true;
-        ShowAchievement("1000 Points");
-    }
-  }
-  
-  // Function to show the achievement notification
-  function ShowAchievement(achievementName) {
-    var achievement = game.achievements.find(a => a.name === achievementName);
-    alert(`Congratulations! You've unlocked the "${achievement.name}" achievement: ${achievement.description}`);
-  }
 
 function LogGame() 
 {
@@ -277,21 +196,6 @@ function SetCosts()
     document.getElementById("PointPerWordCost").textContent = Math.round(game.multiUpgrades[1][0])
     document.getElementById("LetterPerWordCost").textContent = Math.round(game.multiUpgrades[1][1])
     document.getElementById("PointsMultiplier").textContent = Math.round(game.multiUpgrades[1][2])
-}
-
-var textElement = document.getElementById("PointsDesc");
-
-// Function to display the text
-function ShowText() {
-  textElement.innerHTML = pointsDesc;
-  textElement.style.display = "block";
-  setTimeout(HideText, 2000);
-}
-
-// Function to hide the text
-function HideText() {
-  textElement.style.display = "none";
-  pointsDesc = "";
 }
 
 function SaveGame()
@@ -307,23 +211,4 @@ function LoadGame()
     if (typeof savegame.points !== "undefined" && typeof savegame.points !== null) game.points = savegame.points;
     if (typeof savegame.upgrades !== "undefined" && typeof savegame.upgrades !== null) game.upgrades = savegame.upgrades;
     if (typeof savegame.multiUpgrades !== "undefined" && typeof savegame.multiUpgrades !== null) game.multiUpgrades = savegame.multiUpgrades;
-}
-
-//Passive
-
-let container = document.getElementById("fallingAnimationContainer");
-
-function createWord() {
-    PassivePoints.innerHTML = GetRandomString(game.passiveLength);
-}
-
-setInterval(createWord, 1000);
-
-function GetRandomString(numberLetters) {
-    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    let randomString = '';
-  for (let i = 0; i < numberLetters; i++) {
-    randomString += characters.charAt(Math.floor(Math.random() * characters.length));
-  }
-  return randomString;
 }

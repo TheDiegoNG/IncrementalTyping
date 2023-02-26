@@ -28,45 +28,18 @@
         <div>
             <span id="PointsCounter"></span>
         </div>
+        <div class="separator">
+        </div>
     </div>
     <div class="tabsContainer">
         <button id="activeMenuButton" onclick="Tab('activeMenu')" style="display:none;">Active</button>
         <button id="passiveMenuButton" onclick="Tab('passiveMenu')" style="display:none;">Passive</button>
+        <button id="upgradesMenuButton" onclick="Tab('upgradesMenu')" style="display:none;">Upgrades</button>
+        <button id="cardsMenuButton" onclick="Tab('cardsMenu')" style="display:none;">Cards</button>
     </div>
     <div class="separator">
     </div>
     <div id="activeMenu" class="upgradesContainer">
-        <table id="upgradesTable" style="display: inline-block;">
-            <tbody>
-                <tr>
-                    <td class="upgradeSquare tooltip" onclick="GetUpgrade(0, this)">
-                        <span class="tooltiptext">x1.5 points - Cost: 50</span>
-                        <span>A</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetUpgrade(1, this)">
-                        <span class="tooltiptext">+10 points per word - Cost: 200</span>
-                        <span>B</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetUpgrade(2, this)">
-                        <span class="tooltiptext">Every letter gets a value - Cost: 500</span>
-                        <span>C</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetUpgrade(3, this)">
-                        <span class="tooltiptext">x2 points - Cost: 1500</span>
-                        <span>D</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetUpgrade(4, this)"> 
-                        <span class="tooltiptext">Get a letter per minute value - Cost: 2000</span>
-                        <span>E</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetUpgrade(5, this)">
-                        <span class="tooltiptext">Unlock passive income! - Cost: 5</span>
-                        <span>F</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
         <div class="multiUpgradesContainer">
             <div>
                 <button onclick="AddMultiUpgrade(0)">+1 point per word!</button>
@@ -82,9 +55,108 @@
             </div>
         </div>
     </div>
-    <div id="passiveMenu">
-        <span id="PassivePoints" class="passivePoints"></span>
+    <div id="passiveMenu" style="display: inline-block;">
+        <div>
+            <span id="passivePointsWord" class="passivePointsWord"></span>
+        </div>
+        <div class="separator">
+        </div>
+        <div>
+            <span id="passivePoints" class="passivePoints"></span>
+        </div>
+        <div class="separator">
+        </div>
+    </div>
+    <div id="upgradesMenu">
+        <div>
+            <table id="upgradesTable" style="display: inline-block;">
+                <tbody>
+                    <tr>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(0, this)">
+                            <span class="tooltiptext">x1.5 points - Cost: 50</span>
+                            <span>A</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(1, this)">
+                            <span class="tooltiptext">+4 points per word - Cost: 200</span>
+                            <span>B</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(2, this)">
+                            <span class="tooltiptext">Get a letter per minute value - Cost: 500</span>
+                            <span>C</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(3, this)">
+                            <span class="tooltiptext">Unlock passive income! - Cost: 1500</span>
+                            <span>D</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(4, this)"> 
+                            <span class="tooltiptext">x1.3 Points! - Cost: 2500</span>
+                            <span>E</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(5, this)">
+                            <span class="tooltiptext">Every achievement gives a bonus! - Cost: 6000</span>
+                            <span>F</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(6, this)">
+                            <span class="tooltiptext">Every letter gets a value - Cost: 10000</span>
+                            <span>G</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(7, this)">
+                            <span class="tooltiptext">+10 points per word - Cost: 40000</span>
+                            <span>H</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(8, this)">
+                            <span class="tooltiptext">Unlocks Cards! - Cost: 100000</span>
+                            <span>I</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(9, this)">
+                            <span class="tooltiptext">x2 points - Cost: 1500</span>
+                            <span>J</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(10, this)"> 
+                            <span class="tooltiptext">-WIP-</span>
+                            <span>K</span>
+                        </td>
+                        <td class="upgradeSquare tooltip" onclick="GetUpgrade(11, this)">
+                            <span class="tooltiptext">-WIP-</span>
+                            <span>L</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <table id="passiveUpgradesTable" style="display: inline-block;">
+            <tbody>
+                <tr>
+                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(0, this)">
+                        <span class="tooltiptext">x1.25 Points - Cost: 100 PP</span>
+                        <span>A</span>
+                    </td>
+                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(1, this)">
+                        <span class="tooltiptext">+5 points per Word - Cost: 250 PP</span>
+                        <span>B</span>
+                    </td>
+                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(2, this)">
+                        <span class="tooltiptext">x1.5 points - Cost: 1000 PP</span>
+                        <span>C</span>
+                    </td>
+                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(3, this)">
+                        <span class="tooltiptext">Every letter gets a value - Cost: 2000 PP</span>
+                        <span>D</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="cardsMenu">
+       
     </div>
 </body>
-<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="js\main.js"></script>
+<script type="text/javascript" src="js\active.js"></script>
+<script type="text/javascript" src="js\passive.js"></script>
+<script type="text/javascript" src="js\upgrades.js"></script>
+<script type="text/javascript" src="js\cards.js"></script>
+<script type="text/javascript" src="js\achievements.js"></script>
 </html>
