@@ -7,6 +7,7 @@ var game = {
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
+    bestWord: "",
     multiUpgrades: [[0, 0, 0],
                     [50, 100, 500]],
     achievements: [ {name: "First Word", description: "Write your first word. Congratulations! You know how to write!", unlocked: false},
@@ -65,13 +66,15 @@ async function checkText(event) {
 
     if(textBoxText === document.getElementById("WordToGuess").textContent)
     {
-        console.log('Success!!!');
         document.getElementById("WordBox").value = "";
         var pointsLetters = textBoxText.length;
-        if(game.upgrades[0][6] == 1)pointsLetters += GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
-        pointsDesc = `Base Points: ${pointsLetters}`; 
+        var lettersValue = GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
+        if(game.upgrades[0][6] == 1)
+        {
+            pointsLetters += lettersValue;
+            if(lettersValue > GetPointsLetters(new String(game.bestWord.toLowerCase()).split(''))) game.bestWord = textBoxText;
+        }
         game.points += CalculatePoints(pointsLetters); 
-        console.log(game.points);
         game.wordsAmount++;
         if(textBoxText === "Jack-go-to-bed-at-noon" && !game.achievements[7].unlocked)
         {
@@ -207,11 +210,6 @@ function SetCosts()
     document.getElementById("LetterPerWordCost").textContent = Math.round(game.multiUpgrades[1][1])
     document.getElementById("PointsMultiplier").textContent = Math.round(game.multiUpgrades[1][2])
     document.getElementById("cardsCost").textContent = Math.round(game.cardCost)
-}
-
-function SetStats()
-{
-    document.getElementById("stats").textContent = JSON.stringify(game);
 }
 
 function SaveGame()
