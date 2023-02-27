@@ -5,7 +5,7 @@ var wordList;
 var game = {
     points: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     bestWord: "",
     multiUpgrades: [[0, 0, 0],
@@ -27,9 +27,10 @@ var game = {
     passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                         [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
     passiveLength: 4,
-    passivePoints: 0 ,
+    passivePoints: 0,
+    passiveRate: 1000,
     cards: [],
-    cardCost: 100000
+    cardCost: 1
 }
 
 var pointsDesc = "";
