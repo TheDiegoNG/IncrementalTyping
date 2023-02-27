@@ -5,7 +5,7 @@ var wordList;
 var game = {
     points: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 3, 2500, 6000, 10000, 40000, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     multiUpgrades: [[0, 0, 0],
                     [50, 100, 500]],
@@ -21,7 +21,8 @@ var game = {
     passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                         [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
     passiveLength: 4,
-    passivePoints: 0 
+    passivePoints: 0 ,
+    cards: []
 }
 
 var pointsDesc = "";
@@ -48,7 +49,11 @@ async function GenerateWord()
 
     var filteredWordList = wordList.filter(x => x.length <= game.maxLength);
 
-    wordLabel.textContent = filteredWordList[Math.floor(Math.random() * filteredWordList.length)];
+    var generatedWord = filteredWordList[Math.floor(Math.random() * filteredWordList.length)];
+
+    if(game.cards.filter(x => x.name === "All Lowercase").length > 0) generatedWord = generatedWord.toLowerCase();
+
+    wordLabel.textContent = generatedWord;
 }
 
 var textbox = document.getElementById("WordBox");
@@ -81,11 +86,12 @@ window.setInterval(function(){
     SetCosts()
     CheckAchievements()
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
-    document.getElementById("passivePoints").textContent = Math.round(game.passivePoints);
+    document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
     document.getElementById("upgradesMenuButton").style.display = "flex";
     if(game.upgrades[0][2] === 1) document.getElementById("LettersPerSecond").style.display = "block";
     if(game.upgrades[0][3] === 1) document.getElementById("passiveMenuButton").style.display = "flex";
+    if(game.upgrades[0][8] === 1) document.getElementById("cardsMenuButton").style.display = "flex";
     game.maxLength = game.multiUpgrades[0][1] + 4
     
 }, 100); 
