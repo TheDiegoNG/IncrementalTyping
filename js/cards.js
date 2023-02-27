@@ -10,10 +10,15 @@ var cards = [
 
 
 function GetCard() {
-    var card = cards[Math.floor(Math.random() * cards.length)];
-    game.cards.push(card);
-    alert(`You got the "${card.name}" card: ${card.description}`);
-    var cardText = document.getElementById("cards");
-    cardText.textContent += `${card.name} - `;
-    if(card.name === "Longer Passive Words") game.passiveLength += 2;
+    if(game.points >= game.cardCost)
+    {
+        game.points -= game.cardCost
+        game.cardCost = 10 ** 6 + game.cards.length;
+        var card = cards[Math.floor(Math.random() * cards.length)];
+        game.cards.push(card);
+        alert(`You got the "${card.name}" card: ${card.description}`);
+        var cardText = document.getElementById("cards");
+        cardText.textContent += `${card.name} - `;
+        if(card.name === "Longer Passive Words") game.passiveLength += 2;
+    } 
 }

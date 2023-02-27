@@ -22,7 +22,8 @@ var game = {
                         [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
     passiveLength: 4,
     passivePoints: 0 ,
-    cards: []
+    cards: [],
+    cardCost: 100000
 }
 
 var pointsDesc = "";
@@ -202,6 +203,7 @@ function SetCosts()
     document.getElementById("PointPerWordCost").textContent = Math.round(game.multiUpgrades[1][0])
     document.getElementById("LetterPerWordCost").textContent = Math.round(game.multiUpgrades[1][1])
     document.getElementById("PointsMultiplier").textContent = Math.round(game.multiUpgrades[1][2])
+    document.getElementById("cardsCost").textContent = Math.round(game.cardCost)
 }
 
 function SaveGame()
