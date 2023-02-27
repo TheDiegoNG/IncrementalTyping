@@ -85,11 +85,13 @@ async function checkText(event) {
 
 window.setInterval(function(){
     SetCosts()
+    SetStats()
     CheckAchievements()
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
     document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
     document.getElementById("upgradesMenuButton").style.display = "flex";
+    document.getElementById("statsMenuButton").style.display = "flex";
     if(game.upgrades[0][2] === 1) document.getElementById("LettersPerSecond").style.display = "block";
     if(game.upgrades[0][3] === 1) document.getElementById("passiveMenuButton").style.display = "flex";
     if(game.upgrades[0][8] === 1) document.getElementById("cardsMenuButton").style.display = "flex";
@@ -188,6 +190,7 @@ function Tab(tabName) {
     document.getElementById("passiveMenu").style.display = "none"
     document.getElementById("upgradesMenu").style.display = "none"
     document.getElementById("cardsMenu").style.display = "none"
+    document.getElementById("statsMenu").style.display = "none"
     document.getElementById(tabName).style.display = "flex"
     document.getElementById(tabName).style.justifyContent = "space-around";
   }
@@ -204,6 +207,11 @@ function SetCosts()
     document.getElementById("LetterPerWordCost").textContent = Math.round(game.multiUpgrades[1][1])
     document.getElementById("PointsMultiplier").textContent = Math.round(game.multiUpgrades[1][2])
     document.getElementById("cardsCost").textContent = Math.round(game.cardCost)
+}
+
+function SetStats()
+{
+    document.getElementById("stats").textContent = JSON.stringify(game);
 }
 
 function SaveGame()
