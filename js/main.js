@@ -11,12 +11,17 @@ var game = {
     multiUpgrades: [[0, 0, 0],
                     [50, 100, 500]],
     achievements: [ {name: "First Word", description: "Write your first word. Congratulations! You know how to write!", unlocked: false},
-                    {name: "Ten Words", description: "Write ten words. Pay attention, it seems that you are close to your first upgrade.", unlocked: false},
-                    {name: "Fifty Words", description: "Write fifty words.", unlocked: false},
-                    {name: "30 LPS", description: "Reach 30 LPS (Letters Per Second), you could get this by spamming", unlocked: false},
+                    {name: "Ten Words", description: "Write 10 words. Pay attention, it seems that you are close to your first upgrade.", unlocked: false},
+                    {name: "Fifty Words", description: "Write 50 words.", unlocked: false},
+                    {name: "One Hundred Words", description: "Write 100 words.", unlocked: false},
                     {name: "100 Points", description: "Save 100 points", unlocked: false},
                     {name: "500 Points", description: "Save 500 Points", unlocked: false},
                     {name: "1000 Points", description: "Save 1000 points", unlocked: false},
+                    {name: "5000 Points", description: "Save 5000 points", unlocked: false},
+                    {name: "10000 Points", description: "Save 10000 points", unlocked: false},
+                    {name: "50000 Points", description: "Save 50000 points", unlocked: false},
+                    {name: "100000 Points", description: "Save 100000 points", unlocked: false},
+                    {name: "200000 Points", description: "Save 200000 points", unlocked: false},
                     {name: "Best Word", description: "Write the best word possible", unlocked: false} ],
     wordsAmount: 0,
     passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -76,9 +81,9 @@ async function checkText(event) {
         }
         game.points += CalculatePoints(pointsLetters); 
         game.wordsAmount++;
-        if(textBoxText === "Jack-go-to-bed-at-noon" && !game.achievements[7].unlocked)
+        if(textBoxText === "Jack-go-to-bed-at-noon" && !game.achievements[12].unlocked)
         {
-            game.achievements[7].unlocked = true;
+            game.achievements[12].unlocked = true;
             ShowAchievement("Best Word");
         }
         GenerateWord();
@@ -120,10 +125,6 @@ setInterval(function(){
     let currentTime = Date.now();
     let elapsedTime = (currentTime - startTime) / 1000;
     let LPS = letters / elapsedTime;
-    if(LPS >= 30 && !game.achievements[3].unlocked) {
-        game.achievements[3].unlocked = true;
-        ShowAchievement("30 LPS");
-    }
     if(lettersPressed === letters)
     {
         display.innerHTML = "LPS : 0.00";
