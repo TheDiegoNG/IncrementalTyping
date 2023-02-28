@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="wordToGuessContainer">
+        <span id="challengeTimer" class="challengeTimer"></span>
         <div>
             <span id="WordToGuess" class="wordToGuess"></span>
         </div>
@@ -35,6 +36,7 @@
         <button id="activeMenuButton" onclick="Tab('activeMenu')" style="display:none;">Active</button>
         <button id="passiveMenuButton" onclick="Tab('passiveMenu')" style="display:none;">Passive</button>
         <button id="upgradesMenuButton" onclick="Tab('upgradesMenu')" style="display:none;">Upgrades</button>
+        <button id="challengesMenuButton" onclick="Tab('challengesMenu')" style="display:none;">Challenges</button>
         <button id="cardsMenuButton" onclick="Tab('cardsMenu')" style="display:none;">Cards</button>
         <button id="statsMenuButton" onclick="Tab('statsMenu')" style="display:none;">Stats</button>
     </div>
@@ -112,11 +114,11 @@
                             <span>I</span>
                         </td>
                         <td class="upgradeSquare tooltip" onclick="GetUpgrade(9, this)">
-                            <span class="tooltiptext">x2 points - Cost: 1500</span>
+                            <span class="tooltiptext">x2 points - Cost: 200000</span>
                             <span>J</span>
                         </td>
                         <td class="upgradeSquare tooltip" onclick="GetUpgrade(10, this)"> 
-                            <span class="tooltiptext">-WIP-</span>
+                            <span class="tooltiptext">Unlock Challenges! - Cost: 500000</span>
                             <span>K</span>
                         </td>
                         <td class="upgradeSquare tooltip" onclick="GetUpgrade(11, this)">
@@ -152,7 +154,7 @@
     </div>
     <div id="cardsMenu">
        <div id="cardsHeaderContainer">
-        <button onclick="GetCard()">Get a Card!</button>
+        <button onclick="GetCards()">Get a Pack!</button>
         Cost: <span id="cardsCost"></span>
        </div>
        <div id="cardsContainer">
@@ -167,6 +169,28 @@
         <div id="prestigePointsUpgrades">
              
         </div>
+     </div>
+    <div id="challengesMenu">
+        <div id="challengesContainer" class="challengesContainer">
+            <div id="challengesRow" class="challengesRow">
+                <div class="challengeSquare" onclick="StartChallenge(0)">
+                    <span>Write 50 4-letter Words with only 210 characters</span>
+                </div>
+                <div class="challengeRewards">
+                    <span>REWARD: +1 Card everytime you roll!</span>
+                </div>
+                
+            </div>
+            <div id="challengesRow" class="challengesRow">
+                <div class="challengeSquare" onclick="StartChallenge(1)">
+                    <span>Write 50 4-letter words in only 1 minute</span>
+                </div>
+                <div class="challengeRewards">
+                    <span>REWARD: 50% more Points!</span>
+                </div>
+            </div>
+        </div>
+
      </div>
     <div id="statsMenu">
         <div id="statsContainer">
@@ -195,6 +219,7 @@
 <script type="text/javascript" src="js\passive.js"></script>
 <script type="text/javascript" src="js\upgrades.js"></script>
 <script type="text/javascript" src="js\cards.js"></script>
+<script type="text/javascript" src="js\challenges.js"></script>
 <script type="text/javascript" src="js\achievements.js"></script>
 <script type="text/javascript" src="js\stats.js"></script>
 </html>

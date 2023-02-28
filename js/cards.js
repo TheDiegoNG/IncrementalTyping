@@ -33,11 +33,11 @@ var legendaryCards = [
     {name: "Longest Passive Words (L)", description: "+5 Letters Per Passive Word"},
 ]
 
-function GetCard() {
+function GetCards() {
     if(game.points >= game.cardCost)
     {
         game.points -= game.cardCost
-        game.cardCost = 100000 * 2 ** game.cards.length;
+        game.cardCost = 100000 * 2 ** (game.cards.length / 10);
         var card;
         var cardText = document.getElementById("cards");
         for (let index = 0; index < 10; index++) {

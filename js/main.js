@@ -5,7 +5,7 @@ var wordList;
 var game = {
     points: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 3, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     bestWord: "",
     multiUpgrades: [[0, 0, 0],
@@ -30,14 +30,23 @@ var game = {
     passivePoints: 0,
     passiveRate: 1000,
     cards: [],
-    cardCost: 1
+    cardCost: 1,
+    challenges: [[0, 0], //State
+                [10, 10],  //Objective
+                [0, 0]], //Times Completed
+    isInChallenge: false
 }
+
+var challengeGame = {};
+
+var activeGame = {};
 
 var pointsDesc = "";
 
 window.onload = async function()
 {
     wordList = await getWordList();
+    challengeGame = JSON.parse(JSON.stringify(game));
     LoadGame();
     GenerateWord();
     Tab("activeMenu");
@@ -104,16 +113,29 @@ window.setInterval(function(){
     if(game.upgrades[0][2] === 1) document.getElementById("LettersPerSecond").style.display = "block";
     if(game.upgrades[0][3] === 1) document.getElementById("passiveMenuButton").style.display = "flex";
     if(game.upgrades[0][8] === 1) document.getElementById("cardsMenuButton").style.display = "flex";
+    if(game.upgrades[0][10] === 1) document.getElementById("challengesMenuButton").style.display = "flex";
     game.maxLength = game.multiUpgrades[0][1] + 4
-    
+    if(!game.isInChallenge) activeGame = JSON.parse(JSON.stringify(game));
 }, 100); 
 
 let letters = 0;
 let startTime;
 let display = document.getElementById("LettersPerSecond");
 
+var letterCounter = 0;
+
 let input = document.getElementById("WordBox");
 input.addEventListener("keydown", function() {
+    if(game.challenges[0][0] == 1)
+    {
+        letterCounter++;
+        if(letterCounter >= 210 * (1 + game.challenges[2][0] / 2))
+        {
+            game.challenges[0][0] = 0;
+            letterCounter = 0;
+        }
+    } 
+    console.log(letterCounter);
     letters++;
     if (letters === 1) {
         startTime = Date.now();
@@ -196,6 +218,8 @@ function Tab(tabName) {
     document.getElementById("upgradesMenu").style.display = "none"
     document.getElementById("cardsMenu").style.display = "none"
     document.getElementById("statsMenu").style.display = "none"
+    document.getElementById("prestigeMenu").style.display = "none"
+    document.getElementById("challengesMenu").style.display = "none"
     document.getElementById(tabName).style.display = "flex"
     document.getElementById(tabName).style.justifyContent = "space-around";
   }
@@ -204,6 +228,7 @@ function Tab(tabName) {
 function LogGame() 
 {
     console.log(game);
+    console.log(challengeGame);
 }
 
 function SetCosts()

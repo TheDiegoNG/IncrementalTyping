@@ -49,25 +49,20 @@
     display: flex;
     justify-content: space-around;
   }
+
   .tabsContainer {
     display: flex;
     justify-content: space-around;
   }
 
-  /* .fallingAnimationContainer {
-    display: flex;
-    justify-content: space-around;
+  .challengeTimer {
+    position: absolute;
   }
 
-  .falling-word {
-    animation: fall 4s infinite;
+  .challengeSquare {
+    border: 1px solid black;
   }
-  
-  @keyframes fall {
-    from {
-      transform: translateY(-100%);
-    }
-    to {
-      transform: translateY(500%);
-    }
-  } */
+
+  .challengesRow {
+    display: flex;
+  }
