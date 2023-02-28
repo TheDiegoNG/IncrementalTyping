@@ -42,10 +42,10 @@ function GetCards() {
         var cardText = document.getElementById("cards");
         for (let index = 0; index < 10; index++) {
             var randomNumber = Math.floor(Math.random() * 100);
-            if(randomNumber >= 40) card = commonCards[Math.floor(Math.random() * commonCards.length)];
-            else if(randomNumber >= 10) card = uncommonCards[Math.floor(Math.random() * uncommonCards.length)];
-            else if(randomNumber >= 1) card = epicCards[Math.floor(Math.random() * epicCards.length)];
-            else card = legendaryCards[Math.floor(Math.random() * legendaryCards.length)];
+            if(randomNumber >= 40) card = GetCommonCard();
+            else if(randomNumber >= 10) card = GetUncommonCard();
+            else if(randomNumber >= 1) card = GetEpicCard();
+            else card = GetLegendaryCard();
             game.cards.push(card);
             alert(`You got the "${card.name}" card: ${card.description}`);
             cardText.textContent += `${card.name} - `;
@@ -59,3 +59,11 @@ function GetCards() {
         
     } 
 }
+
+var GetCommonCard = () => commonCards[Math.floor(Math.random() * commonCards.length)];
+
+var GetUncommonCard = () => uncommonCards[Math.floor(Math.random() * uncommonCards.length)];
+
+var GetEpicCard = () => epicCards[Math.floor(Math.random() * epicCards.length)];
+
+var GetLegendaryCard = () => legendaryCards[Math.floor(Math.random() * legendaryCards.length)];

@@ -41,12 +41,10 @@ var challengeGame = {};
 
 var activeGame = {};
 
-var pointsDesc = "";
-
 window.onload = async function()
 {
     wordList = await getWordList();
-    challengeGame = JSON.parse(JSON.stringify(game));
+    challengeGame = Copy(game);
     LoadGame();
     GenerateWord();
     Tab("activeMenu");
@@ -56,7 +54,6 @@ async function getWordList() {
     var response = await fetch(wordListUrl);
     var wordListText = await response.text();
     var wordList = wordListText.split('\n');
-    console.log(wordList);
     return wordList;
 }
 
@@ -68,7 +65,7 @@ async function GenerateWord()
 
     var generatedWord = filteredWordList[Math.floor(Math.random() * filteredWordList.length)];
 
-    if(game.cards.filter(x => x.name === "All Lowercase").length > 0) generatedWord = generatedWord.toLowerCase();
+    if(HasCard("All Lowercase") || IsInChallenge(0)) generatedWord = generatedWord.toLowerCase();
 
     wordLabel.textContent = generatedWord;
 }
@@ -77,21 +74,21 @@ var textbox = document.getElementById("WordBox");
 textbox.addEventListener("input", checkText);
 
 async function checkText(event) {
-    var textBoxText = event.target.value;
+    var textBoxText = new String(event.target.value);
 
-    if(textBoxText === document.getElementById("WordToGuess").textContent)
+    if(textBoxText == document.getElementById("WordToGuess").textContent)
     {
         document.getElementById("WordBox").value = "";
         var pointsLetters = textBoxText.length;
-        var lettersValue = GetPointsLetters(new String(textBoxText.toLowerCase()).split(''));
-        if(game.upgrades[0][6] == 1)
+        var lettersValue = GetPointsLetters(textBoxText);
+        if(IsPurchasedUpgrade(6))
         {
             pointsLetters += lettersValue;
-            if(lettersValue > GetPointsLetters(new String(game.bestWord.toLowerCase()).split(''))) game.bestWord = textBoxText;
+            if(lettersValue > GetPointsLetters(game.bestWord)) game.bestWord = textBoxText;
         }
         game.points += CalculatePoints(pointsLetters); 
         game.wordsAmount++;
-        if(textBoxText === "Jack-go-to-bed-at-noon" && !game.achievements[12].unlocked)
+        if(textBoxText === "Jack-go-to-bed-at-noon" && IsUnlockedAchievement(12))
         {
             game.achievements[12].unlocked = true;
             ShowAchievement("Best Word");
@@ -110,12 +107,12 @@ window.setInterval(function(){
     document.getElementById("activeMenuButton").style.display = "flex";
     document.getElementById("upgradesMenuButton").style.display = "flex";
     document.getElementById("statsMenuButton").style.display = "flex";
-    if(game.upgrades[0][2] === 1) document.getElementById("LettersPerSecond").style.display = "block";
-    if(game.upgrades[0][3] === 1) document.getElementById("passiveMenuButton").style.display = "flex";
-    if(game.upgrades[0][8] === 1) document.getElementById("cardsMenuButton").style.display = "flex";
-    if(game.upgrades[0][10] === 1) document.getElementById("challengesMenuButton").style.display = "flex";
+    if(IsPurchasedUpgrade(2)) document.getElementById("LettersPerSecond").style.display = "block";
+    if(IsPurchasedUpgrade(3)) document.getElementById("passiveMenuButton").style.display = "flex";
+    if(IsPurchasedUpgrade(8)) document.getElementById("cardsMenuButton").style.display = "flex";
+    if(IsPurchasedUpgrade(10)) document.getElementById("challengesMenuButton").style.display = "flex";
     game.maxLength = game.multiUpgrades[0][1] + 4
-    if(!game.isInChallenge) activeGame = JSON.parse(JSON.stringify(game));
+    if(!game.isInChallenge) activeGame = Copy(game);
 }, 100); 
 
 let letters = 0;
@@ -145,6 +142,7 @@ input.addEventListener("keydown", function() {
 var lettersPressed = 0;
 
 setInterval(function(){
+
     let currentTime = Date.now();
     let elapsedTime = (currentTime - startTime) / 1000;
     let LPS = letters / elapsedTime;
@@ -162,7 +160,8 @@ setInterval(function(){
     
 }, 1000);
 
-function GetPointsLetters(letters) {
+function GetPointsLetters(word) {
+    var letters = word.toLowerCase().split('');
     var points = 0;
     letters.forEach(element => {
         if(element === 'a' || 
