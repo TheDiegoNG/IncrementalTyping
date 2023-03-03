@@ -4,8 +4,9 @@ var wordList;
 
 var game = {
     points: 0,
+    allTimePoints: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 3, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 500000, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     bestWord: "",
     multiUpgrades: [[0, 0, 0],
@@ -31,9 +32,9 @@ var game = {
     passiveRate: 1000,
     cards: [],
     cardCost: 1,
-    challenges: [[0, 0], //State
-                [10, 10],  //Objective
-                [0, 0]], //Times Completed
+    challenges: [[0, 0],
+                [50, 50], 
+                [0, 0]],
     isInChallenge: false
 }
 
@@ -86,7 +87,9 @@ async function checkText(event) {
             pointsLetters += lettersValue;
             if(lettersValue > GetPointsLetters(game.bestWord)) game.bestWord = textBoxText;
         }
-        game.points += CalculatePoints(pointsLetters); 
+        var wordPoints = CalculatePoints(pointsLetters);
+        game.points +=  wordPoints;
+        game.allTimePoints += wordPoints;
         game.wordsAmount++;
         if(textBoxText === "Jack-go-to-bed-at-noon" && IsUnlockedAchievement(12))
         {
@@ -99,9 +102,10 @@ async function checkText(event) {
 }
 
 window.setInterval(function(){
-    SetCosts()
-    SetStats()
-    CheckAchievements()
+    SetCosts();
+    SetStats();
+    CheckAchievements();
+    SetPrestige();
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
     document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
@@ -111,6 +115,7 @@ window.setInterval(function(){
     if(IsPurchasedUpgrade(3)) document.getElementById("passiveMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(8)) document.getElementById("cardsMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(10)) document.getElementById("challengesMenuButton").style.display = "flex";
+    if(game.allTimePoints >= 1) document.getElementById("prestigeMenuButton").style.display = "flex";
     game.maxLength = game.multiUpgrades[0][1] + 4
     if(!game.isInChallenge) activeGame = Copy(game);
 }, 100); 
