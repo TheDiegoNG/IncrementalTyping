@@ -27,8 +27,6 @@ function AddMultiUpgrade(upgradeNumber) {
     {
         game.points -= game.multiUpgrades[1][upgradeNumber]
         game.multiUpgrades[0][upgradeNumber]++;
-        console.log(game.multiUpgrades[1][upgradeNumber]);
         game.multiUpgrades[1][upgradeNumber] = game.multiUpgrades[1][upgradeNumber] * (game.multiUpgrades[0][upgradeNumber] + 1) ** Math.log10((game.multiUpgrades[0][upgradeNumber] + 1));
-        console.log(game.multiUpgrades[1][upgradeNumber]);
     }
 }

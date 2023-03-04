@@ -31,11 +31,12 @@ var game = {
     passivePoints: 0,
     passiveRate: 1000,
     cards: [],
-    cardCost: 1,
+    cardCost: 0,
     challenges: [[0, 0],
                 [50, 50], 
                 [0, 0]],
-    isInChallenge: false
+    isInChallenge: false,
+    prestigePoints: 0
 }
 
 var challengeGame = {};
