@@ -1,5 +1,6 @@
 function StartChallenge(challengeNumber) {
     if(game.isInChallenge) return alert("You are already in a Challenge");
+    Prestige();
     game = Copy(challengeGame);
     game.isInChallenge = true;
     StartTimer(60, challengeNumber);

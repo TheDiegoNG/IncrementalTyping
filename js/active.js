@@ -4,6 +4,7 @@ function CalculatePoints(wordLength) {
     totalPoints += wordLength;
     totalPoints += game.multiUpgrades[0][0];
     if(IsPurchasedUpgrade(1)) totalPoints += 4;
+    if(IsPurchasedUpgrade(11)) totalPoints += 20;
     if(HasCard("+1 Points (C)")) totalPoints += 1 * game.cards.filter(x => x.name === "+1 Points (C)").length;
     if(HasCard("+3 Points (UC)")) totalPoints += 1 * game.cards.filter(x => x.name === "+3 Points (UC)").length;
     if(HasCard("+6 Points (E)")) totalPoints += 1 * game.cards.filter(x => x.name === "+6 Points (E)").length;
@@ -19,6 +20,7 @@ function CalculatePoints(wordLength) {
     if(HasCard("Fasterer Progress (E)")) totalPoints *= 1 + 0.5 * game.cards.filter(x => x.name === "Fasterer Progress (E)").length;
     if(HasCard("Fastest Progress (L)")) totalPoints *= 1 + 1 * game.cards.filter(x => x.name === "Fastest Progress (L)").length;
     totalPoints *= (1 + game.multiUpgrades[0][2]*0.25);
+    if(IsPurchasedPrestigeUpgrade(0)) totalPoints *= 2;
     return totalPoints;
 }
 
@@ -27,6 +29,8 @@ function AddMultiUpgrade(upgradeNumber) {
     {
         game.points -= game.multiUpgrades[1][upgradeNumber]
         game.multiUpgrades[0][upgradeNumber]++;
+        var costAux = game.multiUpgrades[1][upgradeNumber];
         game.multiUpgrades[1][upgradeNumber] = game.multiUpgrades[1][upgradeNumber] * (game.multiUpgrades[0][upgradeNumber] + 1) ** Math.log10((game.multiUpgrades[0][upgradeNumber] + 1));
+        if(IsPurchasedPrestigeUpgrade(2))game.multiUpgrades[1][upgradeNumber] = costAux * (game.multiUpgrades[0][upgradeNumber]/2 + 1) ** Math.log10((game.multiUpgrades[0][upgradeNumber]/2 + 1));
     }
 }

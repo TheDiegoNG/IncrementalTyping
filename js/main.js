@@ -2,11 +2,19 @@ const wordListUrl = 'https://raw.githubusercontent.com/dwyl/english-words/master
 
 var wordList;
 
+/*Upgrades:
+    3 - Passive Income
+    8 - Cards
+    10 - Challenges
+
+
+*/
+
 var game = {
     points: 0,
     allTimePoints: 0,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 500000, 0, 0, 0, 0, 0, 0, 0, 0]],
+                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 5000000, 0, 0, 0, 0, 0, 0, 0, 0]],
     maxLength: 4,
     bestWord: "",
     multiUpgrades: [[0, 0, 0],
@@ -32,11 +40,15 @@ var game = {
     passiveRate: 1000,
     cards: [],
     cardCost: 0,
+    rollsAmount: 10,
     challenges: [[0, 0],
                 [50, 50], 
                 [0, 0]],
     isInChallenge: false,
-    prestigePoints: 0
+    prestigePoints: 0,
+    prestigeCount: 0,
+    prestigeUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        [10, 50, 100, 500, 0, 0, 0, 0, 0, 0]]
 }
 
 var challengeGame = {};
@@ -92,7 +104,7 @@ async function checkText(event) {
         game.points +=  wordPoints;
         game.allTimePoints += wordPoints;
         game.wordsAmount++;
-        if(textBoxText === "Jack-go-to-bed-at-noon" && IsUnlockedAchievement(12))
+        if(textBoxText === "Jack-go-to-bed-at-noon" && !IsUnlockedAchievement(12))
         {
             game.achievements[12].unlocked = true;
             ShowAchievement("Best Word");
@@ -116,7 +128,7 @@ window.setInterval(function(){
     if(IsPurchasedUpgrade(3)) document.getElementById("passiveMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(8)) document.getElementById("cardsMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(10)) document.getElementById("challengesMenuButton").style.display = "flex";
-    if(game.allTimePoints >= 1) document.getElementById("prestigeMenuButton").style.display = "flex";
+    if(game.allTimePoints >= 1000000) document.getElementById("prestigeMenuButton").style.display = "flex";
     game.maxLength = game.multiUpgrades[0][1] + 4
     if(!game.isInChallenge) activeGame = Copy(game);
 }, 100); 

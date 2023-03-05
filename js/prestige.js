@@ -5,6 +5,7 @@ function SetPrestige() {
 
 function Prestige() {
     game.prestigePoints += Math.round(Math.cbrt(game.allTimePoints));
+    game.prestigeCount++;
     PrestigeStats();
 }
 
@@ -12,6 +13,7 @@ function PrestigeStats() {
     game.points = 0;
     game.allTimePoints = 0;
     game.upgrades[0].fill(0);
+    if(IsPurchasedUpgrade(3) && IsPurchasedPrestigeUpgrade(3)) game.upgrades[0][3] = 1;
     game.maxLength = 4;
     game.bestWord = "";
     game.multiUpgrades[0].fill(0);

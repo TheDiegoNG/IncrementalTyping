@@ -40,7 +40,7 @@ function GetCards() {
         game.cardCost = 100000 * 2 ** (game.cards.length / 10);
         var card;
         var cardText = document.getElementById("cards");
-        for (let index = 0; index < 10; index++) {
+        for (let index = 0; index < game.rollsAmount; index++) {
             var randomNumber = Math.floor(Math.random() * 100);
             if(randomNumber >= 40) card = GetCommonCard();
             else if(randomNumber >= 10) card = GetUncommonCard();

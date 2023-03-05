@@ -72,7 +72,6 @@
         </div>
     </div>
     <div id="upgradesMenu">
-        <div>
             <table id="upgradesTable" style="display: inline-block;">
                 <tbody>
                     <tr>
@@ -119,17 +118,16 @@
                             <span>J</span>
                         </td>
                         <td class="upgradeSquare tooltip" onclick="GetUpgrade(10, this)"> 
-                            <span class="tooltiptext">Unlock Challenges! - Cost: 500000</span>
+                            <span class="tooltiptext">Unlock Challenges! - Cost: 5000000</span>
                             <span>K</span>
                         </td>
                         <td class="upgradeSquare tooltip" onclick="GetUpgrade(11, this)">
-                            <span class="tooltiptext">-WIP-</span>
+                            <span class="tooltiptext">Last Basic Upgrade! +20 points per word - 10000000</span>
                             <span>L</span>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
         <table id="passiveUpgradesTable" style="display: inline-block;">
             <tbody>
                 <tr>
@@ -147,6 +145,28 @@
                     </td>
                     <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(3, this)">
                         <span class="tooltiptext">Every letter gets a value - Cost: 2000 PP</span>
+                        <span>D</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="prestigeUpgradesTable" style="display: inline-block;">
+            <tbody>
+                <tr>
+                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(0, this)">
+                        <span class="tooltiptext">Welcome to Prestige! Take a free x2 multiplier - Cost: 10 Prestige Points</span>
+                        <span>A</span>
+                    </td>
+                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(1, this)">
+                        <span class="tooltiptext">+2 Cards Per Roll - Cost: 50 Prestige Points</span>
+                        <span>B</span>
+                    </td>
+                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(2, this)">
+                        <span class="tooltiptext">Better Scaling for MultiUpgrades! - Cost: 100 Prestige Points</span>
+                        <span>C</span>
+                    </td>
+                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(3, this)">
+                        <span class="tooltiptext">Keep your Passive Income when Prestige! (PP resets tho) - Cost: 500 Prestige Points</span>
                         <span>D</span>
                     </td>
                 </tr>
