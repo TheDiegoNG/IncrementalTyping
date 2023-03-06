@@ -29,3 +29,33 @@ function GetPrestigeUpgrade(upgradeNumber, element) {
     } 
     if(upgradeNumber == 1) game.rollsAmount += 2;
 }
+
+function SetUpgrades() {
+    SetActiveUpgrades();
+    SetPassiveUpgrades();
+    SetPrestigeUpgrades();
+}
+
+function SetActiveUpgrades() { 
+    let myTable = document.getElementById('upgradesTable');
+    let cells = myTable.querySelectorAll('td');
+    cells.forEach(function callback(value, index) {
+        value.style.color = game.upgrades[0][index] == 1 ? 'gray' : 'none';
+    });
+}
+
+function SetPassiveUpgrades() { 
+    let myTable = document.getElementById('passiveUpgradesTable');
+    let cells = myTable.querySelectorAll('td');
+    cells.forEach(function callback(value, index) {
+        value.style.color = game.upgrades[0][index] == 1 ? 'gray' : 'none';
+    });
+}
+
+function SetPrestigeUpgrades() { 
+    let myTable = document.getElementById('prestigeUpgradesTable');
+    let cells = myTable.querySelectorAll('td');
+    cells.forEach(function callback(value, index) {
+        value.style.color = game.upgrades[0][index] == 1 ? 'gray' : 'none';
+    });
+}

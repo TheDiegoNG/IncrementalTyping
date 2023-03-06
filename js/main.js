@@ -13,8 +13,8 @@ var wordList;
 var game = {
     points: 0,
     allTimePoints: 0,
-    upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 5000000, 0, 0, 0, 0, 0, 0, 0, 0]],
+    upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 5000000, 10000000]],
     maxLength: 4,
     bestWord: "",
     multiUpgrades: [[0, 0, 0],
@@ -119,6 +119,7 @@ window.setInterval(function(){
     SetStats();
     CheckAchievements();
     SetPrestige();
+    SetUpgrades();
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
     document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";

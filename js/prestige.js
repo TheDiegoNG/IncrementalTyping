@@ -27,6 +27,7 @@ function PrestigeStats() {
     game.passiveRate = 1000;
     game.cards = [];
     game.cardCost = 0;
+    document.getElementById("cards").textContent = "Cards Unlocked: ";
     game.challenges[0].fill(0);
     game.challenges[1].fill(50);
     game.challenges[2].fill(0);
