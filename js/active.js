@@ -13,7 +13,7 @@ function CalculatePoints(wordLength) {
     if(IsPurchasedUpgrade(0)) totalPoints *= 1.5;
     if(IsPurchasedUpgrade(4)) totalPoints *= 1.3;
     if(IsPurchasedUpgrade(9)) totalPoints *= 2;
-    if(IsPurchasedUpgrade(5)) totalPoints *= Math.sqrt(game.achievements.filter(x => x.unlocked).length);
+    if(IsPurchasedUpgrade(5) && game.achievements.filter(x => x.unlocked).length > 0) totalPoints *= Math.sqrt(game.achievements.filter(x => x.unlocked).length);
     if(IsPurchasedUpgrade(3) && game.passivePoints > 0) totalPoints *= Math.log10(game.passivePoints);
     if(HasCard("Fast+ Progress (C)")) totalPoints *= 1 + 0.05 * game.cards.filter(x => x.name === "Fast+ Progress (C)").length;
     if(HasCard("Faster Progress (UC)")) totalPoints *= 1 + 0.25 * game.cards.filter(x => x.name === "Faster Progress (UC)").length;

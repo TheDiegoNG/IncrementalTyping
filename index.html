@@ -21,18 +21,20 @@
         <div>
             <span id="WordToGuess" class="wordToGuess"></span>
         </div>
+        <label id="LettersPerSecond" class="lettersPerSecond" style="display:none;"></label>
         <div>
-            <label id="LettersPerSecond" style="display:none;"></label>
             <div id="WordWrapper" class="wordWrapper">
                 <input type="text" id="WordBox" class="wordBox" name="WordBox">
-                <button onclick="SaveGame()">Save</button>
-                <button onclick="LogGame()">Log</button>
+                <div id="gameButtonWrapper" class="gameButtonWrapper hoverEffectContainer">
+                    <div class="gameButton hoverEffectChild" onclick="SaveGame()">Save</div>
+                    <div class="gameButton hoverEffectChild" onclick="LogGame()">Log</div>
+                </div>
             </div>
         </div>
         <div id="PointsCounter" class="pointsCounter">
         </div>
     </div>
-    <div class="tabsContainer hoverEffectContainer">
+    <div id="TabsContainer" class="tabsContainer hoverEffectContainer">
         <button id="activeMenuButton" class="menuButton hoverEffectChild" onclick="Tab('activeMenu')"
             style="display:none;">Active</button>
         <button id="passiveMenuButton" class="menuButton hoverEffectChild" onclick="Tab('passiveMenu')"
@@ -58,11 +60,9 @@
         </div>
     </div>
     <div id="passiveMenu" style="display: inline-block;">
-        <div>
-            <span id="passivePointsWord" class="passivePointsWord"></span>
-        </div>
-        <div>
-            <span id="passivePoints" class="passivePoints"></span>
+        <div id="PassivePointsWrapper" class="passivePointsWrapper">
+            <div id="passivePointsWord" class="passivePointsWord"></div>
+            <div id="passivePoints" class="passivePoints"></div>
         </div>
     </div>
     <div id="upgradesMenu">
@@ -70,95 +70,108 @@
             <div id="BasicUpgradesWrapper" class="upgradeTypeWrapper">
                 <h2>Basic Upgrades</h2>
                 <div id="upgradesTable" class="upgradesTable hoverEffectContainer">
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade1" onclick="GetUpgrade(0, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade1" onmouseover="ChangeBasicUpgradesText(0)"
+                        onclick="GetUpgrade(0, this)">
                         <span>A</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade2" onclick="GetUpgrade(1, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade2" onmouseover="ChangeBasicUpgradesText(1)"
+                        onclick="GetUpgrade(1, this)">
                         <span>B</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade3" onclick="GetUpgrade(2, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade3" onmouseover="ChangeBasicUpgradesText(2)"
+                        onclick="GetUpgrade(2, this)">
                         <span>C</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade4" onclick="GetUpgrade(3, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade4" onmouseover="ChangeBasicUpgradesText(3)"
+                        onclick="GetUpgrade(3, this)">
                         <span>D</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade5" onclick="GetUpgrade(4, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade5" onmouseover="ChangeBasicUpgradesText(4)"
+                        onclick="GetUpgrade(4, this)">
                         <span>E</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade6" onclick="GetUpgrade(5, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade6" onmouseover="ChangeBasicUpgradesText(5)"
+                        onclick="GetUpgrade(5, this)">
                         <span>F</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade7" onclick="GetUpgrade(6, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade7" onmouseover="ChangeBasicUpgradesText(6)"
+                        onclick="GetUpgrade(6, this)">
                         <span>G</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade8" onclick="GetUpgrade(7, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade8" onmouseover="ChangeBasicUpgradesText(7)"
+                        onclick="GetUpgrade(7, this)">
                         <span>H</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade9" onclick="GetUpgrade(8, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade9" onmouseover="ChangeBasicUpgradesText(8)"
+                        onclick="GetUpgrade(8, this)">
                         <span>I</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade10" onclick="GetUpgrade(9, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade10" onmouseover="ChangeBasicUpgradesText(9)"
+                        onclick="GetUpgrade(9, this)">
                         <span>J</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade11" onclick="GetUpgrade(10, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade11" onmouseover="ChangeBasicUpgradesText(10)"
+                        onclick="GetUpgrade(10, this)">
                         <span>K</span>
                     </div>
-                    <div class="upgradeSquare hoverEffectChild" id="upgrade12" onclick="GetUpgrade(11, this)">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade12" onmouseover="ChangeBasicUpgradesText(11)"
+                        onclick="GetUpgrade(11, this)">
                         <span>L</span>
                     </div>
                 </div>
+                <p id="basicUpgradesDesc" class="upgradesDesc">Hover and upgrade to see its description!</p>
             </div>
             <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper">
                 <h2>Passive Upgrades</h2>
                 <div id="passiveUpgradesTable" class="upgradesTable hoverEffectContainer">
                     <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade1"
-                        onclick="GetPassiveUpgrade(0, this)">
+                        onmouseover="ChangePassiveUpgradesText(0)" onclick="GetPassiveUpgrade(0, this)">
                         <span>A</span>
                     </div>
                     <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade2"
-                        onclick="GetPassiveUpgrade(1, this)">
+                        onmouseover="ChangePassiveUpgradesText(1)" onclick="GetPassiveUpgrade(1, this)">
                         <span>B</span>
                     </div>
                     <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade3"
-                        onclick="GetPassiveUpgrade(2, this)">
+                        onmouseover="ChangePassiveUpgradesText(2)" onclick="GetPassiveUpgrade(2, this)">
                         <span>C</span>
                     </div>
                     <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade4"
-                        onclick="GetPassiveUpgrade(3, this)">
+                        onmouseover="ChangePassiveUpgradesText(3)" onclick="GetPassiveUpgrade(3, this)">
                         <span>D</span>
                     </div>
                 </div>
+                <p id="passiveUpgradesDesc" class="upgradesDesc">Hover and upgrade to see its description!</p>
             </div>
             <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper">
                 <h2>Prestige Upgrades</h2>
                 <div id="prestigeUpgradesTable" class="upgradesTable hoverEffectContainer">
                     <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade1"
-                        onclick="GetPrestigeUpgrade(0, this)">
+                        onmouseover="ChangePrestigeUpgradesText(0)" onclick="GetPrestigeUpgrade(0, this)">
                         <span>A</span>
                     </div>
                     <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade2"
-                        onclick="GetPrestigeUpgrade(1, this)">
+                        onmouseover="ChangePrestigeUpgradesText(1)" onclick="GetPrestigeUpgrade(1, this)">
                         <span>B</span>
                     </div>
                     <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade3"
-                        onclick="GetPrestigeUpgrade(2, this)">
+                        onmouseover="ChangePrestigeUpgradesText(2)" onclick="GetPrestigeUpgrade(2, this)">
                         <span>C</span>
                     </div>
                     <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade4"
-                        onclick="GetPrestigeUpgrade(3, this)">
+                        onmouseover="ChangePrestigeUpgradesText(3)" onclick="GetPrestigeUpgrade(3, this)">
                         <span>D</span>
                     </div>
                 </div>
+                <p id="prestigeUpgradesDesc" class="upgradesDesc">Hover and upgrade to see its description!</p>
             </div>
         </div>
         <div id="upgradesDesc" class="upgradesDesc">
-            <p id="upgradesDesc1" class="upgradesDesc1"></p>
         </div>
     </div>
     <div id="cardsMenu">
-        <div id="cardsHeaderContainer">
-            <button onclick="GetCards()">Get a Pack!</button>
-            Cost: <span id="cardsCost"></span>
+        <div id="cardsHeaderContainer" class="cardsHeaderContainer">
+            <div id="cardsButton" class="cardsButton" onclick="GetCards()"></div>
         </div>
         <div id="cardsContainer">
             <span id="cards">Cards Unlocked: </span>

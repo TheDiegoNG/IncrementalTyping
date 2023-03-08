@@ -11,8 +11,8 @@ var wordList;
 */
 
 var game = {
-    points: 0,
-    allTimePoints: 0,
+    points: 100000000,
+    allTimePoints: 100000000,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                 [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 5000000, 10000000]],
     maxLength: 4,
@@ -117,7 +117,7 @@ async function checkText(event) {
 window.setInterval(function(){
     SetCosts();
     SetStats();
-    CheckAchievements();
+    // CheckAchievements();
     SetPrestige();
     SetUpgrades();
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
@@ -126,7 +126,8 @@ window.setInterval(function(){
     document.getElementById("upgradesMenuButton").style.display = "flex";
     document.getElementById("statsMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(2)) document.getElementById("LettersPerSecond").style.display = "block";
-    if(IsPurchasedUpgrade(3)) document.getElementById("passiveMenuButton").style.display = "flex";
+    // if(IsPurchasedUpgrade(3)) 
+    document.getElementById("passiveMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(8)) document.getElementById("cardsMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(10)) document.getElementById("challengesMenuButton").style.display = "flex";
     if(game.allTimePoints >= 1000000) document.getElementById("prestigeMenuButton").style.display = "flex";
@@ -254,7 +255,7 @@ function SetCosts()
     document.getElementById("multiUpgrade1").textContent = "+1 point per word! Cost: " + Math.round(game.multiUpgrades[1][0])
     document.getElementById("multiUpgrade2").textContent = "+1 letter per word! Cost: " + Math.round(game.multiUpgrades[1][1])
     document.getElementById("multiUpgrade3").textContent = "+25% points! Cost: " + Math.round(game.multiUpgrades[1][2])
-    document.getElementById("cardsCost").textContent = "Cost: " + Math.round(game.cardCost)
+    document.getElementById("cardsButton").textContent = "Get a Pack! Cost: " + Math.round(game.cardCost)
 }
 
 function SaveGame()
@@ -295,3 +296,13 @@ window.onmousemove = e => {
         easing: "ease"
     });
 }
+
+const tabs = document.getElementById("TabsContainer");
+
+tabs.addEventListener("wheel", (evt) => {
+    evt.preventDefault();
+
+    tabs.scrollBy({
+    left: evt.deltaY < 0 ? -50 : 50,
+  });
+});

@@ -1,15 +1,18 @@
 :root {
+  --xsmall-custon-text: clamp(0.25rem, 0.5vw, 1rem);
   --small-custom-text: clamp(0.5rem, 1vw, 2rem);
   --medium-custom-text: clamp(2rem, 3vw, 5rem);
   --big-custom-text: clamp(5rem, 7vw, 10rem);
+  --light-black: rgb(20, 20, 20)
 }
 
 body {
-  background-color: rgb(20, 20, 20);
+  background-color: var(--light-black);
   margin: 0px;
   color: white;
   font-family: 'Montserrat', sans-serif;
   overflow: hidden;
+  user-select: none;
 }
 
 .backgroundPolkadot {
@@ -25,6 +28,9 @@ body {
   width: 105%;
 }
 
+.lettersPerSecond{
+  font-size: var(--small-custom-text);
+}
 
 .wordWrapper {
   display: flex;
@@ -36,13 +42,24 @@ body {
 .wordBox {
   background-color: transparent;
   border-radius: 50px;
-  border-color: rgb(10, 10, 10);
+  border-color: rgb(120, 120, 120);
   color: white;
   height: 8vh;
   width: 20vw;
   font-size: var(--medium-custom-text);
   font-family: 'Montserrat', sans-serif;
   padding-left: 2rem;
+}
+
+.gameButtonWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gameButton {
+  font-size: var(--small-custom-text);
+  cursor: default;
 }
 
 .pointsCounter {
@@ -71,6 +88,14 @@ button {
   font-size: var(--small-custom-text);
 }
 
+.passivePointsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--medium-custom-text);
+}
+
 .upgradesTable {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -90,10 +115,16 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 10vw;
 }
 
 .upgradeTypeWrapper > h2 {
   font-size: var(--small-custom-text);
+}
+
+.upgradeTypeWrapper > .upgradesDesc {
+  font-size: var(--xsmall-custon-text);
+  text-align: center;
 }
 
 .wordToGuessContainer {
@@ -108,11 +139,12 @@ button {
   font-size: var(--big-custom-text);
 }
 
-
 .tabsContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 4rem;
+  overflow: hidden;
+  padding: 0 2rem;
 }
 
 .hoverEffectContainer:hover > .hoverEffectChild {
@@ -134,6 +166,19 @@ button {
 .menuButton{
   font-size: var(--medium-custom-text);
 }
+
+.cardsHeaderContainer{
+  text-align: center;
+  font-size: var(--medium-custom-text);
+}
+
+.cardsButton{
+  background: linear-gradient(to right, transparent, #EDCBB1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
 .challengeTimer {
   position: absolute;
