@@ -1,81 +1,165 @@
-.upgradeSquare {
-    border: 1px;
-    border-color: black;
-    border-style: solid;
+:root {
+  --small-custom-text: clamp(0.5rem, 1vw, 2rem);
+  --medium-custom-text: clamp(2rem, 3vw, 5rem);
+  --big-custom-text: clamp(5rem, 7vw, 10rem);
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-  }
+body {
+  background-color: rgb(20, 20, 20);
+  margin: 0px;
+  color: white;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+}
 
-  /* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 40px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    padding: 0 0 0 0;
-    border-radius: 6px;
-    font-size: 5px;
-   
-    /* Position the tooltip text - see examples below! */
-    position: absolute;
-    z-index: 1;
-  }
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-  }
+.backgroundPolkadot {
+  position: absolute;
+  z-index: -1;
+  background: radial-gradient(
+    rgba(255, 255, 255, 0.15) 8%,
+    transparent 8%
+  );
+  background-position: 0% 0%;
+  background-size: 5vmin 5vmin;
+  height: 105%;
+  width: 105%;
+}
 
-  .wordToGuessContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
 
-  .wordToGuess {
-    font-size: 4em
-  }
+.wordWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
 
-  .separator {
-    height:1em;
-  }
+.wordBox {
+  background-color: transparent;
+  border-radius: 50px;
+  border-color: rgb(10, 10, 10);
+  color: white;
+  height: 8vh;
+  width: 20vw;
+  font-size: var(--medium-custom-text);
+  font-family: 'Montserrat', sans-serif;
+  padding-left: 2rem;
+}
 
-  .upgradesContainer {
-    display: flex;
-    justify-content: space-around;
-  }
+.pointsCounter {
+  font-size: var(--medium-custom-text);
+}
 
-  .tabsContainer {
-    display: flex;
-    justify-content: space-around;
-  }
+button {
+  background-color: transparent;
+  color: white;
+  border-color: transparent;
+  font-family: 'Montserrat', sans-serif;
+}
 
-  .challengeTimer {
-    position: absolute;
-  }
+.multiUpgradesContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
 
-  .challengeSquare {
-    border: 1px solid black;
-  }
+.multiUpgradesButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+  font-size: var(--small-custom-text);
+}
 
-  .challengesRow {
-    display: flex;
-  }
+.upgradesTable {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  place-items: center;
+  gap: 1rem;
+  font-size: var(--small-custom-text);
+}
 
-  .prestigePointsContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+.upgradeWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+}
 
-  .prestigeProgressContainer {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
+.upgradeTypeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upgradeTypeWrapper > h2 {
+  font-size: var(--small-custom-text);
+}
+
+.wordToGuessContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wordToGuess {
+  font-size: var(--big-custom-text);
+}
+
+
+.tabsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.hoverEffectContainer:hover > .hoverEffectChild {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.hoverEffectContainer:hover > .hoverEffectChild:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+
+.hoverEffectChild {
+  transition: opacity 400ms ease;
+  transition: transform 50ms ease-in;
+}
+
+.menuButton{
+  font-size: var(--medium-custom-text);
+}
+
+.challengeTimer {
+  position: absolute;
+}
+
+.challengesRow {
+  display: flex;
+}
+
+.prestigePointsContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prestigeProgressContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.statsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--small-custom-text);
+}

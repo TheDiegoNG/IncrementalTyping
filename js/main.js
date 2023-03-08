@@ -238,8 +238,8 @@ function Tab(tabName) {
     document.getElementById("statsMenu").style.display = "none"
     document.getElementById("prestigeMenu").style.display = "none"
     document.getElementById("challengesMenu").style.display = "none"
-    document.getElementById(tabName).style.display = "flex"
-    document.getElementById(tabName).style.justifyContent = "space-around";
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).style.marginTop = "2rem";
   }
 
 
@@ -251,10 +251,10 @@ function LogGame()
 
 function SetCosts()
 {
-    document.getElementById("PointPerWordCost").textContent = Math.round(game.multiUpgrades[1][0])
-    document.getElementById("LetterPerWordCost").textContent = Math.round(game.multiUpgrades[1][1])
-    document.getElementById("PointsMultiplier").textContent = Math.round(game.multiUpgrades[1][2])
-    document.getElementById("cardsCost").textContent = Math.round(game.cardCost)
+    document.getElementById("multiUpgrade1").textContent = "+1 point per word! Cost: " + Math.round(game.multiUpgrades[1][0])
+    document.getElementById("multiUpgrade2").textContent = "+1 letter per word! Cost: " + Math.round(game.multiUpgrades[1][1])
+    document.getElementById("multiUpgrade3").textContent = "+25% points! Cost: " + Math.round(game.multiUpgrades[1][2])
+    document.getElementById("cardsCost").textContent = "Cost: " + Math.round(game.cardCost)
 }
 
 function SaveGame()
@@ -270,4 +270,28 @@ function LoadGame()
     if (typeof savegame.points !== "undefined" && typeof savegame.points !== null) game.points = savegame.points;
     if (typeof savegame.upgrades !== "undefined" && typeof savegame.upgrades !== null) game.upgrades = savegame.upgrades;
     if (typeof savegame.multiUpgrades !== "undefined" && typeof savegame.multiUpgrades !== null) game.multiUpgrades = savegame.multiUpgrades;
+}
+
+const gallery = document.getElementById("background");
+
+window.onmousemove = e => {
+    const mouseX = e.clientX,
+          mouseY = e.clientY;
+        
+    const xDecimal = mouseX / window.innerWidth,
+          yDecimal = mouseY /window.innerHeight;
+
+    const maxX = gallery.offsetWidth - window.innerWidth,
+          maxY = gallery.offsetHeight - window.innerHeight;
+    
+    const panX = maxX * xDecimal * -1,
+          panY = maxY * yDecimal * -1; 
+
+    gallery.animate({
+        transform: `translate(${panX}px, ${panY}px)`
+    }, {
+        duration: 4000,
+        fill: "forwards",
+        easing: "ease"
+    });
 }

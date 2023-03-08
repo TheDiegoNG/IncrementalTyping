@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" type="text/css" href="interface.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IncrementalTyping</title>
 </head>
+
 <body>
+    <div id="background" class="backgroundPolkadot">
+
+    </div>
     <div class="wordToGuessContainer">
         <span id="challengeTimer" class="challengeTimer"></span>
         <div>
             <span id="WordToGuess" class="wordToGuess"></span>
         </div>
-        <div class="separator">
-        </div>
         <div>
             <label id="LettersPerSecond" style="display:none;"></label>
-            <input type="text" id="WordBox" name="WordBox">
-            <button onclick="SaveGame()">Save</button>
-            <button onclick="LogGame()">Log</button>
+            <div id="WordWrapper" class="wordWrapper">
+                <input type="text" id="WordBox" class="wordBox" name="WordBox">
+                <button onclick="SaveGame()">Save</button>
+                <button onclick="LogGame()">Log</button>
+            </div>
         </div>
-        <div>
-            <label id="PointsDesc"></label>
-        </div>
-        <div class="separator">
-        </div>
-        <div>
-            <span id="PointsCounter"></span>
-        </div>
-        <div class="separator">
+        <div id="PointsCounter" class="pointsCounter">
         </div>
     </div>
-    <div class="tabsContainer">
-        <button id="activeMenuButton" onclick="Tab('activeMenu')" style="display:none;">Active</button>
-        <button id="passiveMenuButton" onclick="Tab('passiveMenu')" style="display:none;">Passive</button>
-        <button id="upgradesMenuButton" onclick="Tab('upgradesMenu')" style="display:none;">Upgrades</button>
-        <button id="challengesMenuButton" onclick="Tab('challengesMenu')" style="display:none;">Challenges</button>
-        <button id="prestigeMenuButton" onclick="Tab('prestigeMenu')" style="display:none;">Prestige</button>
-        <button id="cardsMenuButton" onclick="Tab('cardsMenu')" style="display:none;">Cards</button>
-        <button id="statsMenuButton" onclick="Tab('statsMenu')" style="display:none;">Stats</button>
-    </div>
-    <div class="separator">
+    <div class="tabsContainer hoverEffectContainer">
+        <button id="activeMenuButton" class="menuButton hoverEffectChild" onclick="Tab('activeMenu')"
+            style="display:none;">Active</button>
+        <button id="passiveMenuButton" class="menuButton hoverEffectChild" onclick="Tab('passiveMenu')"
+            style="display:none;">Passive</button>
+        <button id="upgradesMenuButton" class="menuButton hoverEffectChild" onclick="Tab('upgradesMenu')"
+            style="display:none;">Upgrades</button>
+        <button id="challengesMenuButton" class="menuButton hoverEffectChild" onclick="Tab('challengesMenu')"
+            style="display:none;">Challenges</button>
+        <button id="prestigeMenuButton" class="menuButton hoverEffectChild" onclick="Tab('prestigeMenu')"
+            style="display:none;">Prestige</button>
+        <button id="cardsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('cardsMenu')"
+            style="display:none;">Cards</button>
+        <button id="statsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('statsMenu')"
+            style="display:none;">Stats</button>
     </div>
     <div id="activeMenu" class="upgradesContainer">
         <div class="multiUpgradesContainer">
-            <div>
-                <button onclick="AddMultiUpgrade(0)">+1 point per word!</button>
-                Cost: <span id="PointPerWordCost"></span>
-            </div>
-            <div>
-                <button onclick="AddMultiUpgrade(1)">+1 letter per word!</button>
-                Cost: <span id="LetterPerWordCost"></span>
-            </div>
-            <div>
-                <button onclick="AddMultiUpgrade(2)">+25% points!</button>
-                Cost: <span id="PointsMultiplier"></span>
+            <div class="multiUpgradesButtons hoverEffectContainer">
+                <div id="multiUpgrade1" class="hoverEffectChild" onclick="AddMultiUpgrade(0)">+1 point per word!</div>
+                <div id="multiUpgrade2" class="hoverEffectChild" onclick="AddMultiUpgrade(1)">+1 point per word!</div>
+                <div id="multiUpgrade3" class="hoverEffectChild" onclick="AddMultiUpgrade(2)">+25% points!</div>
             </div>
         </div>
     </div>
@@ -63,124 +61,108 @@
         <div>
             <span id="passivePointsWord" class="passivePointsWord"></span>
         </div>
-        <div class="separator">
-        </div>
         <div>
             <span id="passivePoints" class="passivePoints"></span>
         </div>
-        <div class="separator">
-        </div>
     </div>
     <div id="upgradesMenu">
-            <table id="upgradesTable" style="display: inline-block;">
-                <tbody>
-                    <tr>
-                        <td class="upgradeSquare tooltip" id="upgrade1" onclick="GetUpgrade(0, this)">
-                            <span class="tooltiptext">x1.5 points - Cost: 50</span>
-                            <span>A</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade2" onclick="GetUpgrade(1, this)">
-                            <span class="tooltiptext">+4 points per word - Cost: 200</span>
-                            <span>B</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade3" onclick="GetUpgrade(2, this)">
-                            <span class="tooltiptext">Get a letter per minute value - Cost: 500</span>
-                            <span>C</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade4" onclick="GetUpgrade(3, this)">
-                            <span class="tooltiptext">Unlock passive income! - Cost: 1500</span>
-                            <span>D</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade5" onclick="GetUpgrade(4, this)"> 
-                            <span class="tooltiptext">x1.3 Points! - Cost: 2500</span>
-                            <span>E</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade6" onclick="GetUpgrade(5, this)">
-                            <span class="tooltiptext">Every achievement gives a bonus! - Cost: 6000</span>
-                            <span>F</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="upgradeSquare tooltip" id="upgrade7" onclick="GetUpgrade(6, this)">
-                            <span class="tooltiptext">Every letter gets a value - Cost: 10000</span>
-                            <span>G</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade8" onclick="GetUpgrade(7, this)">
-                            <span class="tooltiptext">+10 points per word - Cost: 40000</span>
-                            <span>H</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade9" onclick="GetUpgrade(8, this)">
-                            <span class="tooltiptext">Unlocks Cards! - Cost: 100000</span>
-                            <span>I</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade10" onclick="GetUpgrade(9, this)">
-                            <span class="tooltiptext">x2 points - Cost: 200000</span>
-                            <span>J</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade11" onclick="GetUpgrade(10, this)"> 
-                            <span class="tooltiptext">Unlock Challenges! - Cost: 5000000</span>
-                            <span>K</span>
-                        </td>
-                        <td class="upgradeSquare tooltip" id="upgrade12" onclick="GetUpgrade(11, this)">
-                            <span class="tooltiptext">Last Basic Upgrade! +20 points per word - 10000000</span>
-                            <span>L</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        <table id="passiveUpgradesTable" style="display: inline-block;">
-            <tbody>
-                <tr>
-                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(0, this)">
-                        <span class="tooltiptext">x1.25 Points - Cost: 100 PP</span>
+        <div id="upgradeWrapper" class="upgradeWrapper">
+            <div id="BasicUpgradesWrapper" class="upgradeTypeWrapper">
+                <h2>Basic Upgrades</h2>
+                <div id="upgradesTable" class="upgradesTable hoverEffectContainer">
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade1" onclick="GetUpgrade(0, this)">
                         <span>A</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(1, this)">
-                        <span class="tooltiptext">+5 points per Word - Cost: 250 PP</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade2" onclick="GetUpgrade(1, this)">
                         <span>B</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(2, this)">
-                        <span class="tooltiptext">x1.5 points - Cost: 1000 PP</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade3" onclick="GetUpgrade(2, this)">
                         <span>C</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetPassiveUpgrade(3, this)">
-                        <span class="tooltiptext">Every letter gets a value - Cost: 2000 PP</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade4" onclick="GetUpgrade(3, this)">
                         <span>D</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <table id="prestigeUpgradesTable" style="display: inline-block;">
-            <tbody>
-                <tr>
-                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(0, this)">
-                        <span class="tooltiptext">Welcome to Prestige! Take a free x2 multiplier - Cost: 10 Prestige Points</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade5" onclick="GetUpgrade(4, this)">
+                        <span>E</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade6" onclick="GetUpgrade(5, this)">
+                        <span>F</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade7" onclick="GetUpgrade(6, this)">
+                        <span>G</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade8" onclick="GetUpgrade(7, this)">
+                        <span>H</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade9" onclick="GetUpgrade(8, this)">
+                        <span>I</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade10" onclick="GetUpgrade(9, this)">
+                        <span>J</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade11" onclick="GetUpgrade(10, this)">
+                        <span>K</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="upgrade12" onclick="GetUpgrade(11, this)">
+                        <span>L</span>
+                    </div>
+                </div>
+            </div>
+            <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper">
+                <h2>Passive Upgrades</h2>
+                <div id="passiveUpgradesTable" class="upgradesTable hoverEffectContainer">
+                    <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade1"
+                        onclick="GetPassiveUpgrade(0, this)">
                         <span>A</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(1, this)">
-                        <span class="tooltiptext">+2 Cards Per Roll - Cost: 50 Prestige Points</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade2"
+                        onclick="GetPassiveUpgrade(1, this)">
                         <span>B</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(2, this)">
-                        <span class="tooltiptext">Better Scaling for MultiUpgrades! - Cost: 100 Prestige Points</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade3"
+                        onclick="GetPassiveUpgrade(2, this)">
                         <span>C</span>
-                    </td>
-                    <td class="upgradeSquare tooltip" onclick="GetPrestigeUpgrade(3, this)">
-                        <span class="tooltiptext">Keep your Passive Income when Prestige! (PP resets tho) - Cost: 500 Prestige Points</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade4"
+                        onclick="GetPassiveUpgrade(3, this)">
                         <span>D</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper">
+                <h2>Prestige Upgrades</h2>
+                <div id="prestigeUpgradesTable" class="upgradesTable hoverEffectContainer">
+                    <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade1"
+                        onclick="GetPrestigeUpgrade(0, this)">
+                        <span>A</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade2"
+                        onclick="GetPrestigeUpgrade(1, this)">
+                        <span>B</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade3"
+                        onclick="GetPrestigeUpgrade(2, this)">
+                        <span>C</span>
+                    </div>
+                    <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade4"
+                        onclick="GetPrestigeUpgrade(3, this)">
+                        <span>D</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="upgradesDesc" class="upgradesDesc">
+            <p id="upgradesDesc1" class="upgradesDesc1"></p>
+        </div>
     </div>
     <div id="cardsMenu">
-       <div id="cardsHeaderContainer">
-        <button onclick="GetCards()">Get a Pack!</button>
-        Cost: <span id="cardsCost"></span>
-       </div>
-       <div id="cardsContainer">
+        <div id="cardsHeaderContainer">
+            <button onclick="GetCards()">Get a Pack!</button>
+            Cost: <span id="cardsCost"></span>
+        </div>
+        <div id="cardsContainer">
             <span id="cards">Cards Unlocked: </span>
-       </div>
+        </div>
     </div>
     <div id="prestigeMenu">
         <div id="prestigePointsContainer" class="prestigePointsContainer">
@@ -188,9 +170,9 @@
             <span id="prestigePointsAmount">Prestige Points: </span>
         </div>
         <div id="prestigePointsUpgrades">
-             <button onclick="Prestige()">Prestige!</button>
+            <button onclick="Prestige()">Prestige!</button>
         </div>
-     </div>
+    </div>
     <div id="challengesMenu">
         <div id="challengesContainer" class="challengesContainer">
             <div id="challengesRow" class="challengesRow">
@@ -200,7 +182,7 @@
                 <div class="challengeRewards">
                     <span>REWARD: +1 Card everytime you roll!</span>
                 </div>
-                
+
             </div>
             <div id="challengesRow" class="challengesRow">
                 <div class="challengeSquare" onclick="StartChallenge(1)">
@@ -212,28 +194,20 @@
             </div>
         </div>
 
-     </div>
+    </div>
     <div id="statsMenu">
-        <div id="statsContainer">
+        <div id="statsContainer" class="statsContainer">
             <span id="pointsStat"></span>
-        </br>
             <span id="maxLengthStat"></span>
-        </br>
             <span id="bestWordStat"></span>
-        </br>
             <span id="multiupgradesStat"></span>
-        </br>
             <span id="achievementsAmountStat"></span>
-        </br>
             <span id="wordsAmountStat"></span>
-        </br>
             <span id="passiveLengthStat"></span>
-        </br>
             <span id="passivePointsStat"></span>
-        </br>
             <span id="cardsAmountStat"></span>
         </div>
-     </div>
+    </div>
 </body>
 <script type="text/javascript" src="js\util.js"></script>
 <script type="text/javascript" src="js\main.js"></script>
@@ -245,4 +219,5 @@
 <script type="text/javascript" src="js\challenges.js"></script>
 <script type="text/javascript" src="js\achievements.js"></script>
 <script type="text/javascript" src="js\stats.js"></script>
+
 </html>
