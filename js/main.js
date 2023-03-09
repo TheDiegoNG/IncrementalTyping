@@ -306,3 +306,17 @@ tabs.addEventListener("wheel", (evt) => {
     left: evt.deltaY < 0 ? -50 : 50,
   });
 });
+
+const cardButton = document.getElementById("cardsHeaderContainer");
+
+cardButton.onmousemove = e => {
+    const decimal = e.clientX / cardButton.offsetWidth;
+
+    const basePercent = 80,
+          percentRange = 20,
+          adjustablePercent = percentRange * decimal;
+    
+    const colorPercent = basePercent + adjustablePercent;
+
+    cardButton.style.setProperty("--color-percent", `${colorPercent}%`)
+}
