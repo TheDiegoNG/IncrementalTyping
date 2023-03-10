@@ -33,13 +33,19 @@ var legendaryCards = [
     {name: "Longest Passive Words (L)", description: "+5 Letters Per Passive Word"},
 ]
 
+var viewerCards = document.getElementById("viewerCardsContainer");
+var overlay = document.getElementById("overlay");
+
 function GetCards() {
+    viewerCards.classList.add("viewerActive");
+    overlay.classList.add("show");
+    light.classList.add("show");
+
     if(game.points >= game.cardCost)
     {
         game.points -= game.cardCost
         game.cardCost = 100000 * 2 ** (game.cards.length / 10);
         var card;
-        var cardText = document.getElementById("cards");
         for (let index = 0; index < game.rollsAmount; index++) {
             var randomNumber = Math.floor(Math.random() * 100);
             if(randomNumber >= 40) card = GetCommonCard();
@@ -47,8 +53,7 @@ function GetCards() {
             else if(randomNumber >= 1) card = GetEpicCard();
             else card = GetLegendaryCard();
             game.cards.push(card);
-            alert(`You got the "${card.name}" card: ${card.description}`);
-            cardText.textContent += `${card.name} - `;
+            // alert(`You got the "${card.name}" card: ${card.description}`);
             if(card.name === "Longer Passive Words (UC)") game.passiveLength ++;
             if(card.name === "Longerer Passive Words (E)") game.passiveLength += 2;
             if(card.name === "Longest Passive Words (L)") game.passiveLength += 5;
@@ -58,6 +63,12 @@ function GetCards() {
         }
         
     } 
+}
+
+function HideViewer() {
+    viewerCards.classList.remove("viewerActive");
+    overlay.classList.remove("show");
+    light.classList.remove("show");
 }
 
 var GetCommonCard = () => commonCards[Math.floor(Math.random() * commonCards.length)];

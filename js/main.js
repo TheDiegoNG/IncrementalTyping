@@ -320,3 +320,12 @@ cardButton.onmousemove = e => {
 
     cardButton.style.setProperty("--color-percent", `${colorPercent}%`)
 }
+
+const light = document.getElementById('light');
+
+window.onmousemove = e => {
+    const x = e.clientX - light.offsetWidth / 2,
+          y = e.clientY - light.offsetHeight / 2;
+
+          light.style.transform = `translate(${x}px, ${y}px)`;
+}
