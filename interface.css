@@ -4,7 +4,11 @@
   --medium-custom-text: clamp(2rem, 3vw, 5rem);
   --big-custom-text: clamp(5rem, 7vw, 10rem);
   --light-black: rgb(20, 20, 20);
-  --golden: #EDCBB1;
+  --golden: rgb(237, 203, 177);
+  --green: rgb(96, 153, 45);
+  --blue: rgb(108, 145, 194);
+  --fucsia: rgb(170, 62, 152);
+
 }
 
 body {
@@ -13,23 +17,30 @@ body {
   color: white;
   font-family: 'Montserrat', sans-serif;
   user-select: none;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
-.backgroundPolkadot {
+body::-webkit-scrollbar {
+  height: 3px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(80, 80, 80, 0.75);
+}
+
+/* .backgroundPolkadot {
   position: absolute;
   z-index: -1;
-  background: radial-gradient(
-    rgba(255, 255, 255, 0.15) 8%,
-    transparent 8%
-  );
+  background: radial-gradient(rgba(255, 255, 255, 0.15) 8%,
+      transparent 8%);
   background-position: 0% 0%;
   background-size: 5vmin 5vmin;
-  height: 105%;
-  width: 105%;
-}
+  height: 100%;
+  width: 100%;
+} */
 
-.lettersPerSecond{
+.lettersPerSecond {
   font-size: var(--small-custom-text);
 }
 
@@ -51,7 +62,7 @@ body {
   padding-left: 2rem;
 }
 
-.gameButtonWrapper{
+.gameButtonWrapper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -110,7 +121,7 @@ button {
   display: flex;
   justify-content: center;
   gap: clamp(2rem, 10rem, 15rem);
-  
+
 }
 
 .upgradeTypeWrapper {
@@ -120,11 +131,11 @@ button {
   width: 10vw;
 }
 
-.upgradeTypeWrapper > h2 {
+.upgradeTypeWrapper>h2 {
   font-size: var(--small-custom-text);
 }
 
-.upgradeTypeWrapper > .upgradesDesc {
+.upgradeTypeWrapper>.upgradesDesc {
   font-size: var(--xsmall-custon-text);
   text-align: center;
 }
@@ -160,12 +171,12 @@ button {
 }
 
 
-.hoverEffectContainer:hover > .hoverEffectChild {
+.hoverEffectContainer:hover>.hoverEffectChild {
   opacity: 0.3;
   cursor: default;
 }
 
-.hoverEffectContainer:hover > .hoverEffectChild:hover {
+.hoverEffectContainer:hover>.hoverEffectChild:hover {
   opacity: 1;
   transform: scale(1.1);
 }
@@ -175,11 +186,11 @@ button {
   transition: transform 50ms ease-in;
 }
 
-.menuButton{
+.menuButton {
   font-size: var(--medium-custom-text);
 }
 
-.cardsHeaderContainer{
+.cardsHeaderContainer {
   display: flex;
   justify-content: center;
   position: relative;
@@ -187,7 +198,7 @@ button {
   font-size: var(--medium-custom-text);
 }
 
-.cardsHeaderContainer:hover > .cardsButton {
+.cardsHeaderContainer:hover>.cardsButton {
   color: black;
 }
 
@@ -198,12 +209,10 @@ button {
 
 .cardsHeaderContainer:before {
   transition: width 250ms ease;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--golden) var(--color-percent),
-    rgb(240, 240, 240)
-  );
+  background: linear-gradient(to right,
+      transparent,
+      var(--golden) var(--color-percent),
+      rgb(240, 240, 240));
   content: "";
   position: absolute;
   left: 0;
@@ -213,14 +222,12 @@ button {
   z-index: -1;
 }
 
-.cardsButton{
+.cardsButton {
   animation: background-pan 2s linear infinite;
-  background: linear-gradient(
-    to right,
-    var(--light-black),
-    var(--golden),
-    var(--light-black)
-  );
+  background: linear-gradient(to right,
+      var(--light-black),
+      var(--golden),
+      var(--light-black));
   background-size: 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -263,16 +270,14 @@ button {
   opacity: 0.25;
 }
 
-
-
-.viewerCardsContainer{
+.viewerCardsContainer {
   z-index: 100;
   position: absolute;
   top: -50%;
   left: 50%;
   display: grid;
   place-items: center;
-  transition: top 200ms cubic-bezier(.15,.72,.2,.83)
+  transition: top 200ms cubic-bezier(.15, .72, .2, .83)
 }
 
 .singleCard {
@@ -280,66 +285,157 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 1);
   width: 40vmin;
+  aspect-ratio: 5/7;
+  border-radius: 1vmin;
+  font-size: var(--medium-custom-text);
+  font-family: 'Saira Condensed', sans-serif;
+  color: var(--light-black);
+  text-align: center;
+  transition: transform 200ms cubic-bezier(.15, .72, .2, .83);
+}
+
+.singleCard:nth-child(1) {
+  transform: translateX(-20%) rotate(-5deg);
+}
+
+.singleCard:nth-child(2) {
+  transform: translateX(-15%) rotate(-4deg);
+}
+
+.singleCard:nth-child(3) {
+  transform: translateX(-10%) rotate(-3deg);
+}
+
+.singleCard:nth-child(4) {
+  transform: translateX(-5%) rotate(-2deg);
+}
+
+.singleCard:nth-child(5) {
+  transform: rotate(-1deg);
+}
+
+.singleCard:nth-child(6) {
+  transform: translateX(5%)
+}
+
+.singleCard:nth-child(7) {
+  transform: translateX(10%) rotate(1deg);
+}
+
+.singleCard:nth-child(8) {
+  transform: translateX(15%) rotate(2deg);
+}
+
+.singleCard:nth-child(9) {
+  transform: translateX(20%) rotate(3deg);
+}
+
+.singleCard:nth-child(10) {
+  transform: translateX(25%) rotate(4deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(1) {
+  transform: translateX(-60%) rotate(-15deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(2) {
+  transform: translateX(-45%) rotate(-12deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(3) {
+  transform: translateX(-30%) rotate(-9deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(4) {
+  transform: translateX(-15%) rotate(-6deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(5) {
+  transform: rotate(-3deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(6) {
+  transform: translateX(15%)
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(7) {
+  transform: translateX(30%) rotate(3deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(8) {
+  transform: translateX(45%) rotate(6deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(9) {
+  transform: translateX(60%) rotate(9deg);
+}
+
+.viewerCardsContainer:hover>.singleCard:nth-child(10) {
+  transform: translateX(75%) rotate(12deg);
+}
+
+.viewerActive {
+  top: 50%;
+}
+
+.cardsContainer {
+  margin-top: 1rem;
+  padding: 0 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(9, 1fr);
+}
+
+.normalCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 1);
   aspect-ratio: 5/7;
   border-radius: 1vmin;
   font-size: var(--small-custom-text);
   color: var(--light-black);
   text-align: center;
-  transition: transform 200ms cubic-bezier(.15,.72,.2,.83);
 }
 
-.singleCard:nth-child(1) {
-  transform: translateX(-10%) rotate(-1deg);
+.commonCard {
+  border: 5px solid var(--green);
+  background: var(--green);
 }
 
-.singleCard:nth-child(2) {
-  transform: translateX(-5%) rotate(1deg);
+.uncommonCard {
+  border: 5px solid var(--blue);
+  background: var(--blue);
 }
 
-.singleCard:nth-child(3) {
-  transform: rotate(2deg);
+.epicCard {
+  border: 5px solid var(--fucsia);
+  background: linear-gradient(
+    to bottom, 
+    var(--fucsia),
+    var(--light-black),
+    var(--fucsia)
+    );
+    color: var(--fucsia);
 }
 
-.singleCard:nth-child(4) {
-  transform: translateX(5%) rotate(3deg);
+.legendaryCard {
+  animation: background-pan 2s linear infinite;
+  border: 5px solid var(--golden);
+  background: linear-gradient(
+    to bottom, 
+    var(--golden),
+    var(--light-black),
+    var(--golden)
+    );
+  color: rgb(240, 240, 240);
 }
 
-.singleCard:nth-child(5) {
-  transform: translateX(10%) rotate(4deg);
-}
-
-.singleCard:nth-child(6) {
-  transform: translateX(15%) rotate(5deg);
-}
-
-.viewerCardsContainer:hover > .singleCard:nth-child(1) {
-  transform: translateX(-30%) rotate(-3deg);
-}
-
-.viewerCardsContainer:hover > .singleCard:nth-child(2) {
-  transform: translateX(-15%) rotate(3deg);
-}
-
-.viewerCardsContainer:hover > .singleCard:nth-child(3) {
-  transform: rotate(6deg);
-}
-
-.viewerCardsContainer:hover > .singleCard:nth-child(4) {
-  transform: translateX(15%) rotate(9deg);
-}
-
-.viewerCardsContainer:hover > .singleCard:nth-child(5) {
-  transform: translateX(30%) rotate(12deg);
-}
-
-.viewerCardsContainer:hover > .singleCard:nth-child(6) {
-  transform: translateX(45%) rotate(15deg);
-}
-
-.viewerActive {
-  top: 50%;
+.cardBonus {
+  margin-top: 1rem;
+  text-align: center;
 }
 
 
@@ -383,7 +479,9 @@ button {
 }
 
 @keyframes scale {
-  from, to {
+
+  from,
+  to {
     transform: scale(0);
   }
 

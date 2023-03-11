@@ -79,24 +79,24 @@ function SetUpgrades() {
 
 function SetActiveUpgrades() { 
     let myTable = document.getElementById('upgradesTable');
-    let cells = myTable.querySelectorAll('td');
+    let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = game.upgrades[0][index] == 1 ? "#47682C" : "none";
+        value.style.color = game.upgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
     });
 }
 
 function SetPassiveUpgrades() { 
     let myTable = document.getElementById('passiveUpgradesTable');
-    let cells = myTable.querySelectorAll('td');
+    let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = game.upgrades[0][index] == 1 ? "#47682C" : "none";
+        value.style.color = game.passiveUpgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
     });
 }
 
 function SetPrestigeUpgrades() { 
     let myTable = document.getElementById('prestigeUpgradesTable');
-    let cells = myTable.querySelectorAll('td');
+    let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = game.upgrades[0][index] == 1 ? "#47682C" : "none";
+        value.style.color = game.prestigeUpgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
     });
 }

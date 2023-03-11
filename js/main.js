@@ -120,17 +120,21 @@ window.setInterval(function(){
     // CheckAchievements();
     SetPrestige();
     SetUpgrades();
+    CalculateBonus();
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
     document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
     document.getElementById("upgradesMenuButton").style.display = "flex";
     document.getElementById("statsMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(2)) document.getElementById("LettersPerSecond").style.display = "block";
-    // if(IsPurchasedUpgrade(3)) 
-    document.getElementById("passiveMenuButton").style.display = "flex";
+    if(IsPurchasedUpgrade(3)) {
+        document.getElementById("passiveMenuButton").style.display = "flex";
+        document.getElementById("PassiveUpgradesWrapper").style.display = "flex";
+    }
     if(IsPurchasedUpgrade(8)) document.getElementById("cardsMenuButton").style.display = "flex";
     if(IsPurchasedUpgrade(10)) document.getElementById("challengesMenuButton").style.display = "flex";
     if(game.allTimePoints >= 1000000) document.getElementById("prestigeMenuButton").style.display = "flex";
+    if(game.prestigeCount > 0) document.getElementById("PrestigeUpgradesWrapper").style.display = "flex"
     game.maxLength = game.multiUpgrades[0][1] + 4
     if(!game.isInChallenge) activeGame = Copy(game);
 }, 100); 
@@ -273,29 +277,6 @@ function LoadGame()
     if (typeof savegame.multiUpgrades !== "undefined" && typeof savegame.multiUpgrades !== null) game.multiUpgrades = savegame.multiUpgrades;
 }
 
-const gallery = document.getElementById("background");
-
-window.onmousemove = e => {
-    const mouseX = e.clientX,
-          mouseY = e.clientY;
-        
-    const xDecimal = mouseX / window.innerWidth,
-          yDecimal = mouseY /window.innerHeight;
-
-    const maxX = gallery.offsetWidth - window.innerWidth,
-          maxY = gallery.offsetHeight - window.innerHeight;
-    
-    const panX = maxX * xDecimal * -1,
-          panY = maxY * yDecimal * -1; 
-
-    gallery.animate({
-        transform: `translate(${panX}px, ${panY}px)`
-    }, {
-        duration: 4000,
-        fill: "forwards",
-        easing: "ease"
-    });
-}
 
 const tabs = document.getElementById("TabsContainer");
 
@@ -322,10 +303,31 @@ cardButton.onmousemove = e => {
 }
 
 const light = document.getElementById('light');
+const gallery = document.getElementById("background");
 
 window.onmousemove = e => {
-    const x = e.clientX - light.offsetWidth / 2,
-          y = e.clientY - light.offsetHeight / 2;
+    const mouseX = e.clientX,
+          mouseY = e.clientY;
 
-          light.style.transform = `translate(${x}px, ${y}px)`;
+    const x = mouseX - light.offsetWidth / 2,
+            y = mouseY - light.offsetHeight / 2;
+
+    light.style.transform = `translate(${x}px, ${y}px)`;
+    
+    const xDecimal = mouseX / window.innerWidth,
+          yDecimal = mouseY /window.innerHeight;
+
+    const maxX = gallery.offsetWidth - window.innerWidth,
+          maxY = gallery.offsetHeight - window.innerHeight;
+    
+    const panX = maxX * xDecimal * -1,
+          panY = maxY * yDecimal * -1; 
+
+    gallery.animate({
+        transform: `translate(${panX}px, ${panY}px)`
+    }, {
+        duration: 4000,
+        fill: "forwards",
+        easing: "ease"
+    });
 }

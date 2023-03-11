@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="interface.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Saira+Condensed:wght@900&display=swap" 
+        rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,24 +19,6 @@
     <div id="overlay" class="overlay"></div>
     <div id="light" class="light"></div>
     <div id="viewerCardsContainer" class="viewerCardsContainer viewerInactive" onclick="HideViewer()">
-        <div id="card1" class="singleCard">
-            <span>1st Card!</span>
-        </div>
-        <div id="card1" class="singleCard">
-            <span>2nd Card!</span>
-        </div>
-        <div id="card1" class="singleCard">
-            <span>3rd Card!</span>
-        </div>
-        <div id="card1" class="singleCard">
-            <span>4th Card!</span>
-        </div>
-        <div id="card1" class="singleCard">
-            <span>5th Card!</span>
-        </div>
-        <div id="card1" class="singleCard">
-            <span>6th Card!</span>
-        </div>
     </div>
     <div class="wordToGuessContainer">
         <span id="challengeTimer" class="challengeTimer"></span>
@@ -142,7 +125,7 @@
                 </div>
                 <p id="basicUpgradesDesc" class="upgradesDesc">Hover and upgrade to see its description!</p>
             </div>
-            <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper">
+            <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper" style="display:none;">
                 <h2>Passive Upgrades</h2>
                 <div id="passiveUpgradesTable" class="upgradesTable hoverEffectContainer">
                     <div class="upgradeSquare hoverEffectChild" id="passiveUpgrade1"
@@ -164,7 +147,7 @@
                 </div>
                 <p id="passiveUpgradesDesc" class="upgradesDesc">Hover and upgrade to see its description!</p>
             </div>
-            <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper">
+            <div id="PrestigeUpgradesWrapper" class="upgradeTypeWrapper" style="display:none;">
                 <h2>Prestige Upgrades</h2>
                 <div id="prestigeUpgradesTable" class="upgradesTable hoverEffectContainer">
                     <div class="upgradeSquare hoverEffectChild" id="prestigeUpgrade1"
@@ -191,11 +174,12 @@
         </div>
     </div>
     <div id="cardsMenu">
-        <div id="cardsHeaderContainer" class="cardsHeaderContainer">
-            <span id="cardsButton" class="cardsButton" onclick="GetCards()"></span>
+        <div id="cardsHeaderContainer" class="cardsHeaderContainer" onclick="GetCards()">
+            <span id="cardsButton" class="cardsButton"></span>
+        </div>
+        <div id="cardBonus" class="cardBonus">
         </div>
         <div id="cardsContainer" class="cardsContainer">
-         
         </div>
     </div>
     <div id="prestigeMenu">
