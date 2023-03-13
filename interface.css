@@ -12,9 +12,18 @@
 }
 
 body {
-  background-color: var(--light-black);
+  background: hsl(224, 32%, 12%);
+  background-image: conic-gradient(from 0deg at 50% 50%,
+      var(--light-black),
+      var(--blue),
+      var(--blue),
+      var(--light-black));
+  background-size: 200%;
+  background-blend-mode: multiply;
+  animation: background-pan 30s linear infinite;
   margin: 0px;
   color: white;
+  min-block-size: 100dvh;
   font-family: 'Montserrat', sans-serif;
   user-select: none;
   overflow-x: hidden;
