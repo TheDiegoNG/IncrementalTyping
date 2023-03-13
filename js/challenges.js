@@ -35,7 +35,7 @@ function StartTimer(seconds, challengeNumber) {
             ExitChallenge(challengeNumber);
             return;
         }
-        if(seconds <= 0 || !IsInChallenge(challengeNumber)){
+        if(seconds <= 0 || !game.isInChallenge){
             
             timer.textContent = "Failed!";
             progressBar.classList.add("red");

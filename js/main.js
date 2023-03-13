@@ -41,7 +41,7 @@ var game = {
     cards: [],
     cardCost: 0,
     rollsAmount: 10,
-    challenges: [{ OnChallenge: 0, Objective: 50, Amount: 0, Restriction: 210 },
+    challenges: [{ OnChallenge: 0, Objective: 20, Amount: 0, Restriction: 210 },
         { OnChallenge: 0, Objective: 50, Amount: 0, Restriction: 210 }],
     isInChallenge: false,
     letterCounter: 0,
@@ -132,7 +132,7 @@ window.setInterval(function () {
     if (game.allTimePoints >= 1000000) document.getElementById("prestigeMenuButton").style.display = "flex";
     if (game.prestigeCount > 0) document.getElementById("PrestigeUpgradesWrapper").style.display = "flex"
     game.maxLength = game.multiUpgrades[0][1] + 4
-    if (!game.isInChallenge) activeGame = Copy(game);
+    if (!game.isInChallenge && game.challenges.filter(x => x.OnChallenge == 1).length == 0) activeGame = Copy(game);
 }, 100);
 
 let letters = 0;
@@ -144,7 +144,8 @@ input.addEventListener("keydown", function () {
     if (game.challenges[0].OnChallenge == 1)
     {
         game.letterCounter++;
-        if(game.challenges[0].Restriction <= game.letterCounter) game.isInChallenge = false;
+        if(game.challenges[0].Restriction <= game.letterCounter) 
+        game.isInChallenge = false;
     }  
     console.log(game.letterCounter);
     letters++;
