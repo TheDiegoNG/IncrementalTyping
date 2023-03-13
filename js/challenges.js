@@ -18,16 +18,24 @@ function ExitChallenge(challengeNumber) {
 }
 
 var progressBar = document.getElementById("challengeProgress");
+var timer = document.getElementById("challengeTimer");
 
 function StartTimer(seconds, challengeNumber) {
-    var timer = document.getElementById("challengeTimer");
     timer.textContent = seconds;
-
+    timer.style.color = "white";
+    timer.classList.remove("success");
     var intervalId = setInterval(function minusSeconds() {
         seconds--;
         timer.textContent = seconds;
+        if(seconds <= 10)
+        {
+            timer.style.color = "red";
+            timer.classList.add("expand");
+
+        }
         if(game.wordsAmount >= game.challenges[challengeNumber].Objective) {
             timer.textContent = "Success!";
+            timer.classList.add("success");
             activeGame.challenges[challengeNumber].Amount++;
             progressBar.classList.add("green");
             progressBar.classList.add("hide");
@@ -38,6 +46,7 @@ function StartTimer(seconds, challengeNumber) {
         if(seconds <= 0 || !game.isInChallenge){
             
             timer.textContent = "Failed!";
+            timer.style.color = "red";
             progressBar.classList.add("red");
             progressBar.classList.add("hide");
             clearInterval(intervalId);
@@ -45,8 +54,15 @@ function StartTimer(seconds, challengeNumber) {
             return;
         } 
         
+        
     }, 1000);
 }
+
+timer.addEventListener("transitionend", function(e) {
+    if(e.propertyName === 'transform') {
+        timer.classList.remove("expand");
+    }
+});
 
 progressBar.addEventListener("transitionend", function(e) {
     if(e.propertyName === 'width') {
