@@ -10,6 +10,10 @@ function StartChallenge(challengeNumber) {
     }, 500);
 }
 
+function ExitAnyChallenge() {
+    if(game.challenges.filter(x => x.OnChallenge == 1).length > 0) ExitChallenge(game.challenges.findIndex(x => x.OnChallenge == 1));
+}
+
 function ExitChallenge(challengeNumber) {
     game = Copy(activeGame);
     game.isInChallenge = false;

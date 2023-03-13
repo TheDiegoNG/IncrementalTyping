@@ -165,6 +165,7 @@ button {
 
 .wordToGuess {
   font-size: var(--big-custom-text);
+  text-shadow: 0 0 0.3em currentColor;
 }
 
 .tabsContainer {
@@ -518,6 +519,18 @@ animation: background-pan 2s linear infinite;
   -webkit-text-fill-color: transparent;
   animation: background-pan 2s linear infinite;
 }
+
+.exitChallengeButton {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: var(--medium-custom-text);
+  transition: transform 200ms ease;
+}
+
+.exitChallengeButton:hover {
+  transform: scale(1.25);
+}
+
 
 .prestigePointsContainer {
   display: flex;
