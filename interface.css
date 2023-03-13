@@ -418,24 +418,20 @@ button {
 
 .epicCard {
   border: 5px solid var(--fucsia);
-  background: linear-gradient(
-    to bottom, 
-    var(--fucsia),
-    var(--light-black),
-    var(--fucsia)
-    );
-    color: var(--fucsia);
+  background: linear-gradient(to bottom,
+      var(--fucsia),
+      var(--light-black),
+      var(--fucsia));
+  color: var(--fucsia);
 }
 
 .legendaryCard {
   animation: background-pan 2s linear infinite;
   border: 5px solid var(--golden);
-  background: linear-gradient(
-    to bottom, 
-    var(--golden),
-    var(--light-black),
-    var(--golden)
-    );
+  background: linear-gradient(to bottom,
+      var(--golden),
+      var(--light-black),
+      var(--golden));
   color: rgb(240, 240, 240);
 }
 
@@ -457,15 +453,15 @@ button {
   transition: opacity 400ms ease, background-color 100ms ease-out, width 500ms ease;
 }
 
-.challengeProgress.red{
+.challengeProgress.red {
   background: rgb(255, 0, 0);
 }
 
-.challengeProgress.green{
+.challengeProgress.green {
   background: rgb(0, 255, 0);
 }
 
-.challengeProgress.hide{
+.challengeProgress.hide {
   opacity: 0;
   width: 0%;
 }
@@ -474,8 +470,26 @@ button {
   font-size: var(--medium-custom-text);
 }
 
-.challengesRow {
+.challengesContainerWrapper {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: var(--small-custom-text);
+}
+
+.challengeReward {
+  background: linear-gradient(to right,
+      var(--green),
+      var(--blue),
+      var(--golden),
+      var(--fucsia),
+      var(--green));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: background-pan 2s linear infinite;
 }
 
 .prestigePointsContainer {
