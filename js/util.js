@@ -8,6 +8,6 @@ var HasCard = (cardName) => game.cards.filter(x => x.name === cardName).length >
 
 var Copy = (object) => JSON.parse(JSON.stringify(object))
 
-var IsInChallenge = (challengeNumber) => game.challenges[0][challengeNumber] == 1;
+var IsInChallenge = (challengeNumber) => game.challenges[challengeNumber].OnChallenge == 1;
 
 var IsUnlockedAchievement = (achievementNumber) => game.achievements[achievementNumber].unlocked;

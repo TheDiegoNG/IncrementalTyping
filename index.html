@@ -16,12 +16,13 @@
 <body>
     <div id="background" class="backgroundPolkadot">
     </div>
+    <div id="challengeProgress" class="challengeProgress"></div>
     <div id="overlay" class="overlay"></div>
     <div id="light" class="light"></div>
     <div id="viewerCardsContainer" class="viewerCardsContainer viewerInactive" onclick="HideViewer()">
     </div>
     <div class="wordToGuessContainer">
-        <span id="challengeTimer" class="challengeTimer"></span>
+        <div id="challengeTimer" class="challengeTimer"></div>
         <div>
             <span id="WordToGuess" class="wordToGuess"></span>
         </div>
@@ -187,8 +188,12 @@
             <span id="prestigePointsToGet">Prestige Points when Prestige: </span>
             <span id="prestigePointsAmount">Prestige Points: </span>
         </div>
+        <div id="prestigeButtonWrapper" class="prestigeButtonWrapper">
+            <div id="prestigeButton" class="cardsButton" onclick="Prestige()">
+                <span>Prestige!</span>
+            </div>
+        </div>
         <div id="prestigePointsUpgrades">
-            <button onclick="Prestige()">Prestige!</button>
         </div>
     </div>
     <div id="challengesMenu">
