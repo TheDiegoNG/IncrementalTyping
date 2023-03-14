@@ -31,7 +31,7 @@ function CheckAchievements() {
       ShowAchievement("First Word");
     }
   
-    if (game.wordsAmount >= 10 && !IsUnlockedAchievement("ten Words")) {
+    if (game.wordsAmount >= 10 && !IsUnlockedAchievement("Ten Words")) {
         game.achievements.push(achievements[1]);
       ShowAchievement("Ten Words");
     }
@@ -41,7 +41,7 @@ function CheckAchievements() {
       ShowAchievement("Fifty Words");
     }
 
-    if (game.wordsAmount >= 100 && !!IsUnlockedAchievement("One Hundred Words")) {
+    if (game.wordsAmount >= 100 && !IsUnlockedAchievement("One Hundred Words")) {
         game.achievements.push(achievements[3]);
         ShowAchievement("One Hundred Words");
     }

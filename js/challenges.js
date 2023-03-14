@@ -74,6 +74,10 @@ progressBar.addEventListener("transitionend", function(e) {
         progressBar.classList.remove("green");
         progressBar.classList.remove("hide");
     }
+    if(progressBar.style.width == "100%")
+    {
+        progressBar.style.width = "0%";
+    }
 });
 
 function LoadAchievements() {
