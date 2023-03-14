@@ -5,8 +5,7 @@
     <link rel="stylesheet" type="text/css" href="interface.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&family=Saira+Condensed:wght@900&display=swap" 
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&family=Nabla&family=Raleway:wght@100&family=Saira+Condensed:wght@900&family=Source+Code+Pro&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -54,6 +53,8 @@
             style="display:none;">Cards</button>
         <button id="statsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('statsMenu')"
             style="display:none;">Stats</button>
+        <button id="optionsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('optionsMenu')"
+            style="display:none;">Options</button>
     </div>
     <div id="activeMenu" class="upgradesContainer">
         <div class="multiUpgradesContainer">
@@ -199,12 +200,12 @@
     <div id="challengesMenu">
         <div id="challengesContainerWrapper" class="challengesContainerWrapper hoverEffectContainer">
             <div id="challenge1" class="challenge hoverEffectChild" onclick="StartChallenge(0)">
-                    <span>Write 50 4-letter Words with only 210 characters</span>
-                    <span class="challengeReward">REWARD: +1 Card everytime you roll!</span>
+                <span>Write 50 4-letter Words with only 210 characters</span>
+                <span class="challengeReward">REWARD: +1 Card everytime you roll!</span>
             </div>
             <div id="challenge2" class="challenge hoverEffectChild" onclick="StartChallenge(1)">
-                    <span>Write 50 4-letter words in only 1 minute</span>
-                    <span class="challengeReward">REWARD: 50% more Points!</span>
+                <span>Write 50 4-letter words in only 1 minute</span>
+                <span class="challengeReward">REWARD: 50% more Points!</span>
             </div>
         </div>
         <div id="exitChallengeButton" class="exitChallengeButton" onclick="ExitAnyChallenge()">Exit Challenge</div>
@@ -222,6 +223,22 @@
             <span id="cardsAmountStat"></span>
         </div>
     </div>
+    <div id="optionsMenu">
+        <div id="optionsContainer" class="optionsContainer">
+            <div id="fontContainer" class="fontContainer">
+                <span class="optionFont">Font:</span>
+                <button id="prevFont">&#8592;</button>
+                <select id="fontSelector" class="fontSelector">
+                    <option value="'Montserrat', sans-serif">Montserrat</option>
+                    <option value="'Nabla', cursive">Nabla</option>
+                    <option value="'Raleway', sans-serif">Raleway</option>
+                    <option value="'Saira Condensed', sans-serif">Saira Condensed</option>
+                    <option value="'Source Code Pro', monospace">Source Code Pro</option>
+                </select>
+                <button id="nextFont">&#8594;</button>
+            </div>
+        </div>
+    </div>
 </body>
 <script type="text/javascript" src="js\util.js"></script>
 <script type="text/javascript" src="js\main.js"></script>
@@ -233,5 +250,6 @@
 <script type="text/javascript" src="js\challenges.js"></script>
 <script type="text/javascript" src="js\achievements.js"></script>
 <script type="text/javascript" src="js\stats.js"></script>
+<script type="text/javascript" src="js\options.js"></script>
 
 </html>

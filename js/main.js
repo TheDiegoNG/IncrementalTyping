@@ -117,11 +117,13 @@ window.setInterval(function () {
     SetPrestige();
     SetUpgrades();
     CalculateBonus();
+    SetOptions();
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
     document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
     document.getElementById("upgradesMenuButton").style.display = "flex";
     document.getElementById("statsMenuButton").style.display = "flex";
+    document.getElementById("optionsMenuButton").style.display = "flex";
     if (IsPurchasedUpgrade(2)) document.getElementById("LettersPerSecond").style.display = "block";
     if (IsPurchasedUpgrade(3)) {
         document.getElementById("passiveMenuButton").style.display = "flex";
@@ -230,6 +232,7 @@ function Tab(tabName) {
     document.getElementById("statsMenu").style.display = "none"
     document.getElementById("prestigeMenu").style.display = "none"
     document.getElementById("challengesMenu").style.display = "none"
+    document.getElementById("optionsMenu").style.display = "none"
     document.getElementById(tabName).style.display = "block";
     document.getElementById(tabName).style.marginTop = "2rem";
 }

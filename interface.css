@@ -8,7 +8,7 @@
   --green: rgb(96, 153, 45);
   --blue: rgb(108, 145, 194);
   --fucsia: rgb(170, 62, 152);
-
+  --primary-font: 'Montserrat', sans-serif;
 }
 
 body {
@@ -24,7 +24,7 @@ body {
   margin: 0px;
   color: white;
   min-block-size: 100dvh;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--primary-font);
   user-select: none;
   overflow-x: hidden;
   transition: opacity 500ms ease;
@@ -73,7 +73,7 @@ body::-webkit-scrollbar {
   color: white;
   width: 20vw;
   font-size: var(--medium-custom-text);
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--primary-font);
   padding-left: 2rem;
 }
 
@@ -96,7 +96,7 @@ button {
   background-color: transparent;
   color: white;
   border-color: transparent;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--primary-font);
 }
 
 .multiUpgradesContainer {
@@ -559,6 +559,23 @@ animation: background-pan 2s linear infinite;
   align-items: center;
   gap: 0.5rem;
   font-size: var(--small-custom-text);
+}
+
+.optionsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--small-custom-text);
+}
+
+.fontSelector {
+  appearance: none;
+  pointer-events: none;
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  font-family: var(--primary-font);
+  border:  none;
 }
 
 @keyframes background-pan {
