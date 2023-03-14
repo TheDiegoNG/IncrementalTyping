@@ -10,4 +10,4 @@ var Copy = (object) => JSON.parse(JSON.stringify(object))
 
 var IsInChallenge = (challengeNumber) => game.challenges[challengeNumber].OnChallenge == 1;
 
-var IsUnlockedAchievement = (achievementNumber) => game.achievements[achievementNumber].unlocked;
+var IsUnlockedAchievement = (achievementName) => game.achievements.find(x => x.name == achievementName) != undefined;

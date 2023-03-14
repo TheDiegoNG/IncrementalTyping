@@ -19,19 +19,7 @@ var game = {
     bestWord: "",
     multiUpgrades: [[0, 0, 0],
     [50, 100, 500]],
-    achievements: [{ name: "First Word", description: "Write your first word. Congratulations! You know how to write!", unlocked: false },
-    { name: "Ten Words", description: "Write 10 words. Pay attention, it seems that you are close to your first upgrade.", unlocked: false },
-    { name: "Fifty Words", description: "Write 50 words.", unlocked: false },
-    { name: "One Hundred Words", description: "Write 100 words.", unlocked: false },
-    { name: "100 Points", description: "Save 100 points", unlocked: false },
-    { name: "500 Points", description: "Save 500 Points", unlocked: false },
-    { name: "1000 Points", description: "Save 1000 points", unlocked: false },
-    { name: "5000 Points", description: "Save 5000 points", unlocked: false },
-    { name: "10000 Points", description: "Save 10000 points", unlocked: false },
-    { name: "50000 Points", description: "Save 50000 points", unlocked: false },
-    { name: "100000 Points", description: "Save 100000 points", unlocked: false },
-    { name: "200000 Points", description: "Save 200000 points", unlocked: false },
-    { name: "Best Word", description: "Write the best word possible", unlocked: false }],
+    achievements: [],
     wordsAmount: 0,
     passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
@@ -60,6 +48,7 @@ window.onload = async function () {
     challengeGame = Copy(game);
     LoadGame();
     GenerateWord();
+    CreateAchievements();
     Tab("activeMenu");
 }
 
@@ -124,6 +113,7 @@ window.setInterval(function () {
     document.getElementById("upgradesMenuButton").style.display = "flex";
     document.getElementById("statsMenuButton").style.display = "flex";
     document.getElementById("optionsMenuButton").style.display = "flex";
+    if (game.achievements.length > 0) document.getElementById("achievementsMenuButton").style.display = "flex";
     if (IsPurchasedUpgrade(2)) document.getElementById("LettersPerSecond").style.display = "block";
     if (IsPurchasedUpgrade(3)) {
         document.getElementById("passiveMenuButton").style.display = "flex";
@@ -233,6 +223,7 @@ function Tab(tabName) {
     document.getElementById("prestigeMenu").style.display = "none"
     document.getElementById("challengesMenu").style.display = "none"
     document.getElementById("optionsMenu").style.display = "none"
+    document.getElementById("achievementsMenu").style.display = "none"
     document.getElementById(tabName).style.display = "block";
     document.getElementById(tabName).style.marginTop = "2rem";
 }
