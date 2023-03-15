@@ -4,7 +4,7 @@ function createWord() {
   var passiveWord = GetRandomString(game.passiveLength);
   passivePointsWord.innerHTML = passiveWord;
   var points = GetPassivePoints(passiveWord);
-  points *= game.passiveGenerators[0][0];
+  points *= game.passiveGenerators[1][0];
   if (IsPurchasedUpgrade(3)) game.passivePoints += points;
 }
 
@@ -37,37 +37,41 @@ function GetRandomString(numberLetters) {
   return randomString;
 }
 
-var basicGenerator = document.getElementById("PassivePointsGenerator1");
-var PPGenerator = document.getElementById("PassivePointsGenerator2");
-var PPGenerator2 = document.getElementById("PassivePointsGenerator3");
-var PPGenerator3 = document.getElementById("PassivePointsGenerator4");
-var PPGenerator4 = document.getElementById("PassivePointsGenerator5");
-var PPGenerator5 = document.getElementById("PassivePointsGenerator6");
-var PPGenerator6 = document.getElementById("PassivePointsGenerator7");
+var basicGenerator = document.getElementById("PassivePointsGenerator0");
+var PPGenerator = document.getElementById("PassivePointsGenerator1");
+var PPGenerator2 = document.getElementById("PassivePointsGenerator2");
+var PPGenerator3 = document.getElementById("PassivePointsGenerator3");
+var PPGenerator4 = document.getElementById("PassivePointsGenerator4");
+var PPGenerator5 = document.getElementById("PassivePointsGenerator5");
+var PPGenerator6 = document.getElementById("PassivePointsGenerator6");
 
 function SetGenerators() {
-  basicGenerator.textContent = `Generate Passive Points! | Generators: ${game.passiveGenerators[0][0]} | Cost: ${game.passiveGenerators[1][0]} Passive Points`
-  PPGenerator.textContent = `Generate the First Generator | Generators: ${game.passiveGenerators[0][1]} | Cost: ${game.passiveGenerators[1][1]} 1st Generators`
-  PPGenerator2.textContent = `Generate the Second Generator | Generators: ${game.passiveGenerators[0][2]} | Cost: ${game.passiveGenerators[1][2]} 2nd Generators`
-  PPGenerator3.textContent = `Generate the Third Generator | Generators: ${game.passiveGenerators[0][3]} | Cost: ${game.passiveGenerators[1][3]} 2nd Generators`
-  PPGenerator4.textContent = `Generate the Fourth Generator | Generators: ${game.passiveGenerators[0][4]} | Cost: ${game.passiveGenerators[1][4]} 2nd Generators`
-  PPGenerator5.textContent = `Generate the Fifth Generator | Generators: ${game.passiveGenerators[0][5]} | Cost: ${game.passiveGenerators[1][5]} 2nd Generators`
-  PPGenerator6.textContent = `Generate the Sixth Generator | Generators: ${game.passiveGenerators[0][6]} | Cost: ${game.passiveGenerators[1][6]} 2nd Generators`
+  basicGenerator.textContent = `Generate Passive Points! | Generators: ${game.passiveGenerators[1][0].toFixed(2)} | Cost: ${game.passiveGenerators[2][0].toFixed(2)} Passive Points`
+  PPGenerator.textContent = `Generate the First Generator | Generators: ${game.passiveGenerators[1][1].toFixed(2)} | Cost: ${game.passiveGenerators[2][1].toFixed(2)} 1st Generators`
+  PPGenerator2.textContent = `Generate the Second Generator | Generators: ${game.passiveGenerators[1][2].toFixed(2)} | Cost: ${game.passiveGenerators[2][2].toFixed(2)} 2nd Generators`
+  PPGenerator3.textContent = `Generate the Third Generator | Generators: ${game.passiveGenerators[1][3].toFixed(2)} | Cost: ${game.passiveGenerators[2][3].toFixed(2)} 3rd Generators`
+  PPGenerator4.textContent = `Generate the Fourth Generator | Generators: ${game.passiveGenerators[1][4].toFixed(2)} | Cost: ${game.passiveGenerators[2][4].toFixed(2)} 4th Generators`
+  PPGenerator5.textContent = `Generate the Fifth Generator | Generators: ${game.passiveGenerators[1][5].toFixed(2)} | Cost: ${game.passiveGenerators[2][5].toFixed(2)} 5th Generators`
+  PPGenerator6.textContent = `Generate the Sixth Generator | Generators: ${game.passiveGenerators[1][6].toFixed(2)} | Cost: ${game.passiveGenerators[2][6].toFixed(2)} 6th Generators`
 }
 
 function BuyGenerator(generatorNumber) {
-  if (generatorNumber == 0 && game.passivePoints >= game.passiveGenerators[1][generatorNumber]) {
-    game.passivePoints -= game.passiveGenerators[1][generatorNumber];
+  if (generatorNumber == 0 && game.passivePoints >= game.passiveGenerators[2][generatorNumber]) {
+    game.passivePoints -= game.passiveGenerators[2][generatorNumber];
     game.passiveGenerators[0][generatorNumber]++;
+    game.passiveGenerators[1][generatorNumber]++;
+    game.passiveGenerators[2][generatorNumber] = game.passiveGenerators[2][generatorNumber] * (game.passiveGenerators[0][generatorNumber] + 1) ** Math.log10((game.passiveGenerators[0][generatorNumber] + 1));
   }
-  if (game.passiveGenerators[0][generatorNumber - 1] >= game.passiveGenerators[1][generatorNumber]) {
-    game.passiveGenerators[0][generatorNumber - 1] -= game.passiveGenerators[1][generatorNumber];
+  if (game.passiveGenerators[1][generatorNumber - 1] >= game.passiveGenerators[2][generatorNumber]) {
+    game.passiveGenerators[1][generatorNumber - 1] -= game.passiveGenerators[2][generatorNumber];
     game.passiveGenerators[0][generatorNumber]++;
+    game.passiveGenerators[1][generatorNumber]++;
+    game.passiveGenerators[2][generatorNumber] = game.passiveGenerators[2][generatorNumber] * (game.passiveGenerators[0][generatorNumber] + 1) ** Math.log10((game.passiveGenerators[0][generatorNumber] + 1));
   }
 }
 
 function CalculatePassiveGenerators() {
   for (let index = 1; index < game.passiveGenerators[0].length; index++) {
-    game.passiveGenerators[0][index - 1] += game.passiveGenerators[0][index];
+    game.passiveGenerators[1][index - 1] += game.passiveGenerators[1][index];
   }
 }

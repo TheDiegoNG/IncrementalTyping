@@ -17,7 +17,13 @@ var passiveUpgradesDesc = [
     "x1.25 Points - Cost: 100 PP",
     "+5 points per Word - Cost: 250 PP",
     "x1.5 points - Cost: 1000 PP",
-    "Every letter gets a value - Cost: 2000 PP"
+    "Get the next Tier of Generators! - Cost: 100000 PP",
+    "Every letter gets a value - Cost: 4000 PP",
+    "+1 Letter - Cost: 8000 PP",
+    "+10 Points per Word - Cost: 10000 PP",
+    "Get the next Tier of Generators! - Cost: 15000 PP",
+    "Get the next Tier of Generators! - Cost: 2000 PP",
+
 ]
 
 var prestigeUpgradesDesc = [
