@@ -21,6 +21,8 @@ var game = {
     [50, 100, 500]],
     achievements: [],
     wordsAmount: 0,
+    passiveGenerators: [[1, 1, 1, 1, 1, 1, 1],
+                        [500, 500, 500, 500, 500, 500, 500]],
     passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
     passiveLength: 4,
@@ -114,6 +116,8 @@ window.setInterval(function () {
     CalculateBonus();
     SetOptions();
     SetChallengesBonuses();
+    SetGenerators();
+    CalculatePassiveGenerators();
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
     document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
