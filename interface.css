@@ -55,6 +55,57 @@ body::-webkit-scrollbar {
   width: 100%;
 }
 
+.PopUp {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15vw;
+  height: 5vh;
+  border-radius: 0 10px 10px 0;
+  background: var(--light-black);
+  top: 10vh;
+  left: -20vw;
+  transition: left 1s ease-out;
+  text-align: center;
+}
+
+.PopUpAchievementText {
+  background-image: linear-gradient(to right,
+      var(--golden),
+      white,
+      var(--golden));
+  background-size: 200%;
+  animation: background-pan 2s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.PopUp::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  inset: -0.5rem;
+  transform: scale(1.1);
+  background-image: linear-gradient(to right,
+      var(--golden),
+      var(--light-black),
+      var(--golden));
+  background-size: 200%;
+  animation: background-pan 2s linear infinite;
+  z-index: -1;
+}
+
+.PopUp.Achievement {
+  height: 10vh;
+}
+
+.PopUp.show,
+.PopUp.Achievement.show {
+  left: 0;
+}
+
 .lettersPerSecond {
   font-size: var(--small-custom-text);
 }
@@ -488,14 +539,14 @@ button {
 
 .challengeTimer.success {
   background: linear-gradient(to right,
-  var(--green),
-  var(--light-black),
-  var(--green));
-background-size: 200%;
--webkit-background-clip: text;
-background-clip: text;
--webkit-text-fill-color: transparent;
-animation: background-pan 2s linear infinite;
+      var(--green),
+      var(--light-black),
+      var(--green));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: background-pan 2s linear infinite;
 }
 
 .challengesContainerWrapper {
@@ -575,7 +626,7 @@ animation: background-pan 2s linear infinite;
   background-color: transparent;
   color: white;
   font-family: var(--primary-font);
-  border:  none;
+  border: none;
 }
 
 .achievementContainer {
@@ -595,11 +646,10 @@ animation: background-pan 2s linear infinite;
 }
 
 .achievement.unlocked {
-  background: linear-gradient(
-    45deg,
-    rgb(40, 40, 40),
-    var(--light-black),
-    var(--golden));
+  background: linear-gradient(45deg,
+      rgb(40, 40, 40),
+      var(--light-black),
+      var(--golden));
   box-shadow: 0 0 0.3rem white;
 }
 

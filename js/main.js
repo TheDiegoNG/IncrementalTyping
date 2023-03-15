@@ -32,6 +32,7 @@ var game = {
     challenges: [{ OnChallenge: 0, Objective: 20, Amount: 0, Restriction: 210 },
         { OnChallenge: 0, Objective: 50, Amount: 0, Restriction: 210 }],
     isInChallenge: false,
+    challengesAmount: 0,
     letterCounter: 0,
     prestigePoints: 0,
     prestigeCount: 0,
@@ -90,9 +91,14 @@ async function checkText(event) {
         game.allTimePoints += wordPoints;
         game.wordsAmount++;
         if(game.isInChallenge) CheckProgress();
-        if (textBoxText === "Jack-go-to-bed-at-noon" && !IsUnlockedAchievement(12)) {
-            game.achievements[12].unlocked = true;
+        if (textBoxText === "Jack-go-to-bed-at-noon" && !IsUnlockedAchievement("Best Word")) {
+            game.achievements.push(achievements.find(x => x.name == "Best Word"));
             ShowAchievement("Best Word");
+        }
+        if(textBoxText.length == 10 && !IsUnlockedAchievement("10-letter Word"))
+        {
+            game.achievements.push(achievements.find(x => x.name == "10-letter Word"));
+            ShowAchievement("10-letter Word");
         }
         GenerateWord();
     }
@@ -107,6 +113,7 @@ window.setInterval(function () {
     SetUpgrades();
     CalculateBonus();
     SetOptions();
+    SetChallengesBonuses();
     document.getElementById("PointsCounter").textContent = Math.round(game.points);
     document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
@@ -228,10 +235,13 @@ function Tab(tabName) {
     document.getElementById(tabName).style.marginTop = "2rem";
 }
 
+var popUpNotif = document.getElementById("PopUpNotif");
 
 function LogGame() {
     console.log(game);
     console.log(challengeGame);
+    popUpNotif.textContent = "Logged!";
+    popUpNotif.classList.add("show");
 }
 
 function SetCosts() {
@@ -241,10 +251,18 @@ function SetCosts() {
     document.getElementById("cardsButton").textContent = `Get a Pack! Cost: ${(Math.round(game.cardCost) == 0) ? "Free!" : Math.round(game.cardCost)}`;
 }
 
+
 function SaveGame() {
     localStorage.setItem("save", JSON.stringify(game));
-    console.log("Saved!");
+    popUpNotif.textContent = "Saved!";
+    popUpNotif.classList.add("show");
 }
+
+popUpNotif.addEventListener("transitionend", function() {
+    setTimeout(() => {
+        popUpNotif.classList.remove("show");
+    }, 5000);
+});
 
 function LoadGame() {
     var savegame = JSON.parse(localStorage.getItem("save"));
@@ -315,4 +333,7 @@ function TransitionWindow() {
                 document.body.classList.remove('fade-out');
             }, 1000);
 }
+
+
+
 

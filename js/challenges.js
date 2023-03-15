@@ -41,6 +41,7 @@ function StartTimer(seconds, challengeNumber) {
             timer.textContent = "Success!";
             timer.classList.add("success");
             activeGame.challenges[challengeNumber].Amount++;
+            game.challengesAmount++;
             progressBar.classList.add("green");
             progressBar.classList.add("hide");
             clearInterval(intervalId);
@@ -79,6 +80,10 @@ progressBar.addEventListener("transitionend", function(e) {
         progressBar.style.width = "0%";
     }
 });
+
+function SetChallengesBonuses() {
+    game.rollsAmount = 10 + game.challenges[0].Amount;
+}
 
 function LoadAchievements() {
     challengeGame.achievements = Copy(game.achievements);
