@@ -17,13 +17,9 @@ var passiveUpgradesDesc = [
     "x1.25 Points - Cost: 100 PP",
     "+5 points per Word - Cost: 250 PP",
     "x1.5 points - Cost: 1000 PP",
-    "Get the next Tier of Generators! - Cost: 100000 PP",
     "Every letter gets a value - Cost: 4000 PP",
     "+1 Letter - Cost: 8000 PP",
-    "+10 Points per Word - Cost: 10000 PP",
-    "Get the next Tier of Generators! - Cost: 15000 PP",
-    "Get the next Tier of Generators! - Cost: 2000 PP",
-
+    "Every Generator Bought gives a Bonus to the other Generators! - Cost: 20000 PP",
 ]
 
 var prestigeUpgradesDesc = [
@@ -64,6 +60,7 @@ function GetPassiveUpgrade(upgradeNumber, element) {
         game.passivePoints -= game.passiveUpgrades[1][upgradeNumber]
         game.passiveUpgrades[0][upgradeNumber] = 1
         element.style.color = "#47682C";
+        if(upgradeNumber == 4) game.passiveLength++;
     } 
 }
 
@@ -73,8 +70,8 @@ function GetPrestigeUpgrade(upgradeNumber, element) {
         game.prestigePoints -= game.prestigeUpgrades[1][upgradeNumber]
         game.prestigeUpgrades[0][upgradeNumber] = 1
         element.style.color = "#47682C";
+        if(upgradeNumber == 1) game.rollsAmount += 2;
     } 
-    if(upgradeNumber == 1) game.rollsAmount += 2;
 }
 
 function SetUpgrades() {
