@@ -44,6 +44,7 @@ var PPGenerator3 = document.getElementById("PassivePointsGenerator3");
 var PPGenerator4 = document.getElementById("PassivePointsGenerator4");
 var PPGenerator5 = document.getElementById("PassivePointsGenerator5");
 var PPGenerator6 = document.getElementById("PassivePointsGenerator6");
+var GeneratorButton = document.getElementById("GeneratorButton");
 
 function SetGenerators() {
   basicGenerator.textContent = `Generate Passive Points! | Generators: ${game.passiveGenerators[1][0].toFixed(2)} | Cost: ${game.passiveGenerators[2][0].toFixed(2)} Passive Points`
@@ -53,6 +54,7 @@ function SetGenerators() {
   PPGenerator4.textContent = `Generate the Fourth Generator | Generators: ${game.passiveGenerators[1][4].toFixed(2)} | Cost: ${game.passiveGenerators[2][4].toFixed(2)} 4th Generators`
   PPGenerator5.textContent = `Generate the Fifth Generator | Generators: ${game.passiveGenerators[1][5].toFixed(2)} | Cost: ${game.passiveGenerators[2][5].toFixed(2)} 5th Generators`
   PPGenerator6.textContent = `Generate the Sixth Generator | Generators: ${game.passiveGenerators[1][6].toFixed(2)} | Cost: ${game.passiveGenerators[2][6].toFixed(2)} 6th Generators`
+  GeneratorButton.textContent = `Buy the next Tier of Generators! | Cost ${(game.passiveGenerators[0].findIndex(x => x == 0) + 1) * 3} Previous Tier Generators!`
 }
 
 function BuyGenerator(generatorNumber) {
@@ -70,8 +72,22 @@ function BuyGenerator(generatorNumber) {
   }
 }
 
+function BuyGeneratorTier() {
+  var generatorToBuy = game.passiveGenerators[0].findIndex(x => x == 0);
+  if(game.passiveGenerators[1][generatorToBuy - 1] >= game.passiveGenerators[2][generatorToBuy])
+  {
+    game.passiveGenerators[1][generatorToBuy - 1] -= game.passiveGenerators[2][generatorToBuy];
+    game.passiveGenerators[0][generatorToBuy]++;
+    game.passiveGenerators[1][generatorToBuy]++;
+
+    var generator = document.getElementById(`PassivePointsGenerator${generatorToBuy}`);
+    generator.style.display = "block";
+  }
+}
+
 function CalculatePassiveGenerators() {
   for (let index = 1; index < game.passiveGenerators[0].length; index++) {
     game.passiveGenerators[1][index - 1] += game.passiveGenerators[1][index];
   }
 }
+

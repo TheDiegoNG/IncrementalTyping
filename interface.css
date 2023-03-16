@@ -170,12 +170,15 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  
   gap: 10rem;
   text-align: center;
 }
 
 .passivePointsLeft {
   font-size: var(--medium-custom-text);
+  width: 20ch;
+  overflow-wrap: break-word;
 }
 
 .passivePointsRight {
