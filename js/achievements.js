@@ -188,7 +188,6 @@ var popUpAchievement = document.getElementById("PopUpAchievement");
 var popUpAchievementText = document.getElementById("PopUpAchievementText");
 
 function ShowAchievement(achievementName) {
-    var achievement = game.achievements.find(a => a.name === achievementName);
     var achievementElement = document.getElementById(achievementName);
     achievementElement.classList.add("unlocked");
     popUpAchievementText.textContent = `You have obtained the achievement: ${achievementName}!`

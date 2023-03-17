@@ -11,8 +11,8 @@ var wordList;
 */
 
 var game = {
-    points: 1000000000000000000,
-    allTimePoints: 10000000000000000,
+    points: 100000000,
+    allTimePoints: 100000000,
     upgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [50, 200, 500, 1500, 2500, 6000, 10000, 40000, 100000, 200000, 5000000, 10000000]],
     maxLength: 4,
@@ -22,8 +22,8 @@ var game = {
     achievements: [],
     wordsAmount: 0,
     passiveGenerators: [[1, 0, 0, 0, 0, 0, 0],
-                        [1, 0, 0, 0, 0, 0, 0],
-                        [5, 6, 9, 12, 15, 18, 21]],
+    [1, 0, 0, 0, 0, 0, 0],
+    [5, 6, 9, 12, 15, 18, 21]],
     passiveUpgrades: [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [100, 250, 500, 1000, 0, 0, 0, 0, 0, 0]],
     passiveLength: 4,
@@ -33,7 +33,7 @@ var game = {
     cardCost: 0,
     rollsAmount: 10,
     challenges: [{ OnChallenge: 0, Objective: 20, Amount: 0, Restriction: 210 },
-        { OnChallenge: 0, Objective: 50, Amount: 0, Restriction: 210 }],
+    { OnChallenge: 0, Objective: 50, Amount: 0, Restriction: 210 }],
     isInChallenge: false,
     challengesAmount: 0,
     letterCounter: 0,
@@ -51,7 +51,7 @@ window.onload = async function () {
     wordList = await getWordList();
     challengeGame = Copy(game);
     LoadGame();
-    GenerateWord();
+    SetWords();
     CreateAchievements();
     Tab("activeMenu");
 }
@@ -63,8 +63,27 @@ async function getWordList() {
     return wordList;
 }
 
-async function GenerateWord() {
-    var wordLabel = document.getElementById("WordToGuess");
+const wordToGuessWrapper = document.getElementById("WordToGuessWrapper");
+const wordsContainer = document.getElementById("WordsContainer");
+const wordsLeft = document.getElementById("WordsLeft");
+const wordsLeft2 = document.getElementById("WordsLeft2");
+const wordToGuess = document.getElementById("WordToGuess");
+const wordsRight = document.getElementById("WordsRight");
+const wordsRight2 = document.getElementById("WordsRight2");
+
+
+function SetWords() {
+
+    wordsLeft.textContent = GenerateWord();
+    wordsLeft2.textContent = GenerateWord();
+    wordToGuess.textContent = GenerateWord();
+    wordToGuessWrapper.classList.add("expand");
+    wordsRight.textContent = GenerateWord();
+    wordsRight2.textContent = GenerateWord();
+
+}
+
+function GenerateWord() {
 
     var filteredWordList = wordList.filter(x => x.length <= game.maxLength);
 
@@ -72,7 +91,7 @@ async function GenerateWord() {
 
     if (HasCard("All Lowercase") || IsInChallenge(0)) generatedWord = generatedWord.toLowerCase();
 
-    wordLabel.textContent = generatedWord;
+    return generatedWord;
 }
 
 var textbox = document.getElementById("WordBox");
@@ -93,20 +112,39 @@ async function checkText(event) {
         game.points += wordPoints;
         game.allTimePoints += wordPoints;
         game.wordsAmount++;
-        if(game.isInChallenge) CheckProgress();
+        if (game.isInChallenge) CheckProgress();
         if (textBoxText === "Jack-go-to-bed-at-noon" && !IsUnlockedAchievement("Best Word")) {
             game.achievements.push(achievements.find(x => x.name == "Best Word"));
             ShowAchievement("Best Word");
         }
-        if(textBoxText.length == 10 && !IsUnlockedAchievement("10-letter Word"))
-        {
+        if (textBoxText.length == 10 && !IsUnlockedAchievement("10-letter Word")) {
             game.achievements.push(achievements.find(x => x.name == "10-letter Word"));
             ShowAchievement("10-letter Word");
         }
-        GenerateWord();
+
+        GuessedWord();
+
     }
 
 }
+
+function GuessedWord() {
+
+    wordsLeft.textContent = wordsLeft2.textContent;
+    wordsLeft2.textContent = wordToGuess.textContent;
+    wordToGuess.textContent = wordsRight.textContent;
+    wordsRight.textContent = wordsRight2.textContent;
+    wordsRight2.textContent = GenerateWord();
+    wordToGuessWrapper.classList.add("expand");
+ 
+}
+
+wordToGuessWrapper.addEventListener('transitionend', function(e) {
+    if(e.propertyName == "transform")
+    {
+        wordToGuessWrapper.classList.remove("expand");
+    }
+})
 
 window.setInterval(function () {
     SetCosts();
@@ -145,12 +183,11 @@ let display = document.getElementById("LettersPerSecond");
 
 let input = document.getElementById("WordBox");
 input.addEventListener("keydown", function () {
-    if (game.challenges[0].OnChallenge == 1)
-    {
+    if (game.challenges[0].OnChallenge == 1) {
         game.letterCounter++;
-        if(game.challenges[0].Restriction <= game.letterCounter) 
-        game.isInChallenge = false;
-    }  
+        if (game.challenges[0].Restriction <= game.letterCounter)
+            game.isInChallenge = false;
+    }
     console.log(game.letterCounter);
     letters++;
     if (letters === 1) startTime = Date.now();
@@ -263,7 +300,7 @@ function SaveGame() {
     popUpNotif.classList.add("show");
 }
 
-popUpNotif.addEventListener("transitionend", function() {
+popUpNotif.addEventListener("transitionend", function () {
     setTimeout(() => {
         popUpNotif.classList.remove("show");
     }, 5000);
@@ -334,9 +371,9 @@ window.onmousemove = e => {
 
 function TransitionWindow() {
     document.body.classList.add('fade-out');
-            setTimeout(function() {
-                document.body.classList.remove('fade-out');
-            }, 1000);
+    setTimeout(function () {
+        document.body.classList.remove('fade-out');
+    }, 1000);
 }
 
 

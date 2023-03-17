@@ -110,6 +110,7 @@ body::-webkit-scrollbar {
   font-size: var(--small-custom-text);
 }
 
+
 .wordWrapper {
   display: flex;
   justify-content: center;
@@ -141,6 +142,7 @@ body::-webkit-scrollbar {
 
 .pointsCounter {
   font-size: var(--medium-custom-text);
+  text-align: center;
 }
 
 button {
@@ -170,6 +172,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
   
   gap: 10rem;
   text-align: center;
@@ -230,8 +233,40 @@ button {
 }
 
 .wordToGuess {
+  color: white;
+  text-shadow: 0 0 0.25em currentColor;
   font-size: var(--big-custom-text);
-  text-shadow: 0 0 0.3em currentColor;
+}
+
+.wordToGuessWrapper {
+  transition: transform 100ms ease-in-out;
+  animation: background-pan 2s linear infinite;
+  background: linear-gradient(to right,
+      gray,
+     white,
+      gray);
+  background-size: 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+.wordToGuessWrapper.expand{
+  transform: scale(1.3);
+}
+
+.wordsContainer {
+  color: rgba(150, 150, 150, 0.5);
+  font-size: var(--small-custom-text);
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  text-align: center;
+  white-space: nowrap;
+  gap: 3rem;
 }
 
 .tabsContainer {

@@ -28,8 +28,12 @@
     </div>
     <div class="wordToGuessContainer">
         <div id="challengeTimer" class="challengeTimer"></div>
-        <div>
-            <span id="WordToGuess" class="wordToGuess"></span>
+        <div id="WordsContainer" class="wordsContainer">
+            <div id="WordsLeft" class="wordsLeft"></div>
+            <div id="WordsLeft2" class="wordsLeft"></div>
+            <div id="WordToGuessWrapper" class="wordToGuessWrapper"><span id="WordToGuess" class="wordToGuess"></span></div>
+            <div id="WordsRight" class="wordsRight"></div>
+            <div id="WordsRight2" class="wordsRight"></div>
         </div>
         <label id="LettersPerSecond" class="lettersPerSecond" style="display:none;"></label>
         <div>
@@ -82,19 +86,26 @@
             <div id="PassivePointsRight" class="passivePointsRight">
                 <div id="PassivePointsGenerator0" class="passivePointsGenerator" onclick="BuyGenerator(0)">Generate
                     Passive Points! | Generators:</div>
-                <div id="PassivePointsGenerator1" class="passivePointsGenerator" onclick="BuyGenerator(1)" style="display: none;">Generate the
+                <div id="PassivePointsGenerator1" class="passivePointsGenerator" onclick="BuyGenerator(1)"
+                    style="display: none;">Generate the
                     First Generator | Generators:</div>
-                <div id="PassivePointsGenerator2" class="passivePointsGenerator" onclick="BuyGenerator(2)" style="display: none;">Generate the
+                <div id="PassivePointsGenerator2" class="passivePointsGenerator" onclick="BuyGenerator(2)"
+                    style="display: none;">Generate the
                     Second Generator | Generators:</div>
-                <div id="PassivePointsGenerator3" class="passivePointsGenerator" onclick="BuyGenerator(3)" style="display: none;">Generate the
+                <div id="PassivePointsGenerator3" class="passivePointsGenerator" onclick="BuyGenerator(3)"
+                    style="display: none;">Generate the
                     Third Generator | Generators:</div>
-                <div id="PassivePointsGenerator4" class="passivePointsGenerator" onclick="BuyGenerator(4)" style="display: none;">Generate the
+                <div id="PassivePointsGenerator4" class="passivePointsGenerator" onclick="BuyGenerator(4)"
+                    style="display: none;">Generate the
                     Fourth Generator | Generators:</div>
-                <div id="PassivePointsGenerator5" class="passivePointsGenerator" onclick="BuyGenerator(5)" style="display: none;">Generate the
+                <div id="PassivePointsGenerator5" class="passivePointsGenerator" onclick="BuyGenerator(5)"
+                    style="display: none;">Generate the
                     Fifth Generator | Generators:</div>
-                <div id="PassivePointsGenerator6" class="passivePointsGenerator" onclick="BuyGenerator(6)" style="display: none;">Generate the
+                <div id="PassivePointsGenerator6" class="passivePointsGenerator" onclick="BuyGenerator(6)"
+                    style="display: none;">Generate the
                     Sixth Generator | Generators:</div>
-                <div id="GeneratorButton" class="generatorButton" onclick="BuyGeneratorTier()">Buy the next Tier of Generators!</div>
+                <div id="GeneratorButton" class="generatorButton" onclick="BuyGeneratorTier()">Buy the next Tier of
+                    Generators! | Cost</div>
             </div>
         </div>
     </div>
