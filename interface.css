@@ -21,7 +21,7 @@ body {
   background-size: 200%;
   background-blend-mode: multiply;
   animation: background-pan 30s linear infinite;
-  margin: 0px;
+  margin: 0;
   color: white;
   min-block-size: 100dvh;
   font-family: var(--primary-font);
@@ -108,6 +108,7 @@ body::-webkit-scrollbar {
 
 .lettersPerSecond {
   font-size: var(--small-custom-text);
+  margin: 0;
 }
 
 
@@ -143,6 +144,7 @@ body::-webkit-scrollbar {
 .pointsCounter {
   font-size: var(--medium-custom-text);
   text-align: center;
+  margin: 0;
 }
 
 button {
@@ -165,6 +167,9 @@ button {
   align-items: center;
   justify-items: center;
   gap: 1rem;
+}
+
+.multiUpgradesButtons>Button {
   font-size: var(--small-custom-text);
 }
 
@@ -192,6 +197,12 @@ button {
   font-size: var(--small-custom-text);
 }
 
+.passivePointsRight>button,
+.passivePointsRight>p {
+  margin: 1rem 0;
+  font-size:  var(--small-custom-text);
+}
+
 .upgradesTable {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -205,7 +216,6 @@ button {
   display: flex;
   justify-content: center;
   gap: clamp(2rem, 10rem, 15rem);
-
 }
 
 .upgradeTypeWrapper {
@@ -236,6 +246,7 @@ button {
   color: white;
   text-shadow: 0 0 0.25em currentColor;
   font-size: var(--big-custom-text);
+  margin: 0;
 }
 
 .wordToGuessWrapper {
@@ -578,9 +589,14 @@ button {
 }
 
 .challengeTimer {
-  margin-top: 1rem;
+  margin: 1rem 0 0 0;
   font-size: var(--medium-custom-text);
   transition: transform 250ms ease-out;
+  display: none;
+}
+
+.challengeTimer.show {
+  display: block;
 }
 
 .challengeTimer.expand {

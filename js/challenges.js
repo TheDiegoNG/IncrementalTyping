@@ -28,6 +28,7 @@ function StartTimer(seconds, challengeNumber) {
     timer.textContent = seconds;
     timer.style.color = "white";
     timer.classList.remove("success");
+    timer.classList.add("show");
     var intervalId = setInterval(function minusSeconds() {
         seconds--;
         timer.textContent = seconds;

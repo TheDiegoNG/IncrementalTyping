@@ -121,11 +121,8 @@ async function checkText(event) {
             game.achievements.push(achievements.find(x => x.name == "10-letter Word"));
             ShowAchievement("10-letter Word");
         }
-
         GuessedWord();
-
     }
-
 }
 
 function GuessedWord() {
@@ -136,7 +133,6 @@ function GuessedWord() {
     wordsRight.textContent = wordsRight2.textContent;
     wordsRight2.textContent = GenerateWord();
     wordToGuessWrapper.classList.add("expand");
- 
 }
 
 wordToGuessWrapper.addEventListener('transitionend', function(e) {
