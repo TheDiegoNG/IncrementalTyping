@@ -1,8 +1,8 @@
 :root {
-  --xsmall-custon-text: clamp(0.5rem, 0.5vw, 1rem);
+  --xsmall-custom-text: 1rem;
   --small-custom-text: clamp(1rem, 1vw, 2rem);
-  --medium-custom-text: clamp(2rem, 3vw, 5rem);
-  --big-custom-text: clamp(5rem, 7vw, 10rem);
+  --medium-custom-text: clamp(1.5rem, 3vw, 5rem);
+  --big-custom-text: clamp(2rem, 7vw, 10rem);
   --light-black: rgb(20, 20, 20);
   --golden: rgb(237, 203, 177);
   --green: rgb(96, 153, 45);
@@ -11,11 +11,17 @@
   --primary-font: 'Montserrat', sans-serif;
 }
 
+html {
+  width: 100%;
+}
+
 body {
   background: hsl(224, 32%, 12%);
   background-image: conic-gradient(from 0deg at 50% 50%,
       var(--light-black),
       var(--blue),
+      rgb(46, 12, 80),
+      rgb(46, 12, 80),
       var(--blue),
       var(--light-black));
   background-size: 200%;
@@ -44,30 +50,20 @@ body::-webkit-scrollbar {
   background: rgba(80, 80, 80, 0.75);
 }
 
-.backgroundPolkadot {
-  position: absolute;
-  z-index: -10;
-  background: radial-gradient(rgba(255, 255, 255, 0.15) 8%,
-      transparent 8%);
-  background-position: 0% 0%;
-  background-size: 5vmin 5vmin;
-  height: 100%;
-  width: 100%;
-}
-
 .PopUp {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15vw;
-  height: 5vh;
+  width: 150px;
+  height: 50px;
   border-radius: 0 10px 10px 0;
   background: var(--light-black);
-  top: 10vh;
-  left: -20vw;
+  top: 50px;
+  left: -200px;
   transition: left 1s ease-out;
   text-align: center;
+  font-size: var(--xsmall-custom-text);
 }
 
 .PopUpAchievementText {
@@ -98,7 +94,7 @@ body::-webkit-scrollbar {
 }
 
 .PopUp.Achievement {
-  height: 10vh;
+  height: 100px;
 }
 
 .PopUp.show,
@@ -124,7 +120,7 @@ body::-webkit-scrollbar {
   border-radius: 50px;
   border-color: rgb(120, 120, 120);
   color: white;
-  width: 20vw;
+  width: clamp(5rem, 20vw, 50rem);
   font-size: var(--medium-custom-text);
   font-family: var(--primary-font);
   padding-left: 2rem;
@@ -177,16 +173,26 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
-  
+  flex-wrap: wrap;
+  padding: 0 2rem;
   gap: 10rem;
   text-align: center;
+  max-width: 100%;
+}
+
+@media (max-width: 1423px) { 
+  .passivePointsWrapper {
+    gap: 1rem;
+  }
 }
 
 .passivePointsLeft {
   font-size: var(--medium-custom-text);
-  width: 20ch;
-  overflow-wrap: break-word;
+  padding: 0 1rem;
+}
+
+.passivePointsWord {
+  width: 100vw;
 }
 
 .passivePointsRight {
@@ -222,14 +228,14 @@ button {
 .upgradeWrapper {
   display: flex;
   justify-content: center;
-  gap: clamp(2rem, 10rem, 15rem);
+  flex-wrap: wrap;
+  gap: 4rem;
 }
 
 .upgradeTypeWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 10vw;
 }
 
 .upgradeTypeWrapper>h2 {
@@ -237,7 +243,7 @@ button {
 }
 
 .upgradeTypeWrapper>.upgradesDesc {
-  font-size: var(--xsmall-custon-text);
+  font-size: var(--xsmall-custom-text);
   text-align: center;
 }
 
@@ -284,6 +290,32 @@ button {
   text-align: center;
   white-space: nowrap;
   gap: 3rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .wordsContainer > :first-child,
+  .wordsContainer > :last-child {
+    display: none;
+  }
+
+  .wordsContainer { 
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 425px) {
+  .wordsContainer > :nth-child(1),
+  .wordsContainer > :nth-child(2),
+  .wordsContainer > :nth-last-child(1),
+  .wordsContainer > :nth-last-child(2)
+  {
+    display: none;
+  }
+
+  .wordsContainer { 
+    grid-template-columns: 1fr;
+  }
 }
 
 .tabsContainer {
@@ -292,7 +324,6 @@ button {
   gap: 4rem;
   padding: 0 2rem;
   overflow-y: hidden;
-  overflow-x: scroll;
 }
 
 .tabsContainer::-webkit-scrollbar {
@@ -667,6 +698,7 @@ button {
   flex-direction: column;
   align-items: center;
   font-size: var(--medium-custom-text);
+  text-align: center;
 }
 
 .prestigePointsContainer > p {
@@ -723,9 +755,9 @@ button {
 }
 
 .achievementContainer {
-  margin-top: 1rem;
+  margin: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10vw, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 1fr));
   font-size: var(--small-custom-text);
   text-align: center;
   gap: 1rem;

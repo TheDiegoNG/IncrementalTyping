@@ -153,8 +153,8 @@ window.setInterval(function () {
     SetChallengesBonuses();
     SetGenerators();
     CalculatePassiveGenerators();
-    document.getElementById("PointsCounter").textContent = Math.round(game.points);
-    document.getElementById("passivePoints").textContent = Math.round(game.passivePoints) + " PP";
+    document.getElementById("PointsCounter").textContent = Math.round(game.points).toExponential(2);
+    document.getElementById("passivePoints").textContent = Math.round(game.passivePoints).toExponential(2) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
     document.getElementById("upgradesMenuButton").style.display = "flex";
     document.getElementById("statsMenuButton").style.display = "flex";
