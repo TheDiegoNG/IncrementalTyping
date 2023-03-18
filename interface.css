@@ -206,10 +206,17 @@ button {
 .upgradesTable {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
   place-items: center;
   gap: 1rem;
+  
+}
+
+.upgradesTable > Button {
   font-size: var(--small-custom-text);
+} 
+
+.upgradesDesc {
+  margin-top: 3rem;
 }
 
 .upgradeWrapper {
@@ -273,8 +280,7 @@ button {
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-columns: repeat(5, 1fr);
   text-align: center;
   white-space: nowrap;
   gap: 3rem;
@@ -323,6 +329,9 @@ button {
   justify-content: center;
   position: relative;
   text-align: center;
+}
+
+.cardsHeaderContainer > button {
   font-size: var(--medium-custom-text);
 }
 
@@ -620,6 +629,9 @@ button {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+}
+
+.challengesContainerWrapper > button { 
   font-size: var(--small-custom-text);
 }
 
@@ -657,11 +669,12 @@ button {
   font-size: var(--medium-custom-text);
 }
 
-.prestigeButtonWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: var(--big-custom-text)
+.prestigePointsContainer > p {
+  margin: 1rem 0;
+}
+
+.prestigePointsContainer > button {
+  font-size: var(--big-custom-text);
 }
 
 .prestigeProgressContainer {
@@ -678,11 +691,25 @@ button {
   font-size: var(--small-custom-text);
 }
 
+.statsContainer > p {
+  margin: 1rem 0;
+}
+
 .optionsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: var(--small-custom-text);
+}
+
+.fontContainer { 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fontContainer > p{
+  margin: 1rem;
 }
 
 .fontSelector {
@@ -701,6 +728,7 @@ button {
   grid-template-columns: repeat(auto-fit, minmax(10vw, 1fr));
   font-size: var(--small-custom-text);
   text-align: center;
+  gap: 1rem;
 }
 
 .achievement {

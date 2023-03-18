@@ -25,12 +25,11 @@
         <p id="PopUpAchievementText" class="PopUpAchievementText">
     </div>
     <div class="wordToGuessContainer">
-        <p id="challengeTimer" class="challengeTimer"></p>
+        <p id="challengeTimer" class="challengeTimer">
         <div id="WordsContainer" class="wordsContainer">
             <p id="WordsLeft" class="wordsLeft">
             <p id="WordsLeft2" class="wordsLeft">
-            <div id="WordToGuessWrapper" class="wordToGuessWrapper"><p id="WordToGuess" class="wordToGuess">
-            </div>
+            <div id="WordToGuessWrapper" class="wordToGuessWrapper"><p id="WordToGuess" class="wordToGuess"></div>
             <p id="WordsRight" class="wordsRight">
             <p id="WordsRight2" class="wordsRight">
         </div>
@@ -214,22 +213,6 @@
                         onmouseover="ChangePassiveUpgradesText(11)" onclick="GetPassiveUpgrade(11, this)">
                         <span>L</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade13"
-                        onmouseover="ChangePassiveUpgradesText(12)" onclick="GetPassiveUpgrade(12, this)">
-                        <span>M</span>
-                    </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade14"
-                        onmouseover="ChangePassiveUpgradesText(13)" onclick="GetPassiveUpgrade(13, this)">
-                        <span>N</span>
-                    </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade15"
-                        onmouseover="ChangePassiveUpgradesText(14)" onclick="GetPassiveUpgrade(14, this)">
-                        <span>O</span>
-                    </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade16"
-                        onmouseover="ChangePassiveUpgradesText(15)" onclick="GetPassiveUpgrade(15, this)">
-                        <span>P</span>
-                    </button>
                 </div>
                 <p id="passiveUpgradesDesc" class="upgradesDesc">Hover and upgrade to see its description!</p>
             </div>
@@ -269,12 +252,9 @@
         <div id="prestigePointsContainer" class="prestigePointsContainer">
             <p id="prestigePointsToGet">Prestige Points when Prestige:</p>
             <p id="prestigePointsAmount">Prestige Points: </p>
+            <button id="prestigeButton" class="cardsButton" onclick="Prestige()"> Prestige!</button>
         </div>
-        <div id="prestigeButtonWrapper" class="prestigeButtonWrapper">
-            <button id="prestigeButton" class="cardsButton" onclick="Prestige()"> Prestige!
-            </button>
-        </div>
-    </section>
+        </section>
     <section id="challengesMenu">
         <div id="challengesContainerWrapper" class="challengesContainerWrapper hoverEffectContainer">
             <button id="challenge1" class="challenge hoverEffectChild" onclick="StartChallenge(0)">
@@ -285,8 +265,8 @@
                 Write 50 4-letter words in only 1 minute
                 <span class="challengeReward">REWARD: 50% more Points!</span>
             </button>
+            <button id="exitChallengeButton" class="exitChallengeButton" onclick="ExitAnyChallenge()">Exit Challenge</button>
         </div>
-        <button id="exitChallengeButton" class="exitChallengeButton" onclick="ExitAnyChallenge()">Exit Challenge</button>
     </section>
     <section id="achievementsMenu">
         <div id="achievementContainer" class="achievementContainer"></div>
