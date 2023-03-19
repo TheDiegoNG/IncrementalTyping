@@ -17,6 +17,6 @@ nextFontBtn.addEventListener('click', function() {
   fontSelector.selectedIndex = currentIndex;
 });
 
-function SetOptions() {
+export function SetOptions() {
     document.documentElement.style.setProperty('--primary-font', `${fontSelector.value}`);
 }

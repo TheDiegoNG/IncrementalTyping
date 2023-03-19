@@ -44,10 +44,10 @@ function ChangePrestigeUpgradesText(upgradeNumber) {
 console.time("GameTime");
 
 function GetUpgrade(upgradeNumber, element) {
-    if(game.upgrades[0][upgradeNumber] == 0 && game.points >= game.upgrades[1][upgradeNumber])
+    if(gameObjects.game.upgrades[0][upgradeNumber] == 0 && gameObjects.game.points >= gameObjects.game.upgrades[1][upgradeNumber])
     {
-        game.points -= game.upgrades[1][upgradeNumber]
-        game.upgrades[0][upgradeNumber] = 1
+        gameObjects.game.points -= gameObjects.game.upgrades[1][upgradeNumber]
+        gameObjects.game.upgrades[0][upgradeNumber] = 1
         element.style.color = "#47682C";
         console.log(upgradeNumber);
         console.timeLog("GameTime")
@@ -55,26 +55,26 @@ function GetUpgrade(upgradeNumber, element) {
 }
 
 function GetPassiveUpgrade(upgradeNumber, element) {
-    if(game.passiveUpgrades[0][upgradeNumber] == 0 && game.passivePoints >= game.passiveUpgrades[1][upgradeNumber])
+    if(gameObjects.game.passiveUpgrades[0][upgradeNumber] == 0 && gameObjects.game.passivePoints >= gameObjects.game.passiveUpgrades[1][upgradeNumber])
     {
-        game.passivePoints -= game.passiveUpgrades[1][upgradeNumber]
-        game.passiveUpgrades[0][upgradeNumber] = 1
+        gameObjects.game.passivePoints -= gameObjects.game.passiveUpgrades[1][upgradeNumber]
+        gameObjects.game.passiveUpgrades[0][upgradeNumber] = 1
         element.style.color = "#47682C";
-        if(upgradeNumber == 4) game.passiveLength++;
+        if(upgradeNumber == 4) gameObjects.game.passiveLength++;
     } 
 }
 
 function GetPrestigeUpgrade(upgradeNumber, element) {
-    if(game.prestigeUpgrades[0][upgradeNumber] == 0 && game.prestigePoints >= game.prestigeUpgrades[1][upgradeNumber])
+    if(gameObjects.game.prestigeUpgrades[0][upgradeNumber] == 0 && gameObjects.game.prestigePoints >= gameObjects.game.prestigeUpgrades[1][upgradeNumber])
     {
-        game.prestigePoints -= game.prestigeUpgrades[1][upgradeNumber]
-        game.prestigeUpgrades[0][upgradeNumber] = 1
+        gameObjects.game.prestigePoints -= gameObjects.game.prestigeUpgrades[1][upgradeNumber]
+        gameObjects.game.prestigeUpgrades[0][upgradeNumber] = 1
         element.style.color = "#47682C";
-        if(upgradeNumber == 1) game.rollsAmount += 2;
+        if(upgradeNumber == 1) gameObjects.game.rollsAmount += 2;
     } 
 }
 
-function SetUpgrades() {
+export function SetUpgrades() {
     SetActiveUpgrades();
     SetPassiveUpgrades();
     SetPrestigeUpgrades();
@@ -84,7 +84,7 @@ function SetActiveUpgrades() {
     let myTable = document.getElementById('upgradesTable');
     let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = game.upgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
+        value.style.color = gameObjects.game.upgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
     });
 }
 
@@ -92,7 +92,7 @@ function SetPassiveUpgrades() {
     let myTable = document.getElementById('passiveUpgradesTable');
     let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = game.passiveUpgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
+        value.style.color = gameObjects.game.passiveUpgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
     });
 }
 
@@ -100,6 +100,6 @@ function SetPrestigeUpgrades() {
     let myTable = document.getElementById('prestigeUpgradesTable');
     let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = game.prestigeUpgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
+        value.style.color = gameObjects.game.prestigeUpgrades[0][index] == 1 ? "#47682C" : "#FFFFFF";
     });
 }

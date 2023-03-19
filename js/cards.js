@@ -1,3 +1,6 @@
+import * as utilModule from "./util.js";
+import { gameObjects } from "./game.js";
+
 var commonCards = [
     { name: "Fast+ Progress (C)", description: "+5% Points", type: "Common", bonusType: "PointsPercentage", bonusAmount: 1.05 },
     { name: "+1 Points (C)", description: "+1 Point Per Word", type: "Common", bonusType: "PointsAmount", bonusAmount: 1 },
@@ -39,11 +42,11 @@ var overlay = document.getElementById("overlay");
 
 function GetCards() {
 
-    if (game.points >= game.cardCost) {
-        game.points -= game.cardCost
-        game.cardCost = 100000 * 2 ** (game.cards.length / 10);
+    if (gameObjects.game.points >= gameObjects.game.cardCost) {
+        gameObjects.game.points -= gameObjects.game.cardCost
+        gameObjects.game.cardCost = 100000 * 2 ** (gameObjects.game.cards.length / 10);
         var card;
-        for (let index = 0; index < game.rollsAmount; index++) {
+        for (let index = 0; index < gameObjects.game.rollsAmount; index++) {
             var randomNumber = Math.floor(Math.random() * 100);
             if (randomNumber >= 40) {
                 card = GetCommonCard();
@@ -57,18 +60,18 @@ function GetCards() {
             else {
                 card = GetLegendaryCard();
             }
-            if (card.name == "All Lowercase (E)" && HasCard("All Lowercase (E)")) {
+            if (card.name == "All Lowercase (E)" && utilModule.HasCard("All Lowercase (E)")) {
                 index--
                 continue;
             }
             AppendCard(card);
-            game.cards.push(card);
-            if (card.name === "Longer Passive Words (UC)") game.passiveLength++;
-            if (card.name === "Longerer Passive Words (E)") game.passiveLength += 2;
-            if (card.name === "Longest Passive Words (L)") game.passiveLength += 5;
-            if (card.name === "Faster Passive Words (UC)") game.passiveRate -= game.passiveRate * 5 / 100;
-            if (card.name === "Fasterer Passive Words (E)") game.passiveRate -= game.passiveRate * 10 / 100;
-            if (card.name === "Fastest Passive Words (L)") game.passiveRate -= game.passiveRate * 20 / 100;
+            gameObjects.game.cards.push(card);
+            if (card.name === "Longer Passive Words (UC)") gameObjects.game.passiveLength++;
+            if (card.name === "Longerer Passive Words (E)") gameObjects.game.passiveLength += 2;
+            if (card.name === "Longest Passive Words (L)") gameObjects.game.passiveLength += 5;
+            if (card.name === "Faster Passive Words (UC)") gameObjects.game.passiveRate -= gameObjects.game.passiveRate * 5 / 100;
+            if (card.name === "Fasterer Passive Words (E)") gameObjects.game.passiveRate -= gameObjects.game.passiveRate * 10 / 100;
+            if (card.name === "Fastest Passive Words (L)") gameObjects.game.passiveRate -= gameObjects.game.passiveRate * 20 / 100;
         }
         viewerCards.classList.add("viewerActive");
         overlay.classList.add("show");
@@ -126,7 +129,7 @@ function HideViewer() {
     }
 }
 
-function CalculateBonus() {
+export function CalculateBonus() {
     var bonusPercentage = 1;
     var bonusPointAmount = 0;
     var bonusPassivePercentage = 1;
@@ -134,7 +137,7 @@ function CalculateBonus() {
     var bonusPassiveSpeed = 1;
     var bonusPassiveLength = 0;
     var extraBonus = "";
-    game.cards.forEach(x => {
+    gameObjects.game.cards.forEach(x => {
         switch (x.bonusType) {
             case "PointsPercentage":
                 bonusPercentage *= x.bonusAmount;

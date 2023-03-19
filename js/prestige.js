@@ -1,37 +1,41 @@
-function SetPrestige() {
-    document.getElementById("prestigePointsToGet").textContent = "Prestige Points when Prestige: " + Math.round(Math.cbrt(game.allTimePoints));
-    document.getElementById("prestigePointsAmount").textContent = "Prestige Points: " + game.prestigePoints;
+import * as utilModule from "./util.js";
+import * as mainModule from "./main.js";
+import { gameObjects } from "./game.js";
+
+export function SetPrestige() {
+    document.getElementById("prestigePointsToGet").textContent = "Prestige Points when Prestige: " + Math.round(Math.cbrt(gameObjects.game.allTimePoints));
+    document.getElementById("prestigePointsAmount").textContent = "Prestige Points: " + gameObjects.game.prestigePoints;
 }
 
-function Prestige() {
-    TransitionWindow();
+export function Prestige() {
+    mainModule.TransitionWindow();
     setTimeout(function () {
         PrestigeStats();
     }, 500);
 }
 
 function PrestigeStats() {
-    game.prestigePoints += Math.round(Math.cbrt(game.allTimePoints));
-    game.prestigeCount++;
-    game.points = 0;
-    game.allTimePoints = 0;
-    game.upgrades[0].fill(0);
-    if (IsPurchasedUpgrade(3) && IsPurchasedPrestigeUpgrade(3)) game.upgrades[0][3] = 1;
-    game.maxLength = 4;
-    game.bestWord = "";
-    game.multiUpgrades[0].fill(0);
-    game.multiUpgrades[1][0] = 50;
-    game.multiUpgrades[1][1] = 100;
-    game.multiUpgrades[1][2] = 150;
-    game.wordsAmount = 0;
-    game.passiveUpgrades[0].fill(0);
-    game.passiveLength = 4;
-    game.passivePoints = 0;
-    game.passiveRate = 1000;
-    game.cards = [];
-    game.cardCost = 0;
-    game.challenges.forEach(x => (x.Amount = 0, x.OnChallenge = 0));
-    game.isInChallenge = false;
+    gameObjects.game.prestigePoints += Math.round(Math.cbrt(gameObjects.game.allTimePoints));
+    gameObjects.game.prestigeCount++;
+    gameObjects.game.points = 0;
+    gameObjects.game.allTimePoints = 0;
+    gameObjects.game.upgrades[0].fill(0);
+    if (utilModule.IsPurchasedUpgrade(3) && utilModule.IsPurchasedPrestigeUpgrade(3)) gameObjects.game.upgrades[0][3] = 1;
+    gameObjects.game.maxLength = 4;
+    gameObjects.game.bestWord = "";
+    gameObjects.game.multiUpgrades[0].fill(0);
+    gameObjects.game.multiUpgrades[1][0] = 50;
+    gameObjects.game.multiUpgrades[1][1] = 100;
+    gameObjects.game.multiUpgrades[1][2] = 150;
+    gameObjects.game.wordsAmount = 0;
+    gameObjects.game.passiveUpgrades[0].fill(0);
+    gameObjects.game.passiveLength = 4;
+    gameObjects.game.passivePoints = 0;
+    gameObjects.game.passiveRate = 1000;
+    gameObjects.game.cards = [];
+    gameObjects.game.cardCost = 0;
+    gameObjects.game.challenges.forEach(x => (x.Amount = 0, x.OnChallenge = 0));
+    gameObjects.game.isInChallenge = false;
 
     var cardsContainer = document.getElementById("cardsContainer");
 

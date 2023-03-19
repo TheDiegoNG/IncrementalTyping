@@ -19,9 +19,9 @@
     <div id="overlay" class="overlay"></div>
     <div id="light" class="light"></div>
     <div id="viewerCardsContainer" class="viewerCardsContainer viewerInactive" onclick="HideViewer()"></div>
-    <div id="PopUpNotif" class="PopUp"></div>
-    <div id="PopUpAchievement" class="PopUp Achievement">
-        <p id="PopUpAchievementText" class="PopUpAchievementText">
+    <div class="toast-container" data-position="top-right">
+        <!-- <div id="PopUpNotif" class="PopUp"></div>
+        <div id="PopUpNotif" class="PopUp"></div> -->
     </div>
     <div class="wordToGuessContainer">
         <p id="challengeTimer" class="challengeTimer">
@@ -300,16 +300,17 @@
         </div>
     </section>
 </body>
-<script type="text/javascript" src="js\util.js"></script>
-<script type="text/javascript" src="js\main.js"></script>
-<script type="text/javascript" src="js\active.js"></script>
-<script type="text/javascript" src="js\passive.js"></script>
-<script type="text/javascript" src="js\upgrades.js"></script>
-<script type="text/javascript" src="js\prestige.js"></script>
-<script type="text/javascript" src="js\cards.js"></script>
-<script type="text/javascript" src="js\challenges.js"></script>
-<script type="text/javascript" src="js\achievements.js"></script>
-<script type="text/javascript" src="js\stats.js"></script>
-<script type="text/javascript" src="js\options.js"></script>
-
+<script type="module" src="js\game.js"></script>
+<script type="module" src="js\toastNotification.js"></script>
+<script type="module" src="js\util.js"></script>
+<script type="module" src="js\main.js"></script>
+<script type="module" src="js\active.js"></script>
+<script type="module" src="js\passive.js"></script>
+<script type="module" src="js\upgrades.js"></script>
+<script type="module" src="js\prestige.js"></script>
+<script type="module" src="js\cards.js"></script>
+<script type="module" src="js\challenges.js"></script>
+<script type="module" src="js\achievements.js"></script>
+<script type="module" src="js\stats.js"></script>
+<script type="module" src="js\options.js"></script>
 </html>

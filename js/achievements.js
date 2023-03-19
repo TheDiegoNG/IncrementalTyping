@@ -1,3 +1,6 @@
+import * as utilModule from "./util.js";
+import { gameObjects } from "./game.js";
+
 var achievements = [{ name: "First Word", description: "Write your first word. Congratulations! You know how to write!" },
 { name: "Ten Words", description: "Write 10 words. Pay attention, it seems that you are close to your first upgrade." },
 { name: "Fifty Words", description: "Write 50 words." },
@@ -31,7 +34,7 @@ var achievements = [{ name: "First Word", description: "Write your first word. C
 
 var achievementContainer = document.getElementById("achievementContainer");
 
-function CreateAchievements() {
+export function CreateAchievements() {
     achievements.forEach(x => {
         const achievement = document.createElement("div");
         achievement.classList.add("achievement");
@@ -41,164 +44,151 @@ function CreateAchievements() {
     });
 }
 
-function CheckAchievements() {
+export function CheckAchievements() {
 
-    if (game.wordsAmount >= 1 && !IsUnlockedAchievement("First Word")) {
-        game.achievements.push(achievements.find(x => x.name == "First Word"));
+    if (gameObjects.game.wordsAmount >= 1 && !utilModule.IsUnlockedAchievement("First Word")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "First Word"));
         ShowAchievement("First Word");
     }
 
-    if (game.wordsAmount >= 10 && !IsUnlockedAchievement("Ten Words")) {
-        game.achievements.push(achievements.find(x => x.name == "Ten Words"));
+    if (gameObjects.game.wordsAmount >= 10 && !utilModule.IsUnlockedAchievement("Ten Words")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "Ten Words"));
         ShowAchievement("Ten Words");
     }
 
-    if (game.wordsAmount >= 50 && !IsUnlockedAchievement("Fifty Words")) {
-        game.achievements.push(achievements.find(x => x.name == "Fifty Words"));
+    if (gameObjects.game.wordsAmount >= 50 && !utilModule.IsUnlockedAchievement("Fifty Words")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "Fifty Words"));
         ShowAchievement("Fifty Words");
     }
 
-    if (game.wordsAmount >= 100 && !IsUnlockedAchievement("One Hundred Words")) {
-        game.achievements.push(achievements.find(x => x.name == "One Hundred Words"));
+    if (gameObjects.game.wordsAmount >= 100 && !utilModule.IsUnlockedAchievement("One Hundred Words")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "One Hundred Words"));
         ShowAchievement("One Hundred Words");
     }
 
-    if (game.wordsAmount >= 250 && !IsUnlockedAchievement("250 Words")) {
-        game.achievements.push(achievements.find(x => x.name == "250 Words"));
+    if (gameObjects.game.wordsAmount >= 250 && !utilModule.IsUnlockedAchievement("250 Words")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "250 Words"));
         ShowAchievement("250 Words");
     }
 
-    if (game.wordsAmount >= 500 && !IsUnlockedAchievement("500 Words")) {
-        game.achievements.push(achievements.find(x => x.name == "500 Words"));
+    if (gameObjects.game.wordsAmount >= 500 && !utilModule.IsUnlockedAchievement("500 Words")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "500 Words"));
         ShowAchievement("500 Words");
     }
 
-    if (game.wordsAmount >= 1000 && !IsUnlockedAchievement("1000 Words")) {
-        game.achievements.push(achievements.find(x => x.name == "1000 Words"));
+    if (gameObjects.game.wordsAmount >= 1000 && !utilModule.IsUnlockedAchievement("1000 Words")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "1000 Words"));
         ShowAchievement("1000 Words");
     }
 
-    if (game.points >= 100 && !IsUnlockedAchievement("100 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "100 Points"));
+    if (gameObjects.game.points >= 100 && !utilModule.IsUnlockedAchievement("100 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "100 Points"));
         ShowAchievement("100 Points");
     }
 
-    if (game.points >= 500 && !IsUnlockedAchievement("500 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "500 Points"));
+    if (gameObjects.game.points >= 500 && !utilModule.IsUnlockedAchievement("500 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "500 Points"));
         ShowAchievement("500 Points");
     }
 
-    if (game.points >= 1000 && !IsUnlockedAchievement("1000 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "1000 Points"));
+    if (gameObjects.game.points >= 1000 && !utilModule.IsUnlockedAchievement("1000 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "1000 Points"));
         ShowAchievement("1000 Points");
     }
 
-    if (game.points >= 5000 && !IsUnlockedAchievement("5000 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "5000 Points"));
+    if (gameObjects.game.points >= 5000 && !utilModule.IsUnlockedAchievement("5000 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "5000 Points"));
         ShowAchievement("5000 Points");
     }
 
-    if (game.points >= 10000 && !IsUnlockedAchievement("10000 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "10000 Points"));
+    if (gameObjects.game.points >= 10000 && !utilModule.IsUnlockedAchievement("10000 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "10000 Points"));
         ShowAchievement("10000 Points");
     }
 
-    if (game.points >= 50000 && !IsUnlockedAchievement("50000 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "50000 Points"));
+    if (gameObjects.game.points >= 50000 && !utilModule.IsUnlockedAchievement("50000 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "50000 Points"));
         ShowAchievement("50000 Points");
     }
 
-    if (game.points >= 100000 && !IsUnlockedAchievement("100000 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "100000 Points"));
+    if (gameObjects.game.points >= 100000 && !utilModule.IsUnlockedAchievement("100000 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "100000 Points"));
         ShowAchievement("100000 Points");
     }
 
-    if (game.points >= 200000 && !IsUnlockedAchievement("200000 Points")) {
-        game.achievements.push(achievements.find(x => x.name == "200000 Points"));
+    if (gameObjects.game.points >= 200000 && !utilModule.IsUnlockedAchievement("200000 Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "200000 Points"));
         ShowAchievement("200000 Points");
     }
 
-    if (game.passivePoints >= 100 && !IsUnlockedAchievement("100 Passive Points")) {
-        game.achievements.push(achievements.find(x => x.name == "100 Passive Points"));
+    if (gameObjects.game.passivePoints >= 100 && !utilModule.IsUnlockedAchievement("100 Passive Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "100 Passive Points"));
         ShowAchievement("100 Passive Points");
     }
 
-    if (game.passivePoints >= 500 && !IsUnlockedAchievement("500 Passive Points")) {
-        game.achievements.push(achievements.find(x => x.name == "500 Passive Points"));
+    if (gameObjects.game.passivePoints >= 500 && !utilModule.IsUnlockedAchievement("500 Passive Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "500 Passive Points"));
         ShowAchievement("500 Passive Points");
     }
 
-    if (game.passivePoints >= 1000 && !IsUnlockedAchievement("1000 Passive Points")) {
-        game.achievements.push(achievements.find(x => x.name == "1000 Passive Points"));
+    if (gameObjects.game.passivePoints >= 1000 && !utilModule.IsUnlockedAchievement("1000 Passive Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "1000 Passive Points"));
         ShowAchievement("1000 Passive Points");
     }
 
-    if (game.passivePoints >= 2500 && !IsUnlockedAchievement("2500 Passive Points")) {
-        game.achievements.push(achievements.find(x => x.name == "2500 Passive Points"));
+    if (gameObjects.game.passivePoints >= 2500 && !utilModule.IsUnlockedAchievement("2500 Passive Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "2500 Passive Points"));
         ShowAchievement("2500 Passive Points");
     }
 
-    if (game.cards.length >= 10 && !IsUnlockedAchievement("10 Cards")) {
-        game.achievements.push(achievements.find(x => x.name == "10 Cards"));
+    if (gameObjects.game.cards.length >= 10 && !utilModule.IsUnlockedAchievement("10 Cards")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "10 Cards"));
         ShowAchievement("10 Cards");
     }
 
-    if (game.cards.length >= 50 && !IsUnlockedAchievement("50 Cards")) {
-        game.achievements.push(achievements.find(x => x.name == "50 Cards"));
+    if (gameObjects.game.cards.length >= 50 && !utilModule.IsUnlockedAchievement("50 Cards")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "50 Cards"));
         ShowAchievement("50 Cards");
     }
 
-    if (game.cards.length >= 100 && !IsUnlockedAchievement("100 Cards")) {
-        game.achievements.push(achievements.find(x => x.name == "100 Cards"));
+    if (gameObjects.game.cards.length >= 100 && !utilModule.IsUnlockedAchievement("100 Cards")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "100 Cards"));
         ShowAchievement("100 Cards");
     }
 
-    if (game.challengesAmount >= 1 && !IsUnlockedAchievement("1 Challenge")) {
-        game.achievements.push(achievements.find(x => x.name == "1 Challenge"));
+    if (gameObjects.game.challengesAmount >= 1 && !utilModule.IsUnlockedAchievement("1 Challenge")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "1 Challenge"));
         ShowAchievement("1 Challenge");
     }
 
-    if (game.challengesAmount >= 5 && !IsUnlockedAchievement("5 Challenges")) {
-        game.achievements.push(achievements.find(x => x.name == "5 Challenges"));
+    if (gameObjects.game.challengesAmount >= 5 && !utilModule.IsUnlockedAchievement("5 Challenges")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "5 Challenges"));
         ShowAchievement("5 Challenges");
     }
 
-    if (game.prestigeCount >= 1 && !IsUnlockedAchievement("Reach Prestige!")) {
-        game.achievements.push(achievements.find(x => x.name == "Reach Prestige!"));
+    if (gameObjects.game.prestigeCount >= 1 && !utilModule.IsUnlockedAchievement("Reach Prestige!")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "Reach Prestige!"));
         ShowAchievement("Reach Prestige!");
     }
 
-    if (game.prestigePoints >= 100 && !IsUnlockedAchievement("100 Prestige Points")) {
-        game.achievements.push(achievements.find(x => x.name == "100 Prestige Points"));
+    if (gameObjects.game.prestigePoints >= 100 && !utilModule.IsUnlockedAchievement("100 Prestige Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "100 Prestige Points"));
         ShowAchievement("100 Prestige Points");
     }
 
-    if (game.prestigePoints >= 250 && !IsUnlockedAchievement("250 Prestige Points")) {
-        game.achievements.push(achievements.find(x => x.name == "250 Prestige Points"));
+    if (gameObjects.game.prestigePoints >= 250 && !utilModule.IsUnlockedAchievement("250 Prestige Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "250 Prestige Points"));
         ShowAchievement("250 Prestige Points");
     }
 
-    if (game.prestigePoints >= 500 && !IsUnlockedAchievement("500 Prestige Points")) {
-        game.achievements.push(achievements.find(x => x.name == "500 Prestige Points"));
+    if (gameObjects.game.prestigePoints >= 500 && !utilModule.IsUnlockedAchievement("500 Prestige Points")) {
+        gameObjects.game.achievements.push(achievements.find(x => x.name == "500 Prestige Points"));
         ShowAchievement("500 Prestige Points");
     }
 }
-
-var popUpAchievement = document.getElementById("PopUpAchievement");
-var popUpAchievementText = document.getElementById("PopUpAchievementText");
-
-function ShowAchievement(achievementName) {
+export function ShowAchievement(achievementName) {
     var achievementElement = document.getElementById(achievementName);
     achievementElement.classList.add("unlocked");
-    popUpAchievementText.textContent = `You have obtained the achievement: ${achievementName}!`
-    popUpAchievement.classList.add("show");
 }
-
-popUpAchievement.addEventListener("transitionend", function() {
-    setTimeout(() => {
-        popUpAchievement.classList.remove("show");
-    }, 5000);
-})
-
 
 

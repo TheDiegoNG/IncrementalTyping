@@ -1,13 +1,15 @@
-var IsPurchasedUpgrade = (upgradeNumber) => game.upgrades[0][upgradeNumber] == 1;
+import { gameObjects } from "./game.js";
 
-var IsPurchasedPassiveUpgrade = (upgradeNumber) => game.passiveUpgrades[0][upgradeNumber] == 1;
+export var IsPurchasedUpgrade = (upgradeNumber) => gameObjects.game.upgrades[0][upgradeNumber] == 1;
 
-var IsPurchasedPrestigeUpgrade = (upgradeNumber) => game.prestigeUpgrades[0][upgradeNumber] == 1;
+export var IsPurchasedPassiveUpgrade = (upgradeNumber) => gameObjects.game.passiveUpgrades[0][upgradeNumber] == 1;
 
-var HasCard = (cardName) => game.cards.filter(x => x.name === cardName).length > 0;
+export var IsPurchasedPrestigeUpgrade = (upgradeNumber) => gameObjects.game.prestigeUpgrades[0][upgradeNumber] == 1;
 
-var Copy = (object) => JSON.parse(JSON.stringify(object))
+export var HasCard = (cardName) => gameObjects.game.cards.filter(x => x.name === cardName).length > 0;
 
-var IsInChallenge = (challengeNumber) => game.challenges[challengeNumber].OnChallenge == 1;
+export var Copy = (object) => JSON.parse(JSON.stringify(object))
 
-var IsUnlockedAchievement = (achievementName) => game.achievements.find(x => x.name == achievementName) != undefined;
+export var IsInChallenge = (challengeNumber) => gameObjects.game.challenges[challengeNumber].OnChallenge == 1;
+
+export var IsUnlockedAchievement = (achievementName) => gameObjects.game.achievements.find(x => x.name == achievementName) != undefined;

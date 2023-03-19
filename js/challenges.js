@@ -1,24 +1,28 @@
+import * as utilModule from "./util.js";
+import { gameObjects } from "./game.js";
+import * as prestigeModule from "./prestige.js"
+
 function StartChallenge(challengeNumber) {
-    if(game.isInChallenge) return alert("You are already in a Challenge");
-    Prestige();
+    if(gameObjects.game.isInChallenge) return alert("You are already in a Challenge");
+    prestigeModule.Prestige();
     setTimeout(function () {
         LoadAchievements();
-        game = Copy(challengeGame);
-        game.isInChallenge = true;
+        gameObjects.game = utilModule.Copy(gameObjects.challengeGame);
+        gameObjects.game.isInChallenge = true;
         StartTimer(60, challengeNumber);
-        game.challenges[challengeNumber].OnChallenge = 1;
+        gameObjects.vgame.challenges[challengeNumber].OnChallenge = 1;
     }, 500);
 }
 
 function ExitAnyChallenge() {
-    if(game.challenges.filter(x => x.OnChallenge == 1).length > 0) ExitChallenge(game.challenges.findIndex(x => x.OnChallenge == 1));
+    if(gameObjects.game.challenges.filter(x => x.OnChallenge == 1).length > 0) ExitChallenge(gameObjects.game.challenges.findIndex(x => x.OnChallenge == 1));
 }
 
 function ExitChallenge(challengeNumber) {
-    game = Copy(activeGame);
-    game.isInChallenge = false;
-    game.challenges[challengeNumber].OnChallenge = 0;
-    game.letterCounter = 0;
+    gameObjects.game = utilModule.Copy(gameObjects.activeGame);
+    gameObjects.game.isInChallenge = false;
+    gameObjects.game.challenges[challengeNumber].OnChallenge = 0;
+    gameObjects.game.letterCounter = 0;
 }
 
 var progressBar = document.getElementById("challengeProgress");
@@ -38,18 +42,18 @@ function StartTimer(seconds, challengeNumber) {
             timer.classList.add("expand");
 
         }
-        if(game.wordsAmount >= game.challenges[challengeNumber].Objective) {
+        if(gameObjects.game.wordsAmount >= gameObjects.game.challenges[challengeNumber].Objective) {
             timer.textContent = "Success!";
             timer.classList.add("success");
-            activeGame.challenges[challengeNumber].Amount++;
-            game.challengesAmount++;
+            gameObjects.activeGame.challenges[challengeNumber].Amount++;
+            gameObjects.game.challengesAmount++;
             progressBar.classList.add("green");
             progressBar.classList.add("hide");
             clearInterval(intervalId);
             ExitChallenge(challengeNumber);
             return;
         }
-        if(seconds <= 0 || !game.isInChallenge){
+        if(seconds <= 0 || !gameObjects.game.isInChallenge){
             
             timer.textContent = "Failed!";
             timer.style.color = "red";
@@ -82,19 +86,19 @@ progressBar.addEventListener("transitionend", function(e) {
     }
 });
 
-function SetChallengesBonuses() {
-    game.rollsAmount = 10 + game.challenges[0].Amount;
+export function SetChallengesBonuses() {
+    gameObjects.game.rollsAmount = 10 + gameObjects.game.challenges[0].Amount;
 }
 
 function LoadAchievements() {
-    challengeGame.achievements = Copy(game.achievements);
+    gameObjects.challengeGame.achievements = utilModule.Copy(gameObjects.game.achievements);
 }
 
-function CheckProgress() {
-    var progress = game.wordsAmount * 100 / GetActiveChallengeObjective();
+export function CheckProgress() {
+    var progress = gameObjects.game.wordsAmount * 100 / GetActiveChallengeObjective();
 
     progressBar.style.width = `${progress}%`;
 }
 
-var GetActiveChallengeObjective = () => game.challenges.find(x => x.OnChallenge == 1).Objective;
+var GetActiveChallengeObjective = () => gameObjects.game.challenges.find(x => x.OnChallenge == 1).Objective;
 
