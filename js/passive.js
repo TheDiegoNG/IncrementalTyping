@@ -40,13 +40,53 @@ function GetRandomString(numberLetters) {
 }
 
 var basicGenerator = document.getElementById("PassivePointsGenerator0");
+
+basicGenerator.addEventListener('click', e => {
+  BuyGenerator(0);
+});
+
 var PPGenerator = document.getElementById("PassivePointsGenerator1");
+
+PPGenerator.addEventListener('click', e => {
+  BuyGenerator(1);
+});
+
 var PPGenerator2 = document.getElementById("PassivePointsGenerator2");
+
+PPGenerator2.addEventListener('click', e => {
+  BuyGenerator(2);
+});
+
 var PPGenerator3 = document.getElementById("PassivePointsGenerator3");
+
+PPGenerator3.addEventListener('click', e => {
+  BuyGenerator(3);
+});
+
 var PPGenerator4 = document.getElementById("PassivePointsGenerator4");
+
+PPGenerator4.addEventListener('click', e => {
+  BuyGenerator(4);
+});
+
 var PPGenerator5 = document.getElementById("PassivePointsGenerator5");
+
+PPGenerator5.addEventListener('click', e => {
+  BuyGenerator(5);
+});
+
 var PPGenerator6 = document.getElementById("PassivePointsGenerator6");
+
+PPGenerator6.addEventListener('click', e => {
+  BuyGenerator(6);
+});
+
 var GeneratorButton = document.getElementById("GeneratorButton");
+
+PPGenerator.addEventListener('click', e => {
+  BuyGeneratorTier();
+});
+
 
 export function SetGenerators() {
   basicGenerator.textContent = `Generate Passive Points! | Generators: ${gameObjects.game.passiveGenerators[1][0].toFixed(2)} (Bought: ${gameObjects.game.passiveGenerators[0][0]}) | Cost: ${gameObjects.game.passiveGenerators[2][0].toFixed(2)} Passive Points`

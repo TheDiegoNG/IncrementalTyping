@@ -40,6 +40,13 @@ var viewerCards = document.getElementById("viewerCardsContainer");
 var cardsContainer = document.getElementById("cardsContainer");
 var overlay = document.getElementById("overlay");
 
+
+var cardsHeaderContainer = document.getElementById("cardsHeaderContainer");
+
+cardsHeaderContainer.addEventListener('click', e => {
+    GetCards();
+});
+
 function GetCards() {
 
     if (gameObjects.game.points >= gameObjects.game.cardCost) {
@@ -107,7 +114,7 @@ function AppendCard(cardData) {
     viewerCards.appendChild(card);
 }
 
-function HideViewer() {
+viewerCards.addEventListener('click', e => {
     viewerCards.classList.remove("viewerActive");
     overlay.classList.remove("show");
     light.classList.remove("show");
@@ -127,7 +134,30 @@ function HideViewer() {
     while (viewerCards.firstChild) {
         viewerCards.removeChild(viewerCards.firstChild);
     }
-}
+});
+
+
+// function HideViewer() {
+//     viewerCards.classList.remove("viewerActive");
+//     overlay.classList.remove("show");
+//     light.classList.remove("show");
+
+//     const cards = viewerCards.querySelectorAll("*")
+//     cards.forEach(x => {
+//         const card = document.createElement("div");
+//         x.classList.forEach(y => {
+//             card.classList.add(y);
+//         });
+//         card.classList.remove("singleCard");
+//         card.classList.add("normalCard");
+//         card.textContent = x.textContent;
+//         cardsContainer.appendChild(card);
+//     });
+
+//     while (viewerCards.firstChild) {
+//         viewerCards.removeChild(viewerCards.firstChild);
+//     }
+// }
 
 export function CalculateBonus() {
     var bonusPercentage = 1;

@@ -18,7 +18,7 @@
     <div id="challengeProgress" class="challengeProgress"></div>
     <div id="overlay" class="overlay"></div>
     <div id="light" class="light"></div>
-    <div id="viewerCardsContainer" class="viewerCardsContainer viewerInactive" onclick="HideViewer()"></div>
+    <div id="viewerCardsContainer" class="viewerCardsContainer viewerInactive"></div>
     <div class="toast-container" data-position="top-right">
         <!-- <div id="PopUpNotif" class="PopUp"></div>
         <div id="PopUpNotif" class="PopUp"></div> -->
@@ -37,39 +37,39 @@
             <div id="WordWrapper" class="wordWrapper">
                 <input type="text" id="WordBox" class="wordBox" name="WordBox">
                 <div id="gameButtonWrapper" class="gameButtonWrapper hoverEffectContainer">
-                    <button class="gameButton hoverEffectChild" onclick="SaveGame()">Save</button>
-                    <button class="gameButton hoverEffectChild" onclick="LogGame()">Log</button>
+                    <button id="saveButton" class="gameButton hoverEffectChild">Save</button>
+                    <button id="logButton" class="gameButton hoverEffectChild">Log</button>
                 </div>
             </div>
         </div>
         <p id="PointsCounter" class="pointsCounter">
     </div>
     <div id="TabsContainer" class="tabsContainer hoverEffectContainer">
-        <button id="activeMenuButton" class="menuButton hoverEffectChild" onclick="Tab('activeMenu')"
+        <button id="activeMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Active</button>
-        <button id="passiveMenuButton" class="menuButton hoverEffectChild" onclick="Tab('passiveMenu')"
+        <button id="passiveMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Passive</button>
-        <button id="upgradesMenuButton" class="menuButton hoverEffectChild" onclick="Tab('upgradesMenu')"
+        <button id="upgradesMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Upgrades</button>
-        <button id="challengesMenuButton" class="menuButton hoverEffectChild" onclick="Tab('challengesMenu')"
+        <button id="challengesMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Challenges</button>
-        <button id="prestigeMenuButton" class="menuButton hoverEffectChild" onclick="Tab('prestigeMenu')"
+        <button id="prestigeMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Prestige</button>
-        <button id="cardsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('cardsMenu')"
+        <button id="cardsMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Cards</button>
-        <button id="achievementsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('achievementsMenu')"
+        <button id="achievementsMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Achievements</button>
-        <button id="statsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('statsMenu')"
+        <button id="statsMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Stats</button>
-        <button id="optionsMenuButton" class="menuButton hoverEffectChild" onclick="Tab('optionsMenu')"
+        <button id="optionsMenuButton" class="menuButton hoverEffectChild"
             style="display:none;">Options</button>
     </div>
     <section id="activeMenu" class="upgradesContainer">
         <div class="multiUpgradesContainer">
             <div class="multiUpgradesButtons hoverEffectContainer">
-                <button id="multiUpgrade1" class="hoverEffectChild" onclick="AddMultiUpgrade(0)">+1 point per word!</button>
-                <button id="multiUpgrade2" class="hoverEffectChild" onclick="AddMultiUpgrade(1)">+1 point per word!</button>
-                <button id="multiUpgrade3" class="hoverEffectChild" onclick="AddMultiUpgrade(2)">+25% points!</button>
+                <button id="multiUpgrade1" class="hoverEffectChild">+1 point per word!</button>
+                <button id="multiUpgrade2" class="hoverEffectChild">+1 point per word!</button>
+                <button id="multiUpgrade3" class="hoverEffectChild">+25% points!</button>
             </div>
         </div>
     </section>
@@ -80,27 +80,27 @@
                 <p id="passivePoints" class="passivePoints">
             </div>
             <div id="PassivePointsRight" class="passivePointsRight">
-                <p id="PassivePointsGenerator0" class="passivePointsGenerator" onclick="BuyGenerator(0)">Generate
+                <p id="PassivePointsGenerator0" class="passivePointsGenerator">Generate
                     Passive Points! | Generators:</p>
-                <p id="PassivePointsGenerator1" class="passivePointsGenerator" onclick="BuyGenerator(1)"
+                <p id="PassivePointsGenerator1" class="passivePointsGenerator"
                     style="display: none;">Generate the
                     First Generator | Generators:</p>
-                <p id="PassivePointsGenerator2" class="passivePointsGenerator" onclick="BuyGenerator(2)"
+                <p id="PassivePointsGenerator2" class="passivePointsGenerator"
                     style="display: none;">Generate the
                     Second Generator | Generators:</p>
-                <p id="PassivePointsGenerator3" class="passivePointsGenerator" onclick="BuyGenerator(3)"
+                <p id="PassivePointsGenerator3" class="passivePointsGenerator"
                     style="display: none;">Generate the
                     Third Generator | Generators:</p>
-                <p id="PassivePointsGenerator4" class="passivePointsGenerator" onclick="BuyGenerator(4)"
+                <p id="PassivePointsGenerator4" class="passivePointsGenerator"
                     style="display: none;">Generate the
                     Fourth Generator | Generators:</p>
-                <p id="PassivePointsGenerator5" class="passivePointsGenerator" onclick="BuyGenerator(5)"
+                <p id="PassivePointsGenerator5" class="passivePointsGenerator"
                     style="display: none;">Generate the
                     Fifth Generator | Generators:</p>
-                <p id="PassivePointsGenerator6" class="passivePointsGenerator" onclick="BuyGenerator(6)"
+                <p id="PassivePointsGenerator6" class="passivePointsGenerator"
                     style="display: none;">Generate the
                     Sixth Generator | Generators:</p>
-                <button id="GeneratorButton" class="generatorButton" onclick="BuyGeneratorTier()">Buy the next Tier of
+                <button id="GeneratorButton" class="generatorButton">Buy the next Tier of
                     Generators! | Cost</button>
             </div>
         </div>
@@ -110,52 +110,40 @@
             <div id="BasicUpgradesWrapper" class="upgradeTypeWrapper">
                 <h2>Basic Upgrades</h2>
                 <div id="upgradesTable" class="upgradesTable hoverEffectContainer">
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade1" onmouseover="ChangeBasicUpgradesText(0)"
-                        onclick="GetUpgrade(0, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade1">
                         <span>A</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade2" onmouseover="ChangeBasicUpgradesText(1)"
-                        onclick="GetUpgrade(1, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade2">
                         <span>B</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade3" onmouseover="ChangeBasicUpgradesText(2)"
-                        onclick="GetUpgrade(2, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade3">
                         <span>C</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade4" onmouseover="ChangeBasicUpgradesText(3)"
-                        onclick="GetUpgrade(3, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade4">
                         <span>D</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade5" onmouseover="ChangeBasicUpgradesText(4)"
-                        onclick="GetUpgrade(4, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade5">
                         <span>E</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade6" onmouseover="ChangeBasicUpgradesText(5)"
-                        onclick="GetUpgrade(5, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade6">
                         <span>F</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade7" onmouseover="ChangeBasicUpgradesText(6)"
-                        onclick="GetUpgrade(6, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade7">
                         <span>G</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade8" onmouseover="ChangeBasicUpgradesText(7)"
-                        onclick="GetUpgrade(7, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade8">
                         <span>H</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade9" onmouseover="ChangeBasicUpgradesText(8)"
-                        onclick="GetUpgrade(8, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade9">
                         <span>I</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade10" onmouseover="ChangeBasicUpgradesText(9)"
-                        onclick="GetUpgrade(9, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade10">
                         <span>J</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade11" onmouseover="ChangeBasicUpgradesText(10)"
-                        onclick="GetUpgrade(10, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade11">
                         <span>K</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="upgrade12" onmouseover="ChangeBasicUpgradesText(11)"
-                        onclick="GetUpgrade(11, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="upgrade12">
                         <span>L</span>
                     </button>
                 </div>
@@ -164,52 +152,40 @@
             <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper" style="display:none;">
                 <h2>Passive Upgrades</h2>
                 <div id="passiveUpgradesTable" class="upgradesTable hoverEffectContainer">
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade1"
-                        onmouseover="ChangePassiveUpgradesText(0)" onclick="GetPassiveUpgrade(0, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade1">
                         <span>A</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade2"
-                        onmouseover="ChangePassiveUpgradesText(1)" onclick="GetPassiveUpgrade(1, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade2">
                         <span>B</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade3"
-                        onmouseover="ChangePassiveUpgradesText(2)" onclick="GetPassiveUpgrade(2, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade3">
                         <span>C</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade4"
-                        onmouseover="ChangePassiveUpgradesText(3)" onclick="GetPassiveUpgrade(3, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade4">
                         <span>D</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade5"
-                        onmouseover="ChangePassiveUpgradesText(4)" onclick="GetPassiveUpgrade(4, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade5">
                         <span>E</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade6"
-                        onmouseover="ChangePassiveUpgradesText(5)" onclick="GetPassiveUpgrade(5, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade6">
                         <span>F</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade7"
-                        onmouseover="ChangePassiveUpgradesText(6)" onclick="GetPassiveUpgrade(6, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade7">
                         <span>G</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade8"
-                        onmouseover="ChangePassiveUpgradesText(7)" onclick="GetPassiveUpgrade(7, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade8">
                         <span>H</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade9"
-                        onmouseover="ChangePassiveUpgradesText(8)" onclick="GetPassiveUpgrade(8, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade9">
                         <span>I</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade10"
-                        onmouseover="ChangePassiveUpgradesText(9)" onclick="GetPassiveUpgrade(9, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade10">
                         <span>J</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade11"
-                        onmouseover="ChangePassiveUpgradesText(10)" onclick="GetPassiveUpgrade(10, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade11">
                         <span>K</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade12"
-                        onmouseover="ChangePassiveUpgradesText(11)" onclick="GetPassiveUpgrade(11, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade12">
                         <span>L</span>
                     </button>
                 </div>
@@ -218,20 +194,16 @@
             <div id="PrestigeUpgradesWrapper" class="upgradeTypeWrapper" style="display:none;">
                 <h2>Prestige Upgrades</h2>
                 <div id="prestigeUpgradesTable" class="upgradesTable hoverEffectContainer">
-                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade1"
-                        onmouseover="ChangePrestigeUpgradesText(0)" onclick="GetPrestigeUpgrade(0, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade1">
                         <span>A</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade2"
-                        onmouseover="ChangePrestigeUpgradesText(1)" onclick="GetPrestigeUpgrade(1, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade2">
                         <span>B</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade3"
-                        onmouseover="ChangePrestigeUpgradesText(2)" onclick="GetPrestigeUpgrade(2, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade3">
                         <span>C</span>
                     </button>
-                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade4"
-                        onmouseover="ChangePrestigeUpgradesText(3)" onclick="GetPrestigeUpgrade(3, this)">
+                    <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade4">
                         <span>D</span>
                     </button>
                 </div>
@@ -241,7 +213,7 @@
         <p id="upgradesDesc" class="upgradesDesc">
     </section>
     <section id="cardsMenu">
-        <div id="cardsHeaderContainer" class="cardsHeaderContainer" onclick="GetCards()">
+        <div id="cardsHeaderContainer" class="cardsHeaderContainer">
             <button id="cardsButton" class="cardsButton"></button>
         </div>
         <p id="cardBonus" class="cardBonus">
@@ -251,20 +223,20 @@
         <div id="prestigePointsContainer" class="prestigePointsContainer">
             <p id="prestigePointsToGet">Prestige Points when Prestige:</p>
             <p id="prestigePointsAmount">Prestige Points: </p>
-            <button id="prestigeButton" class="cardsButton" onclick="Prestige()"> Prestige!</button>
+            <button id="prestigeButton" class="cardsButton"> Prestige!</button>
         </div>
         </section>
     <section id="challengesMenu">
         <div id="challengesContainerWrapper" class="challengesContainerWrapper hoverEffectContainer">
-            <button id="challenge1" class="challenge hoverEffectChild" onclick="StartChallenge(0)">
+            <button id="challenge1" class="challenge hoverEffectChild">
                 Write 50 4-letter Words with only 210 characters
                 <span class="challengeReward">REWARD: +1 Card everytime you roll!</span>
             </button>
-            <button id="challenge2" class="challenge hoverEffectChild" onclick="StartChallenge(1)">
+            <button id="challenge2" class="challenge hoverEffectChild">
                 Write 50 4-letter words in only 1 minute
                 <span class="challengeReward">REWARD: 50% more Points!</span>
             </button>
-            <button id="exitChallengeButton" class="exitChallengeButton" onclick="ExitAnyChallenge()">Exit Challenge</button>
+            <button id="exitChallengeButton" class="exitChallengeButton">Exit Challenge</button>
         </div>
     </section>
     <section id="achievementsMenu">

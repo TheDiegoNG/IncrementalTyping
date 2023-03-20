@@ -604,7 +604,7 @@ button {
   padding: 0 1rem;
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(9, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
 }
 
 .normalCard {

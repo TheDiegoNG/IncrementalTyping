@@ -217,7 +217,7 @@ input.addEventListener("keydown", function () {
         if (gameObjects.game.challenges[0].Restriction <= gameObjects.game.letterCounter)
         gameObjects.game.isInChallenge = false;
     }
-    console.log(game.letterCounter);
+    console.log(gameObjects.game.letterCounter);
     letters++;
     if (letters === 1) startTime = Date.now();
 });
@@ -292,6 +292,61 @@ export function GetPointsLetters(word) {
     return points;
 }
 
+var activeMenuButton = document.getElementById("activeMenuButton");
+
+activeMenuButton.addEventListener('click', e => {
+    Tab('activeMenu');
+});
+
+var passiveMenuButton = document.getElementById("passiveMenuButton");
+
+passiveMenuButton.addEventListener('click', e => {
+    Tab('passiveMenu');
+});
+
+var upgradesMenuButton = document.getElementById("upgradesMenuButton");
+
+upgradesMenuButton.addEventListener('click', e => {
+    Tab('upgradesMenu');
+});
+
+var challengesMenuButton = document.getElementById("challengesMenuButton");
+
+challengesMenuButton.addEventListener('click', e => {
+    Tab('challengesMenu');
+});
+
+var prestigeMenuButton = document.getElementById("prestigeMenuButton");
+
+prestigeMenuButton.addEventListener('click', e => {
+    Tab('prestigeMenu');
+});
+
+var cardsMenuButton = document.getElementById("cardsMenuButton");
+
+cardsMenuButton.addEventListener('click', e => {
+    Tab('cardsMenu');
+});
+
+var achievementsMenuButton = document.getElementById("achievementsMenuButton");
+
+achievementsMenuButton.addEventListener('click', e => {
+    Tab('achievementsMenu');
+});
+
+var statsMenuButton = document.getElementById("statsMenuButton");
+
+statsMenuButton.addEventListener('click', e => {
+    Tab('statsMenu');
+});
+
+var optionsMenuButton = document.getElementById("optionsMenuButton");
+
+optionsMenuButton.addEventListener('click', e => {
+    Tab('optionsMenu');
+});
+
+
 function Tab(tabName) {
     document.getElementById("activeMenu").style.display = "none"
     document.getElementById("passiveMenu").style.display = "none"
@@ -306,11 +361,6 @@ function Tab(tabName) {
     document.getElementById(tabName).style.marginTop = "2rem";
 }
 
-function LogGame() {
-    console.log(gameObjects.game);
-    console.log(gameObjects.challengeGame);
-}
-
 function SetCosts() {
     document.getElementById("multiUpgrade1").textContent = "+1 point per word! Cost: " + Math.round(gameObjects.game.multiUpgrades[1][0])
     document.getElementById("multiUpgrade2").textContent = "+1 letter per word! Cost: " + Math.round(gameObjects.game.multiUpgrades[1][1])
@@ -318,10 +368,27 @@ function SetCosts() {
     document.getElementById("cardsButton").textContent = `Get a Pack! Cost: ${(Math.round(gameObjects.game.cardCost) == 0) ? "Free!" : Math.round(gameObjects.game.cardCost)}`;
 }
 
+var saveButton = document.getElementById("saveButton");
+var logButton = document.getElementById("logButton");
 
-function SaveGame() {
+saveButton.addEventListener('click', e => {
     localStorage.setItem("save", JSON.stringify(gameObjects.game));
-}
+})
+
+logButton.addEventListener('click', e => {
+    console.log(gameObjects.game);
+    console.log(gameObjects.challengeGame);
+})
+
+// function LogGame() {
+//     console.log(gameObjects.game);
+//     console.log(gameObjects.challengeGame);
+// }
+
+
+// function SaveGame() {
+//     localStorage.setItem("save", JSON.stringify(gameObjects.game));
+// }
 
 function LoadGame() {
     var savegame = JSON.parse(localStorage.getItem("save"));

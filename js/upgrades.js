@@ -1,3 +1,5 @@
+import { gameObjects } from "./game.js";
+
 var upgradesDesc = [
     "x1.5 points - Cost: 50",
     "+4 points per word - Cost: 200",
@@ -42,6 +44,38 @@ function ChangePrestigeUpgradesText(upgradeNumber) {
 }
 
 console.time("GameTime");
+
+const upgradeButtons = document.querySelectorAll('.upgradeSquare');
+
+upgradeButtons.forEach((upgradebutton, index) => {
+    const buttonId = upgradebutton.getAttribute("id");
+    const buttonNumber = buttonId.match(/\d+$/);
+    if(buttonId.startsWith('upgrade')) {
+        upgradebutton.addEventListener('click', e => {
+            GetUpgrade(buttonNumber - 1, upgradebutton)
+        });
+        upgradebutton.addEventListener('mouseover', e => {
+            ChangeBasicUpgradesText(buttonNumber - 1)
+        });
+    }
+    if(buttonId.startsWith('passive')) {
+        upgradebutton.addEventListener('click', e => {
+            GetPassiveUpgrade(buttonNumber - 1, upgradebutton)
+        });
+        upgradebutton.addEventListener('mouseover', e => {
+            ChangePassiveUpgradesText(buttonNumber - 1)
+        });
+    }
+    if(buttonId.startsWith('prestige')) {
+        upgradebutton.addEventListener('click', e => {
+            GetPrestigeUpgrade(buttonNumber - 1, upgradebutton)
+        });
+        upgradebutton.addEventListener('mouseover', e => {
+            ChangePrestigeUpgradesText(buttonNumber - 1)
+        });
+    }
+});
+
 
 function GetUpgrade(upgradeNumber, element) {
     if(gameObjects.game.upgrades[0][upgradeNumber] == 0 && gameObjects.game.points >= gameObjects.game.upgrades[1][upgradeNumber])

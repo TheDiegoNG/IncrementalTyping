@@ -2,6 +2,17 @@ import * as utilModule from "./util.js";
 import { gameObjects } from "./game.js";
 import * as prestigeModule from "./prestige.js"
 
+
+var challenges = document.querySelectorAll(".challenge");
+
+challenges.forEach((challenge, index) => {
+    const challengeId = challenge.getAttribute("id");
+    const challengeNumber = challengeId.match(/\d+$/);
+    challenge.addEventListener('click', e => {
+        StartChallenge(challengeNumber - 1)
+    });
+});
+
 function StartChallenge(challengeNumber) {
     if(gameObjects.game.isInChallenge) return alert("You are already in a Challenge");
     prestigeModule.Prestige();
@@ -13,6 +24,12 @@ function StartChallenge(challengeNumber) {
         gameObjects.vgame.challenges[challengeNumber].OnChallenge = 1;
     }, 500);
 }
+
+var exitChallengeButton = document.getElementById("exitChallengeButton");
+
+exitChallengeButton.addEventListener('click', e => {
+    ExitAnyChallenge();
+});
 
 function ExitAnyChallenge() {
     if(gameObjects.game.challenges.filter(x => x.OnChallenge == 1).length > 0) ExitChallenge(gameObjects.game.challenges.findIndex(x => x.OnChallenge == 1));

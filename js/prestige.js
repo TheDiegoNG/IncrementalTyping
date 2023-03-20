@@ -7,6 +7,12 @@ export function SetPrestige() {
     document.getElementById("prestigePointsAmount").textContent = "Prestige Points: " + gameObjects.game.prestigePoints;
 }
 
+var prestigeButton = document.getElementById("prestigeButton");
+
+prestigeButton.addEventListener('click', e => {
+    Prestige();
+});
+
 export function Prestige() {
     mainModule.TransitionWindow();
     setTimeout(function () {

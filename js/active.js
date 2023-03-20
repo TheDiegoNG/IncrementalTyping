@@ -1,4 +1,5 @@
 import * as utilModule from "./util.js";
+import { gameObjects } from "./game.js";
 
 export function CalculatePoints(wordLength) {
     var totalPoints = 0;
@@ -24,6 +25,24 @@ export function CalculatePoints(wordLength) {
     if(utilModule.IsPurchasedPrestigeUpgrade(0)) totalPoints *= 2;
     return totalPoints;
 }
+
+var multiUpgrade1 = document.getElementById("multiUpgrade1");
+
+multiUpgrade1.addEventListener('click', e => {
+    AddMultiUpgrade(0);
+});
+
+var multiUpgrade2 = document.getElementById("multiUpgrade2");
+
+multiUpgrade2.addEventListener('click', e => {
+    AddMultiUpgrade(1);
+});
+
+var multiUpgrade3 = document.getElementById("multiUpgrade3");
+
+multiUpgrade3.addEventListener('click', e => {
+    AddMultiUpgrade(2);
+});
 
 function AddMultiUpgrade(upgradeNumber) {
     if(gameObjects.game.points >= gameObjects.game.multiUpgrades[1][upgradeNumber])
