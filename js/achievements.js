@@ -188,7 +188,13 @@ export function CheckAchievements() {
 }
 export function ShowAchievement(achievementName) {
     var achievementElement = document.getElementById(achievementName);
-    achievementElement.classList.add("unlocked");
 }
 
 
+export function SetUnlockedAchievements() {
+    let achievements = achievementContainer.querySelectorAll(".achievement");
+    achievements.forEach((value, index) => {
+        var obtainedAchievement = gameObjects.game.achievements.find(x => x.name == value.id);
+        if(obtainedAchievement != undefined && !value.classList.contains("unlocked"))value.classList.add("unlocked");
+    });
+}

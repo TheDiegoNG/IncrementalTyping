@@ -186,6 +186,7 @@ window.setInterval(function () {
     challengesModule.SetChallengesBonuses();
     passiveModule.SetGenerators();
     passiveModule.CalculatePassiveGenerators();
+    achievementModule.SetUnlockedAchievements();
     document.getElementById("PointsCounter").textContent = Math.round(gameObjects.game.points).toExponential(2);
     document.getElementById("passivePoints").textContent = Math.round(gameObjects.game.passivePoints).toExponential(2) + " PP";
     document.getElementById("activeMenuButton").style.display = "flex";
@@ -379,16 +380,6 @@ logButton.addEventListener('click', e => {
     console.log(gameObjects.game);
     console.log(gameObjects.challengeGame);
 })
-
-// function LogGame() {
-//     console.log(gameObjects.game);
-//     console.log(gameObjects.challengeGame);
-// }
-
-
-// function SaveGame() {
-//     localStorage.setItem("save", JSON.stringify(gameObjects.game));
-// }
 
 function LoadGame() {
     var savegame = JSON.parse(localStorage.getItem("save"));
