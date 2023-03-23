@@ -1,6 +1,6 @@
 import { gameObjects } from "./classes/game";
 import * as utilModule from "./util";
-import * as mainModule from "./main";
+import * as activeModule from "./active";
 
 function createWord() {
   const passivePointsWord = document.querySelector("#passivePointsWord");
@@ -18,7 +18,7 @@ function GetPassivePoints(passiveWord: string) {
   var totalPoints = 0;
   totalPoints += passiveWord.length;
   if (utilModule.IsPurchasedPassiveUpgrade(3))
-    totalPoints += mainModule.GetPointsLetters(passiveWord);
+    totalPoints += activeModule.GetPointsLetters(passiveWord);
   if (utilModule.HasCard("+2 Passive Points (C)"))
     totalPoints +=
       2 *

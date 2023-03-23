@@ -1,5 +1,4 @@
 import * as utilModule from "./util";
-import * as mainModule from "./main";
 import { gameObjects } from "./classes/game";
 
 export function SetPrestige() {
@@ -22,8 +21,15 @@ if (prestigeButton)
     Prestige();
   });
 
+export function TransitionWindow() {
+  document.body.classList.add("fade-out");
+  setTimeout(function () {
+    document.body.classList.remove("fade-out");
+  }, 1000);
+}
+
 export function Prestige() {
-  mainModule.TransitionWindow();
+  TransitionWindow();
   setTimeout(function () {
     PrestigeStats();
   }, 500);

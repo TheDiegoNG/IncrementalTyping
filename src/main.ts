@@ -144,10 +144,10 @@ async function checkText(event: Event) {
     const wordBox = document.querySelector("#WordBox") as HTMLInputElement;
     if (wordBox) wordBox.value = "";
     var pointsLetters = textBoxText.length;
-    var lettersValue = GetPointsLetters(textBoxText);
+    var lettersValue = activeModule.GetPointsLetters(textBoxText);
     if (utilModule.IsPurchasedUpgrade(6)) {
       pointsLetters += lettersValue;
-      if (lettersValue > GetPointsLetters(gameObjects.game.bestWord))
+      if (lettersValue > activeModule.GetPointsLetters(gameObjects.game.bestWord))
         gameObjects.game.bestWord = textBoxText;
     }
     var wordPoints = activeModule.CalculatePoints(pointsLetters);
@@ -360,53 +360,6 @@ setInterval(function () {
     display.innerHTML = "LPS : " + LPS.toFixed(2);
   }
 }, 1000);
-
-export function GetPointsLetters(word: string) {
-  var letters = word.toLowerCase().split("");
-  var points = 0;
-  letters.forEach((element) => {
-    if (
-      element === "a" ||
-      element === "e" ||
-      element === "i" ||
-      element === "o" ||
-      element === "u" ||
-      element === "l" ||
-      element === "n" ||
-      element === "s" ||
-      element === "t" ||
-      element === "r"
-    ) {
-      points++;
-    } else if (element === "d" || element === "g") {
-      points += 2;
-    } else if (
-      element === "b" ||
-      element === "c" ||
-      element === "m" ||
-      element === "p"
-    ) {
-      points += 3;
-    } else if (
-      element === "f" ||
-      element === "h" ||
-      element === "v" ||
-      element === "w" ||
-      element === "y"
-    ) {
-      points += 4;
-    } else if (element === "k") {
-      points += 5;
-    } else if (element === "j" || element === "x") {
-      points += 8;
-    } else if (element === "q" || element === "z") {
-      points += 10;
-    } else {
-      points += 20;
-    }
-  });
-  return points;
-}
 
 const activeMenuButton = document.querySelector("#activeMenuButton");
 
@@ -638,9 +591,3 @@ window.onmousemove = (e) => {
   // });
 };
 
-export function TransitionWindow() {
-  document.body.classList.add("fade-out");
-  setTimeout(function () {
-    document.body.classList.remove("fade-out");
-  }, 1000);
-}
