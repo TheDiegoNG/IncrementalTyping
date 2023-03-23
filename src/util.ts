@@ -1,4 +1,4 @@
-import { gameObjects } from "./classes/game";
+import { gameObjects } from "./classes/game.js";
 
 export var IsPurchasedUpgrade = (upgradeNumber: number) => gameObjects.game.upgrades[upgradeNumber].amountBought == 1;
 

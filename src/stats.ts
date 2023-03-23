@@ -1,5 +1,5 @@
-import { gameObjects } from "./classes/game";
-import * as activeModule from "./active"
+import { gameObjects } from "./classes/game.js";
+import * as activeModule from "./active.js"
 
 
 export function SetStats() {

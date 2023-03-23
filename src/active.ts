@@ -1,5 +1,5 @@
-import * as utilModule from "./util";
-import { gameObjects } from "./classes/game";
+import * as utilModule from "./util.js";
+import { gameObjects } from "./classes/game.js";
 
 export function CalculatePoints(wordLength: number) {
   var totalPoints: number = 0;

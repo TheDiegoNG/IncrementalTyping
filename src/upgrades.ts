@@ -1,4 +1,4 @@
-import { gameObjects } from "./classes/game";
+import { gameObjects } from "./classes/game.js";
 
 var upgradesDesc = [
     "x1.5 points - Cost: 50",

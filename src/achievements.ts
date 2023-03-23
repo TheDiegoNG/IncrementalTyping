@@ -1,6 +1,6 @@
-import * as utilModule from "./util";
-import { gameObjects } from "./classes/game";
-import { Achievement } from "./classes/achievement";
+import * as utilModule from "./util.js";
+import { gameObjects } from "./classes/game.js";
+import { Achievement } from "./classes/achievement.js";
 
 export const achievements: Achievement[] = [];
 

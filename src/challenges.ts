@@ -1,6 +1,6 @@
-import * as utilModule from "./util";
-import { gameObjects } from "./classes/game";
-import * as prestigeModule from "./prestige";
+import * as utilModule from "./util.js";
+import { gameObjects } from "./classes/game.js";
+import * as prestigeModule from "./prestige.js";
 
 var challenges = document.querySelectorAll(".challenge");
 
