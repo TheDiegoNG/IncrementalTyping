@@ -1,13 +1,31 @@
 import { gameObjects } from "./classes/game.js";
 import * as utilModule from "./util.js";
 import * as activeModule from "./active.js";
+import { Generator } from "./classes/generator.js";
+
+const generators: Generator[] = [];
+
+generators.push(new Generator("Portable Generator", 5, 1));
+generators.push(new Generator("Small Generator", 6, 2));
+generators.push(new Generator("Medium-sized Generator", 9, 3));
+generators.push(new Generator("Ample Generator", 12, 4));
+generators.push(new Generator("Substantial Generator", 15, 5));
+generators.push(new Generator("Reasonable Generator", 18, 6));
+generators.push(new Generator("Large Generator", 21, 7));
+generators.push(new Generator("Major Generator", 24, 8));
+generators.push(new Generator("Jumbo Generator", 27, 9));
+generators.push(new Generator("Colossal Generator", 30, 10));
 
 function createWord() {
   const passivePointsWord = document.querySelector("#passivePointsWord");
+  const portableGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Portable Generator"
+  );
+  if (!portableGenerator) return;
   var passiveWord = GetRandomString(gameObjects.game.passiveLength);
   if (passivePointsWord) passivePointsWord.textContent = passiveWord;
   var points = GetPassivePoints(passiveWord);
-  points *= gameObjects.game.passiveGenerators[0].amountGained;
+  points *= portableGenerator.amountGained;
   if (utilModule.IsPurchasedUpgrade(3))
     gameObjects.game.passivePoints += points;
 }
@@ -141,121 +159,139 @@ if (PPGenerator)
   });
 
 export function SetGenerators() {
+  const portableGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Portable Generator"
+  );
   if (basicGenerator)
-    basicGenerator.textContent = `Generate Passive Points! | Generators: ${gameObjects.game.passiveGenerators[0].amountGained.toFixed(
-      2
-    )} (Bought: ${
-      gameObjects.game.passiveGenerators[0].amountBought
-    }) | Cost: ${gameObjects.game.passiveGenerators[0].cost.toFixed(
-      2
-    )} Passive Points`;
+    basicGenerator.textContent = `Generate Passive Points! | Generators: ${
+      portableGenerator ? portableGenerator.amountGained.toFixed(2) : 0
+    } (Bought: ${
+      portableGenerator ? portableGenerator.amountBought : 0
+    }) | Cost: ${
+      portableGenerator ? portableGenerator.cost.toFixed(2) : 5
+    } Passive Points`;
+  const smallGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Small Generator"
+  );
   if (PPGenerator)
-    PPGenerator.textContent = `Generate the First Generator | Generators: ${gameObjects.game.passiveGenerators[1].amountGained.toFixed(
-      2
-    )} (Bought: ${
-      gameObjects.game.passiveGenerators[1].amountBought
-    }) | Cost: ${gameObjects.game.passiveGenerators[1].cost.toFixed(
-      2
-    )} 1st Generators`;
+    PPGenerator.textContent = `Generate the First Generator | Generators: ${
+      smallGenerator ? smallGenerator.amountGained.toFixed(2) : 0
+    } (Bought: ${smallGenerator ? smallGenerator.amountBought : 0}) | Cost: ${
+      smallGenerator ? smallGenerator.cost.toFixed(2) : 6
+    } 1st Generators`;
+  const mediumsizedGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Medium-sized Generator"
+  );
   if (PPGenerator2)
-    PPGenerator2.textContent = `Generate the Second Generator | Generators: ${gameObjects.game.passiveGenerators[2].amountGained.toFixed(
-      2
-    )} (Bought: ${
-      gameObjects.game.passiveGenerators[2].amountBought
-    }) | Cost: ${gameObjects.game.passiveGenerators[2].cost.toFixed(
-      2
-    )} 2nd Generators`;
+    PPGenerator2.textContent = `Generate the Second Generator | Generators: ${
+      mediumsizedGenerator ? mediumsizedGenerator.amountGained.toFixed(2) : 0
+    } (Bought: ${
+      mediumsizedGenerator ? mediumsizedGenerator.amountBought : 0
+    }) | Cost: ${
+      mediumsizedGenerator ? mediumsizedGenerator.cost.toFixed(2) : 9
+    } 2nd Generators`;
+  const ampleGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Ample Generator"
+  );
   if (PPGenerator3)
-    PPGenerator3.textContent = `Generate the Third Generator | Generators: ${gameObjects.game.passiveGenerators[3].amountGained.toFixed(
-      2
-    )} (Bought: ${
-      gameObjects.game.passiveGenerators[3].amountBought
-    }) | Cost: ${gameObjects.game.passiveGenerators[3].cost.toFixed(
-      2
-    )} 3rd Generators`;
+    PPGenerator3.textContent = `Generate the Third Generator | Generators: ${
+      ampleGenerator ? ampleGenerator.amountGained.toFixed(2) : 0
+    } (Bought: ${ampleGenerator ? ampleGenerator.amountBought : 0}) | Cost: ${
+      ampleGenerator ? ampleGenerator.cost.toFixed(2) : 12
+    } 3rd Generators`;
+  const substantialGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Substantial Generator"
+  );
   if (PPGenerator4)
-    PPGenerator4.textContent = `Generate the Fourth Generator | Generators: ${gameObjects.game.passiveGenerators[4].amountGained.toFixed(
-      2
-    )} (Bought: ${
-      gameObjects.game.passiveGenerators[4].amountBought
-    }) | Cost: ${gameObjects.game.passiveGenerators[4].cost.toFixed(
-      2
-    )} 4th Generators`;
+    PPGenerator4.textContent = `Generate the Fourth Generator | Generators: ${
+      substantialGenerator ? substantialGenerator.amountGained.toFixed(2) : 0
+    } (Bought: ${
+      substantialGenerator ? substantialGenerator.amountBought : 0
+    }) | Cost: ${
+      substantialGenerator ? substantialGenerator.cost.toFixed(2) : 15
+    } 4th Generators`;
+  const reasonableGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Reasonable Generator"
+  );
   if (PPGenerator5)
-    PPGenerator5.textContent = `Generate the Fifth Generator | Generators: ${gameObjects.game.passiveGenerators[5].amountGained.toFixed(
-      2
-    )} (Bought: ${
-      gameObjects.game.passiveGenerators[5].amountBought
-    }) | Cost: ${gameObjects.game.passiveGenerators[5].cost.toFixed(
-      2
-    )} 5th Generators`;
+    PPGenerator5.textContent = `Generate the Fifth Generator | Generators: ${
+      reasonableGenerator ? reasonableGenerator.amountGained.toFixed(2) : 0
+    } (Bought: ${
+      reasonableGenerator ? reasonableGenerator.amountBought : 0
+    }) | Cost: ${
+      reasonableGenerator ? reasonableGenerator.cost.toFixed(2) : 18
+    } 5th Generators`;
+  const largeGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.name == "Large Generator"
+  );
   if (PPGenerator6)
-    PPGenerator6.textContent = `Generate the Sixth Generator | Generators: ${gameObjects.game.passiveGenerators[6].amountGained.toFixed(
-      2
-    )} (Bought: ${
-      gameObjects.game.passiveGenerators[6].amountBought
-    }) | Cost: ${gameObjects.game.passiveGenerators[6].cost.toFixed(
-      2
-    )} 6th Generators`;
+    PPGenerator6.textContent = `Generate the Sixth Generator | Generators: ${
+      largeGenerator ? largeGenerator.amountGained.toFixed(2) : 0
+    } (Bought: ${largeGenerator ? largeGenerator.amountBought : 0}) | Cost: ${
+      largeGenerator ? largeGenerator.cost.toFixed(2) : 21
+    } 6th Generators`;
   if (GeneratorButton)
     GeneratorButton.textContent = `Buy the next Tier of Generators! | Cost ${
-      (gameObjects.game.passiveGenerators.findIndex(
-        (x) => x.amountGained == 0
-      ) +
-        1) *
-      3
+      generators.find(
+        (x) => x.id == gameObjects.game.passiveGenerators.length + 1
+      )!.cost
     } Previous Tier Generators!`;
 }
 
 function BuyGenerator(generatorNumber: number) {
+  const yourGenerator = gameObjects.game.passiveGenerators.find(
+    (x) => x.id == generatorNumber
+  );
+  const generator = generators.find((x) => x.id == generatorNumber);
+  if (!generator || !yourGenerator) return;
   if (
     generatorNumber == 0 &&
-    gameObjects.game.passivePoints >=
-      gameObjects.game.passiveGenerators[generatorNumber].cost
+    gameObjects.game.passivePoints >= yourGenerator.cost
   ) {
-    gameObjects.game.passivePoints -=
-      gameObjects.game.passiveGenerators[generatorNumber].cost;
-    gameObjects.game.passiveGenerators[generatorNumber].amountBought++;
-    gameObjects.game.passiveGenerators[generatorNumber].amountGained++;
-    gameObjects.game.passiveGenerators[generatorNumber].cost =
-      gameObjects.game.passiveGenerators[generatorNumber].cost *
-      (gameObjects.game.passiveGenerators[generatorNumber].amountBought + 1) **
-        Math.log10(
-          gameObjects.game.passiveGenerators[generatorNumber].amountBought + 1
-        );
+    gameObjects.game.passivePoints -= yourGenerator.cost;
+    yourGenerator.amountBought++;
+    yourGenerator.amountGained++;
+    yourGenerator.cost =
+      yourGenerator.cost *
+      (yourGenerator.amountBought + 1) **
+        Math.log10(yourGenerator.amountBought + 1);
   }
   if (
-    gameObjects.game.passiveGenerators[generatorNumber - 1].amountGained >=
-    gameObjects.game.passiveGenerators[generatorNumber].amountGained
+    gameObjects.game.passiveGenerators.find((x) => x.id == generatorNumber - 1)!
+      .amountGained >= yourGenerator.amountGained
   ) {
-    gameObjects.game.passiveGenerators[generatorNumber - 1].amountGained -=
-      gameObjects.game.passiveGenerators[generatorNumber].cost;
-    gameObjects.game.passiveGenerators[generatorNumber].amountBought++;
-    gameObjects.game.passiveGenerators[generatorNumber].amountGained++;
-    gameObjects.game.passiveGenerators[generatorNumber].cost =
-      gameObjects.game.passiveGenerators[generatorNumber].cost *
-      (gameObjects.game.passiveGenerators[generatorNumber].amountBought + 1) **
-        Math.log10(
-          gameObjects.game.passiveGenerators[generatorNumber].amountBought + 1
-        );
+    gameObjects.game.passiveGenerators.find(
+      (x) => x.id == generatorNumber - 1
+    )!.amountGained -= yourGenerator.cost;
+    yourGenerator.amountBought++;
+    yourGenerator.amountGained++;
+    yourGenerator.cost =
+      yourGenerator.cost *
+      (yourGenerator.amountBought + 1) **
+        Math.log10(yourGenerator.amountBought + 1);
   }
 }
 
 function BuyGeneratorTier() {
-  var generatorToBuy = gameObjects.game.passiveGenerators.findIndex(
-    (x) => x.amountBought == 0
+  const generatorToBuy = generators.find(
+    (x) => x.id == gameObjects.game.passiveGenerators.length + 1
   );
+  if (!generatorToBuy) return;
   if (
-    gameObjects.game.passiveGenerators[generatorToBuy - 1].amountGained >=
-    gameObjects.game.passiveGenerators[generatorToBuy].cost
+    gameObjects.game.passiveGenerators.find(
+      (x) => x.id == generatorToBuy.id - 1
+    )!.amountGained >= generatorToBuy.cost
   ) {
-    gameObjects.game.passiveGenerators[generatorToBuy - 1].amountGained -=
-      gameObjects.game.passiveGenerators[generatorToBuy].cost;
-    gameObjects.game.passiveGenerators[generatorToBuy].amountBought++;
-    gameObjects.game.passiveGenerators[generatorToBuy].amountGained++;
+    gameObjects.game.passiveGenerators.find(
+      (x) => x.id == generatorToBuy.id - 1
+    )!.amountGained -= generatorToBuy.cost;
+    gameObjects.game.passiveGenerators.find((x) => x.id == generatorToBuy.id)!
+      .amountBought++;
+    gameObjects.game.passiveGenerators.find((x) => x.id == generatorToBuy.id)!
+      .amountGained++;
 
     const generator = document.querySelector(
-      `#PassivePointsGenerator${generatorToBuy}`
+      `#PassivePointsGenerator${generatorToBuy.id}`
     );
     if (generator && generator instanceof HTMLElement)
       generator.style.display = "block";
@@ -269,15 +305,21 @@ export function CalculatePassiveGenerators() {
     index++
   ) {
     if (utilModule.IsPurchasedPassiveUpgrade(5)) {
-      gameObjects.game.passiveGenerators[index - 1].amountGained +=
-        gameObjects.game.passiveGenerators[index].amountGained *
+      gameObjects.game.passiveGenerators.find(
+        (x) => x.id == index - 1
+      )!.amountGained +=
+        gameObjects.game.passiveGenerators.find((x) => x.id == index)!
+          .amountGained *
         gameObjects.game.passiveGenerators.reduce(
           (acc, val) => acc + val.amountBought,
           0
         );
     } else {
-      gameObjects.game.passiveGenerators[index - 1].amountGained +=
-        gameObjects.game.passiveGenerators[index].amountGained;
+      gameObjects.game.passiveGenerators.find(
+        (x) => x.id == index - 1
+      )!.amountGained += gameObjects.game.passiveGenerators.find(
+        (x) => x.id == index
+      )!.amountGained;
     }
   }
 }

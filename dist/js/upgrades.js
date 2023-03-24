@@ -1,46 +1,53 @@
 import { gameObjects } from "./classes/game.js";
-var upgradesDesc = [
-    "x1.5 points - Cost: 50",
-    "+4 points per word - Cost: 200",
-    "Get a letter per minute value - Cost: 500",
-    "Unlock passive income! - Cost: 1500",
-    "x1.3 Points! - Cost: 2500",
-    "Every achievement gives a bonus! - Cost: 6000",
-    "Every letter gets a value - Cost: 10000",
-    "+10 points per word - Cost: 40000",
-    "Unlocks Cards! - Cost: 100000",
-    "x2 points - Cost: 200000",
-    "Unlock Challenges! - Cost: 5000000",
-    "Last Basic Upgrade! +20 points per word - 10000000"
-];
-var passiveUpgradesDesc = [
-    "x1.25 Points - Cost: 100 PP",
-    "+5 points per Word - Cost: 250 PP",
-    "x1.5 points - Cost: 1000 PP",
-    "Every letter gets a value - Cost: 4000 PP",
-    "+1 Letter - Cost: 8000 PP",
-    "Every Generator Bought gives a Bonus to the other Generators! - Cost: 20000 PP",
-];
-var prestigeUpgradesDesc = [
-    "Welcome to Prestige! Take a free x2 multiplier - Cost: 10 Prestige Points",
-    "+2 Cards Per Roll - Cost: 50 Prestige Points",
-    "Better Scaling for MultiUpgrades! - Cost: 100 Prestige Points",
-    "Keep your Passive Income when Prestige! (PP resets tho) - Cost: 500 Prestige Points"
-];
+import { Upgrade } from "./classes/upgrade.js";
+const basicUpgrades = [];
+basicUpgrades.push(new Upgrade("First Upgrade of them all", "x1.3 Points", 50, 1));
+basicUpgrades.push(new Upgrade("Your words value a little bit more, absolutely", "+4 Points per Word", 200, 2));
+basicUpgrades.push(new Upgrade("I'm speed", "Get a letter per minute value", 500, 3));
+basicUpgrades.push(new Upgrade("You found a word passive enhancer!", "Unlock passive income", 1500, 4));
+basicUpgrades.push(new Upgrade("2nd Upgrade of this type", "x1.5 Points", 2500, 5));
+basicUpgrades.push(new Upgrade("Every goal has its reward", "Every achievement gives a bonus!", 6000, 6));
+basicUpgrades.push(new Upgrade("Your words value a bit more more, absolutely again", "+10 points per word", 10000, 7));
+basicUpgrades.push(new Upgrade("You found a Scrabble module!", "Every letter gets a value", 40000, 8));
+basicUpgrades.push(new Upgrade("Gacha. Yes, gacha", "Unlocks Cards!", 100000, 9));
+basicUpgrades.push(new Upgrade("3rd time", "x2 points", 200000, 10));
+basicUpgrades.push(new Upgrade("You can challenge yourself to be better next time", "Unlock Challenges!", 5000000, 11));
+basicUpgrades.push(new Upgrade("Last Basic Upgrade! Your words value MORE, a bit more", "+20 points per word", 10000000, 12));
+const passiveUpgrades = [];
+passiveUpgrades.push(new Upgrade("You force the enhancer to be enhancerer", "x1.25 Points", 100, 1));
+passiveUpgrades.push(new Upgrade("Here's a little bonus for you", "+5 points per Word", 250, 2));
+passiveUpgrades.push(new Upgrade("I don't know exactly what to upgrade, I'm sorry", "x1.5 Points", 1000, 3));
+passiveUpgrades.push(new Upgrade("Wow, it seems that they made a Scrabble module for the enhancer too. Interesting", "Every letter gets a value", 4000, 4));
+passiveUpgrades.push(new Upgrade("Horizontal scaling ftw", "+1 Letter", 8000, 5));
+passiveUpgrades.push(new Upgrade("More modules! This time you found a synergy module.", "Every Generator Bought gives a Bonus to the other Generators!", 20000, 6));
+const prestigeUpgrades = [];
+passiveUpgrades.push(new Upgrade("Welcome to Prestige! Take a free x2 multiplier", "Yes", 10, 1));
+passiveUpgrades.push(new Upgrade("The Gacha Gods have spoken", "+2 Cards Per Roll", 50, 2));
+passiveUpgrades.push(new Upgrade("Better Scaling for MultiUpgrades!", "x1.25 Points", 100, 3));
+passiveUpgrades.push(new Upgrade("It seems that the next time you Prestige you can bring the enhancer with you. But the upgrades must wear out", "Keep your Passive Income (Not your upgrades) when Prestige! (PP resets too)", 500, 4));
 function ChangeBasicUpgradesText(upgradeNumber) {
     const basicUpgradesText = document.querySelector("#basicUpgradesDesc");
+    const upgrade = basicUpgrades.find(x => x.id == upgradeNumber);
+    if (!upgrade)
+        return;
     if (basicUpgradesText)
-        basicUpgradesText.textContent = upgradesDesc[upgradeNumber];
+        basicUpgradesText.textContent = upgrade.name;
 }
 function ChangePassiveUpgradesText(upgradeNumber) {
     const passiveUpgradesText = document.querySelector("#passiveUpgradesDesc");
+    const upgrade = passiveUpgrades.find(x => x.id == upgradeNumber);
+    if (!upgrade)
+        return;
     if (passiveUpgradesText)
-        passiveUpgradesText.textContent = passiveUpgradesDesc[upgradeNumber];
+        passiveUpgradesText.textContent = upgrade.name;
 }
 function ChangePrestigeUpgradesText(upgradeNumber) {
     const prestigeUpgradesText = document.querySelector("#prestigeUpgradesDesc");
+    const upgrade = prestigeUpgrades.find(x => x.id == upgradeNumber);
+    if (!upgrade)
+        return;
     if (prestigeUpgradesText)
-        prestigeUpgradesText.textContent = prestigeUpgradesDesc[upgradeNumber];
+        prestigeUpgradesText.textContent = upgrade.name;
 }
 console.time("GameTime");
 const upgradeButtons = document.querySelectorAll('.upgradeSquare');
@@ -51,7 +58,7 @@ upgradeButtons.forEach((upgradebutton, index) => {
     const buttonNumber = buttonId.match(/\d+$/);
     if (buttonId.startsWith('upgrade')) {
         upgradebutton.addEventListener('click', e => {
-            GetUpgrade(parseInt(buttonNumber[0]) - 1, upgradebutton);
+            GetUpgrade(parseInt(buttonNumber[0]) - 1);
         });
         upgradebutton.addEventListener('mouseover', e => {
             ChangeBasicUpgradesText(parseInt(buttonNumber[0]) - 1);
@@ -59,7 +66,7 @@ upgradeButtons.forEach((upgradebutton, index) => {
     }
     if (buttonId.startsWith('passive')) {
         upgradebutton.addEventListener('click', e => {
-            GetPassiveUpgrade(parseInt(buttonNumber[0]) - 1, upgradebutton);
+            GetPassiveUpgrade(parseInt(buttonNumber[0]) - 1);
         });
         upgradebutton.addEventListener('mouseover', e => {
             ChangePassiveUpgradesText(parseInt(buttonNumber[0]) - 1);
@@ -67,36 +74,41 @@ upgradeButtons.forEach((upgradebutton, index) => {
     }
     if (buttonId.startsWith('prestige')) {
         upgradebutton.addEventListener('click', e => {
-            GetPrestigeUpgrade(parseInt(buttonNumber[0]) - 1, upgradebutton);
+            GetPrestigeUpgrade(parseInt(buttonNumber[0]) - 1);
         });
         upgradebutton.addEventListener('mouseover', e => {
             ChangePrestigeUpgradesText(parseInt(buttonNumber[0]) - 1);
         });
     }
 });
-function GetUpgrade(upgradeNumber, element) {
-    if (gameObjects.game.upgrades[upgradeNumber].amountBought == 0 && gameObjects.game.points >= gameObjects.game.upgrades[upgradeNumber].cost) {
-        gameObjects.game.points -= gameObjects.game.upgrades[upgradeNumber].cost;
-        gameObjects.game.upgrades[upgradeNumber].amountBought = 1;
-        element.style.color = "#47682C";
-        console.log(upgradeNumber);
+export function GetUpgrade(upgradeNumber) {
+    const upgrade = basicUpgrades.find(x => x.id == upgradeNumber);
+    if (!upgrade)
+        return;
+    if (gameObjects.game.upgrades.find(x => x.id == upgradeNumber) == undefined && gameObjects.game.points >= upgrade.cost) {
+        gameObjects.game.points -= upgrade.cost;
+        gameObjects.game.upgrades.push(upgrade);
         console.timeLog("GameTime");
     }
 }
-function GetPassiveUpgrade(upgradeNumber, element) {
-    if (gameObjects.game.passiveUpgrades[upgradeNumber].amountBought == 0 && gameObjects.game.passivePoints >= gameObjects.game.passiveUpgrades[upgradeNumber].cost) {
-        gameObjects.game.passivePoints -= gameObjects.game.passiveUpgrades[upgradeNumber].cost;
-        gameObjects.game.passiveUpgrades[upgradeNumber].amountBought = 1;
-        element.style.color = "#47682C";
+function GetPassiveUpgrade(upgradeNumber) {
+    const upgrade = passiveUpgrades.find(x => x.id == upgradeNumber);
+    if (!upgrade)
+        return;
+    if (gameObjects.game.passiveUpgrades.find(x => x.id == upgradeNumber) == undefined && gameObjects.game.passivePoints >= upgrade.cost) {
+        gameObjects.game.passivePoints -= upgrade.cost;
+        gameObjects.game.passiveUpgrades.push(upgrade);
         if (upgradeNumber == 4)
             gameObjects.game.passiveLength++;
     }
 }
-function GetPrestigeUpgrade(upgradeNumber, element) {
-    if (gameObjects.game.prestigeUpgrades[upgradeNumber].amountBought == 0 && gameObjects.game.prestigePoints >= gameObjects.game.prestigeUpgrades[upgradeNumber].cost) {
-        gameObjects.game.prestigePoints -= gameObjects.game.prestigeUpgrades[upgradeNumber].cost;
-        gameObjects.game.prestigeUpgrades[upgradeNumber].amountBought = 1;
-        element.style.color = "#47682C";
+function GetPrestigeUpgrade(upgradeNumber) {
+    const upgrade = prestigeUpgrades.find(x => x.id == upgradeNumber);
+    if (!upgrade)
+        return;
+    if (gameObjects.game.passiveUpgrades.find(x => x.id == upgradeNumber) == undefined && gameObjects.game.prestigePoints >= upgrade.cost) {
+        gameObjects.game.prestigePoints -= upgrade.cost;
+        gameObjects.game.prestigeUpgrades.push(upgrade);
         if (upgradeNumber == 1)
             gameObjects.game.rollsAmount += 2;
     }
@@ -112,7 +124,7 @@ function SetActiveUpgrades() {
         return;
     let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = gameObjects.game.upgrades[index].amountBought == 1 ? "#47682C" : "#FFFFFF";
+        value.style.color = gameObjects.game.upgrades.find(x => x.id == index + 1) != undefined ? "#47682C" : "#FFFFFF";
     });
 }
 function SetPassiveUpgrades() {
@@ -121,7 +133,7 @@ function SetPassiveUpgrades() {
         return;
     let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = gameObjects.game.passiveUpgrades[index].amountBought == 1 ? "#47682C" : "#FFFFFF";
+        value.style.color = gameObjects.game.passiveUpgrades.find(x => x.id == index + 1) != undefined ? "#47682C" : "#FFFFFF";
     });
 }
 function SetPrestigeUpgrades() {
@@ -130,6 +142,6 @@ function SetPrestigeUpgrades() {
         return;
     let cells = myTable.querySelectorAll('div');
     cells.forEach(function callback(value, index) {
-        value.style.color = gameObjects.game.prestigeUpgrades[index].amountBought == 1 ? "#47682C" : "#FFFFFF";
+        value.style.color = gameObjects.game.prestigeUpgrades.find(x => x.id == index + 1) != undefined ? "#47682C" : "#FFFFFF";
     });
 }

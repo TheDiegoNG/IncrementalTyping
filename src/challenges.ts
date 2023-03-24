@@ -1,10 +1,11 @@
 import * as utilModule from "./util.js";
 import { gameObjects } from "./classes/game.js";
 import * as prestigeModule from "./prestige.js";
+import { Challenge } from "./classes/challenge.js";
 
-var challenges = document.querySelectorAll(".challenge");
+var challengesElements = document.querySelectorAll(".challenge");
 
-challenges.forEach((challenge, index) => {
+challengesElements.forEach((challenge, index) => {
   const challengeId = challenge.getAttribute("id");
   const challengeNumber = challengeId!.match(/\d+$/);
   if (challengeNumber) {
@@ -14,16 +15,24 @@ challenges.forEach((challenge, index) => {
   }
 });
 
+const challenges: Challenge[] = [];
+
+challenges.push(new Challenge("Accuracy", 50, 210, 1));
+challenges.push(new Challenge("Speed", 50, 0, 2));
+
 function StartChallenge(challengeNumber: number) {
   if (gameObjects.game.isInChallenge)
     return alert("You are already in a Challenge");
+    if(!gameObjects.game.challenges.find(x => x.id == challengeNumber)) gameObjects.game.challenges.push(challenges.find(x => x.id == challengeNumber)!);
+    const challenge = gameObjects.game.challenges.find(x => x.id == challengeNumber);
+    if(!challenge) return;
   prestigeModule.Prestige();
   setTimeout(function () {
     LoadAchievements();
     gameObjects.game = utilModule.Copy(gameObjects.challengeGame);
     gameObjects.game.isInChallenge = true;
     StartTimer(60, challengeNumber);
-    gameObjects.game.challenges[challengeNumber].onChallenge = true;
+    challenge.onChallenge = true;
   }, 500);
 }
 
@@ -36,14 +45,14 @@ if (exitChallengeButton) {
 }
 
 function ExitAnyChallenge() {
-  if (gameObjects.game.challenges.filter((x) => x.onChallenge).length > 0)
-    ExitChallenge(gameObjects.game.challenges.findIndex((x) => x.onChallenge));
+  const challenge = gameObjects.game.challenges.find((x) => x.onChallenge);
+  if (challenge) ExitChallenge(challenge.id);
 }
 
 function ExitChallenge(challengeNumber: number) {
   gameObjects.game = utilModule.Copy(gameObjects.activeGame);
   gameObjects.game.isInChallenge = false;
-  gameObjects.game.challenges[challengeNumber].onChallenge = false;
+  gameObjects.game.challenges.find(x => x.id == challengeNumber)!.onChallenge = false;
   gameObjects.game.letterCounter = 0;
 }
 
@@ -66,12 +75,13 @@ function StartTimer(seconds: number, challengeNumber: number) {
     }
     if (
       gameObjects.game.wordsAmount >=
-      gameObjects.game.challenges[challengeNumber].objective
+      gameObjects.game.challenges.find(x => x.id == challengeNumber)!.objective
     ) {
       timer.textContent = "Success!";
       timer.classList.add("success");
-      gameObjects.activeGame.challenges[challengeNumber].amount++;
+      gameObjects.activeGame.challenges.find(x => x.id == challengeNumber)!.amount++;
       gameObjects.game.challengesAmount++;
+      if(challengeNumber == 1) gameObjects.game.rollsAmount += gameObjects.game.challenges.find(x => x.id == challengeNumber)!.amount;
       progressBar.classList.add("green");
       progressBar.classList.add("hide");
       clearInterval(intervalId);
@@ -109,10 +119,6 @@ if (progressBar && progressBar instanceof HTMLElement) {
       progressBar.style.width = "0%";
     }
   });
-}
-
-export function SetChallengesBonuses() {
-  gameObjects.game.rollsAmount = 10 + gameObjects.game.challenges[0].amount;
 }
 
 function LoadAchievements() {

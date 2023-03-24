@@ -3,11 +3,13 @@ export class Generator {
   amountBought: number;
   amountGained: number;
   cost: number;
+  id: number;
 
-  constructor(achievementName: string, upgradeCost: number) {
-    this.name = achievementName;
+  constructor(generatorName: string, generatorCost: number, generatorNumber: number) {
+    this.name = generatorName;
     this.amountBought = 0;
     this.amountGained = 0;
-    this.cost = upgradeCost;
+    this.cost = generatorCost;
+    this.id = generatorNumber;
   }
 }

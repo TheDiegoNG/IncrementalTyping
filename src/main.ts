@@ -11,6 +11,7 @@ import * as optionsModule from "./options.js";
 import * as challengesModule from "./challenges.js";
 import * as passiveModule from "./passive.js";
 import * as activeModule from "./active.js";
+import { multiUpgrades } from "./active.js";
 
 const wordListUrl =
   "https://raw.githubusercontent.com/dwyl/english-words/master/words.txt";
@@ -211,7 +212,6 @@ window.setInterval(function () {
   upgradesModule.SetUpgrades();
   cardsModule.CalculateBonus();
   optionsModule.SetOptions();
-  challengesModule.SetChallengesBonuses();
   passiveModule.SetGenerators();
   passiveModule.CalculatePassiveGenerators();
   achievementModule.SetUnlockedAchievements();
@@ -311,9 +311,6 @@ window.setInterval(function () {
     PrestigeUpgradesWrapper instanceof HTMLElement
   )
     PrestigeUpgradesWrapper.style.display = "flex";
-
-  gameObjects.game.maxLength =
-    gameObjects.game.multiUpgrades[1].amountBought + 4;
 
   if (
     !gameObjects.game.isInChallenge &&
@@ -472,22 +469,28 @@ function Tab(tabName: string) {
 
 function SetCosts() {
   const multiUpgrade1 = document.querySelector("#multiUpgrade1");
+  const multiUpgrade1Object = gameObjects.game.multiUpgrades.find(x => x.id == 1);
+
   if (multiUpgrade1)
     multiUpgrade1.textContent =
-      "+1 point per word! Cost: " +
-      Math.round(gameObjects.game.multiUpgrades[0].cost);
+      "+1 point per word! Cost: " + (multiUpgrade1Object ? 
+      Math.round(multiUpgrade1Object.cost) : 50);
 
   const multiUpgrade2 = document.querySelector("#multiUpgrade2");
+  const multiUpgrade2Object = gameObjects.game.multiUpgrades.find(x => x.id == 2);
+
   if (multiUpgrade2)
     multiUpgrade2.textContent =
-      "+1 letter per word! Cost: " +
-      Math.round(gameObjects.game.multiUpgrades[1].cost);
+      "+1 letter per word! Cost: " + (multiUpgrade2Object ?
+      Math.round(multiUpgrade2Object.cost) : 100);
 
   const multiUpgrade3 = document.querySelector("#multiUpgrade3");
+  const multiUpgrade3Object = gameObjects.game.multiUpgrades.find(x => x.id == 3);
+
   if (multiUpgrade3)
     multiUpgrade3.textContent =
-      "+25% points! Cost: " +
-      Math.round(gameObjects.game.multiUpgrades[2].cost);
+      "+25% points! Cost: " + (multiUpgrade3Object ?
+        Math.round(multiUpgrade3Object.cost) : 500);
 
   const cardsButton = document.querySelector("#cardsButton");
   if (cardsButton)

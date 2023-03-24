@@ -1,8 +1,9 @@
 export class Generator {
-    constructor(achievementName, upgradeCost) {
-        this.name = achievementName;
+    constructor(generatorName, generatorCost, generatorNumber) {
+        this.name = generatorName;
         this.amountBought = 0;
         this.amountGained = 0;
-        this.cost = upgradeCost;
+        this.cost = generatorCost;
+        this.id = generatorNumber;
     }
 }

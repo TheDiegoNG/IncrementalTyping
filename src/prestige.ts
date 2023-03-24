@@ -1,4 +1,5 @@
 import * as utilModule from "./util.js";
+import * as upgradesmodule from "./upgrades.js";
 import { gameObjects } from "./classes/game.js";
 
 export function SetPrestige() {
@@ -47,13 +48,10 @@ function PrestigeStats() {
     utilModule.IsPurchasedUpgrade(3) &&
     utilModule.IsPurchasedPrestigeUpgrade(3)
   )
-    gameObjects.game.upgrades[3].amountBought = 1;
+    upgradesmodule.GetUpgrade(3);
   gameObjects.game.maxLength = 4;
   gameObjects.game.bestWord = "";
-  gameObjects.game.multiUpgrades = [];
-  gameObjects.game.multiUpgrades[0].cost = 50;
-  gameObjects.game.multiUpgrades[1].cost = 100; //TODO FIX MULTIUPGRADE MECHANIC
-  gameObjects.game.multiUpgrades[2].cost = 150;
+  gameObjects.game.multiUpgrades = []; 
   gameObjects.game.wordsAmount = 0;
   gameObjects.game.passiveUpgrades = [];
   gameObjects.game.passiveLength = 4;

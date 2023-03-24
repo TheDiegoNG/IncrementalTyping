@@ -1,9 +1,11 @@
 import * as utilModule from "./util.js";
 import { gameObjects } from "./classes/game.js";
+import { Upgrade } from "./classes/upgrade.js";
 export function CalculatePoints(wordLength) {
     var totalPoints = 0;
     totalPoints += wordLength;
-    totalPoints += gameObjects.game.multiUpgrades[0].amountBought;
+    const multiUpgrade1 = gameObjects.game.multiUpgrades.find(x => x.id == 1);
+    totalPoints += multiUpgrade1 ? multiUpgrade1.amountBought : 0;
     if (utilModule.IsPurchasedUpgrade(1))
         totalPoints += 4;
     if (utilModule.IsPurchasedUpgrade(11))
@@ -66,38 +68,51 @@ export function CalculatePoints(wordLength) {
         totalPoints *= 2;
     return totalPoints;
 }
+export const multiUpgrades = [];
+multiUpgrades.push(new Upgrade("You have to start somewhere", "+1 Point per Word", 50, 1));
+multiUpgrades.push(new Upgrade("I'm sure you can handle longer words, am i right?", "+1 letter per word", 100, 2));
+multiUpgrades.push(new Upgrade("Simple is better", "x1.25 Points", 500, 3));
 const multiUpgrade1 = document.querySelector("#multiUpgrade1");
 if (multiUpgrade1) {
     multiUpgrade1.addEventListener("click", (e) => {
-        AddMultiUpgrade(0);
+        AddMultiUpgrade(1);
     });
 }
 const multiUpgrade2 = document.querySelector("#multiUpgrade2");
 if (multiUpgrade2) {
     multiUpgrade2.addEventListener("click", (e) => {
-        AddMultiUpgrade(1);
+        AddMultiUpgrade(2);
     });
 }
 const multiUpgrade3 = document.querySelector("#multiUpgrade3");
 if (multiUpgrade3) {
     multiUpgrade3.addEventListener("click", (e) => {
-        AddMultiUpgrade(2);
+        AddMultiUpgrade(3);
     });
 }
 function AddMultiUpgrade(upgradeNumber) {
-    if (gameObjects.game.points >=
-        gameObjects.game.multiUpgrades[upgradeNumber].cost) {
-        gameObjects.game.points -=
-            gameObjects.game.multiUpgrades[upgradeNumber].cost;
-        gameObjects.game.multiUpgrades[upgradeNumber].amountBought++;
-        var costAux = gameObjects.game.multiUpgrades[upgradeNumber].cost;
-        gameObjects.game.multiUpgrades[upgradeNumber].cost =
-            gameObjects.game.multiUpgrades[upgradeNumber].cost *
-                Math.pow((gameObjects.game.multiUpgrades[upgradeNumber].amountBought + 1), Math.log10(gameObjects.game.multiUpgrades[upgradeNumber].amountBought + 1));
+    const upgrade = multiUpgrades.find((x) => x.id == upgradeNumber);
+    if (!upgrade)
+        return;
+    if (gameObjects.game.points >= upgrade.cost) {
+        gameObjects.game.points -= upgrade.cost;
+        if (!gameObjects.game.multiUpgrades.find((x) => x.id == upgradeNumber)) {
+            gameObjects.game.multiUpgrades.push(upgrade);
+        }
+        const upgradeBought = gameObjects.game.multiUpgrades.find((x) => x.id == upgradeNumber);
+        if (!upgradeBought)
+            return;
+        upgradeBought.amountBought++;
+        var costAux = upgradeBought.cost;
+        upgradeBought.cost =
+            costAux *
+                Math.pow((upgradeBought.amountBought + 1), Math.log10(upgradeBought.amountBought + 1));
         if (utilModule.IsPurchasedPrestigeUpgrade(2))
-            gameObjects.game.multiUpgrades[upgradeNumber].cost =
+            upgradeBought.cost =
                 costAux *
-                    Math.pow((gameObjects.game.multiUpgrades[upgradeNumber].amountBought / 2 + 1), Math.log10(gameObjects.game.multiUpgrades[upgradeNumber].amountBought / 2 + 1));
+                    Math.pow((upgradeBought.amountBought / 2 + 1), Math.log10(upgradeBought.amountBought / 2 + 1));
+        if (upgradeNumber == 2)
+            gameObjects.game.maxLength++;
     }
 }
 export function GetPointsLetters(word) {
