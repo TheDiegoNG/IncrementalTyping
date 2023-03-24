@@ -1,4 +1,3 @@
-@charset "UTF-8";
 :root {
   --xsmall-custom-text: 1rem;
   --small-custom-text: clamp(1rem, 1vw, 2rem);
@@ -24,7 +23,15 @@ html {
 
 body {
   background: hsl(224, 32%, 12%);
-  background-image: conic-gradient(from 0deg at 50% 50%, var(--light-black), var(--blue), rgb(46, 12, 80), rgb(46, 12, 80), var(--blue), var(--light-black));
+  background-image: conic-gradient(
+    from 0deg at 50% 50%,
+    var(--light-black),
+    var(--blue),
+    rgb(46, 12, 80),
+    rgb(46, 12, 80),
+    var(--blue),
+    var(--light-black)
+  );
   background-size: 200%;
   background-blend-mode: multiply;
   animation: background-pan 30s linear infinite;
@@ -74,23 +81,23 @@ body::-webkit-scrollbar {
   gap: 1rem;
 }
 
-.toast-container[data-position^=top-] {
+.toast-container[data-position^="top-"] {
   top: 0;
 }
 
-.toast-container[data-position$=-left] {
+.toast-container[data-position$="-left"] {
   left: 0;
 }
 
-.toast-container[data-position^=bottom-] {
+.toast-container[data-position^="bottom-"] {
   bottom: 0;
 }
 
-.toast-container[data-position$=-right] {
+.toast-container[data-position$="-right"] {
   right: 0;
 }
 
-.toast-container[data-position$=-center] {
+.toast-container[data-position$="-center"] {
   left: 50%;
   transform: translateX(50%);
 }
@@ -117,8 +124,9 @@ body::-webkit-scrollbar {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 } */
+
 .PopUp::before {
-  content: "×";
+  content: "\00D7";
   position: absolute;
   top: 2px;
   right: 5px;
@@ -138,6 +146,7 @@ body::-webkit-scrollbar {
   animation: background-pan 2s linear infinite;
   z-index: -1;
 } */
+
 .lettersPerSecond {
   font-size: var(--small-custom-text);
   margin: 0;
@@ -220,6 +229,7 @@ button {
     gap: 1rem;
   }
 }
+
 .passivePointsLeft {
   font-size: var(--medium-custom-text);
   padding: 0 1rem;
@@ -328,10 +338,12 @@ button {
   .wordsContainer > :last-child {
     display: none;
   }
+
   .wordsContainer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
 @media (max-width: 425px) {
   .wordsContainer > :nth-child(1),
   .wordsContainer > :nth-child(2),
@@ -339,10 +351,12 @@ button {
   .wordsContainer > :nth-last-child(2) {
     display: none;
   }
+
   .wordsContainer {
     grid-template-columns: 1fr;
   }
 }
+
 .tabsContainer {
   display: flex;
   justify-content: space-between;
@@ -469,11 +483,12 @@ button {
 .singleCard {
   --degrees: -5deg;
   --offset: -20%;
+
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 1);
   width: 40vmin;
   aspect-ratio: 5/7;
   border-radius: 1vmin;
@@ -485,14 +500,18 @@ button {
   transform: translateX(--offset) rotate(--degrees);
 }
 
-.singleCard:nth-child(1) {
-  --degrees: -5deg;
-  --offset: -20%;
-}
 
-.viewerCardsContainer:hover > .singleCard:nth-child(1) {
-  --degrees: -15deg;
-  --offset: -60%;
+
+@for $i from 0 through 20 {
+  .singleCard:nth-child(#{$i + 1}) {
+    --degrees: #{($i - 5) + "deg"};
+    --offset: #{($i * 5 - 20) + "%"};
+  }
+
+  .viewerCardsContainer:hover > .singleCard:nth-child(#{$i + 1}) {
+    --degrees: #{(($i - 5) * 3) + "deg"};
+    --offset: #{(($i * 5 - 20) * 3) + "%"};
+  }
 }
 
 .viewerActive {
@@ -511,7 +530,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(255, 255, 255);
+  background: rgba(255, 255, 255, 1);
   aspect-ratio: 5/7;
   border-radius: 1vmin;
   font-size: var(--small-custom-text);
@@ -716,25 +735,29 @@ button {
   from {
     background-position: 0% center;
   }
+
   to {
     background-position: -200% center;
   }
 }
+
 @keyframes scale {
-  from, to {
+  from,
+  to {
     transform: scale(0);
   }
+
   50% {
     transform: scale(1);
   }
 }
+
 @keyframes rotate {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(180deg);
   }
 }
-
-/*# sourceMappingURL=interface.css.map */

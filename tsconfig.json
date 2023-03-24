@@ -5,6 +5,6 @@
     "lib": ["es2015", "DOM"],
     "strict": true,
     "esModuleInterop": true,
-    "outDir": "./dist",
+    "outDir": "./dist/js",
   }
 }
