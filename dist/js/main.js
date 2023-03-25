@@ -227,42 +227,63 @@ window.setInterval(function () {
         achievementsMenuButton.style.display = "flex";
     }
     const lettersPerSecond = document.querySelector("#LettersPerSecond");
-    if (utilModule.IsPurchasedUpgrade(3) &&
-        lettersPerSecond &&
-        lettersPerSecond instanceof HTMLElement)
-        lettersPerSecond.style.display = "block";
+    if (lettersPerSecond && lettersPerSecond instanceof HTMLElement) {
+        if (utilModule.IsPurchasedUpgrade(3)) {
+            lettersPerSecond.style.display = "block";
+        }
+        else
+            lettersPerSecond.style.display = "none";
+    }
     const passiveMenuButton = document.querySelector("#passiveMenuButton");
     const passiveUpgradesWrapper = document.querySelector("#PassiveUpgradesWrapper");
-    if (utilModule.IsPurchasedUpgrade(4) &&
-        passiveMenuButton &&
+    if (passiveMenuButton &&
         passiveMenuButton instanceof HTMLElement &&
         passiveUpgradesWrapper &&
         passiveUpgradesWrapper instanceof HTMLElement) {
-        passiveMenuButton.style.display = "flex";
-        passiveUpgradesWrapper.style.display = "flex";
+        if (utilModule.IsPurchasedUpgrade(4)) {
+            passiveMenuButton.style.display = "flex";
+            passiveUpgradesWrapper.style.display = "flex";
+        }
+        else {
+            passiveMenuButton.style.display = "none";
+            passiveUpgradesWrapper.style.display = "none";
+        }
     }
     const cardsMenuButton = document.querySelector("#cardsMenuButton");
-    if (utilModule.IsPurchasedUpgrade(9) &&
-        cardsMenuButton &&
-        cardsMenuButton instanceof HTMLElement)
-        cardsMenuButton.style.display = "flex";
+    if (cardsMenuButton && cardsMenuButton instanceof HTMLElement) {
+        if (utilModule.IsPurchasedUpgrade(9)) {
+            cardsMenuButton.style.display = "flex";
+        }
+        else
+            cardsMenuButton.style.display = "none";
+    }
     const challengesMenuButton = document.querySelector("#challengesMenuButton");
-    if (utilModule.IsPurchasedUpgrade(11) &&
-        challengesMenuButton &&
-        challengesMenuButton instanceof HTMLElement)
-        challengesMenuButton.style.display = "flex";
+    if (challengesMenuButton && challengesMenuButton instanceof HTMLElement) {
+        if (utilModule.IsPurchasedUpgrade(11)) {
+            challengesMenuButton.style.display = "flex";
+        }
+        else
+            challengesMenuButton.style.display = "none";
+    }
     const prestigeMenuButton = document.querySelector("#prestigeMenuButton");
-    if (gameObjects.game.allTimePoints >= 1000000 &&
-        prestigeMenuButton &&
-        prestigeMenuButton instanceof HTMLElement)
-        prestigeMenuButton.style.display = "flex";
+    if (prestigeMenuButton && prestigeMenuButton instanceof HTMLElement) {
+        if (gameObjects.game.allTimePoints >= 1000000) {
+            prestigeMenuButton.style.display = "flex";
+        }
+        else
+            prestigeMenuButton.style.display = "none";
+    }
     const PrestigeUpgradesWrapper = document.querySelector("#PrestigeUpgradesWrapper");
-    if (gameObjects.game.prestigeCount > 0 &&
-        PrestigeUpgradesWrapper &&
-        PrestigeUpgradesWrapper instanceof HTMLElement)
-        PrestigeUpgradesWrapper.style.display = "flex";
+    if (PrestigeUpgradesWrapper &&
+        PrestigeUpgradesWrapper instanceof HTMLElement) {
+        if (gameObjects.game.prestigeCount > 0) {
+            PrestigeUpgradesWrapper.style.display = "flex";
+        }
+        else
+            PrestigeUpgradesWrapper.style.display = "none";
+    }
     if (!gameObjects.game.isInChallenge &&
-        gameObjects.game.challenges.filter((x) => x.onChallenge).length == 0)
+        !gameObjects.game.challenges.find((x) => x.onChallenge))
         gameObjects.activeGame = utilModule.Copy(gameObjects.game);
 }, 100);
 let letters = 0;
@@ -271,11 +292,14 @@ const display = document.querySelector("#LettersPerSecond");
 const input = document.querySelector("#WordBox");
 if (input) {
     input.addEventListener("keydown", function () {
-        if (gameObjects.game.challenges[0].onChallenge) {
-            gameObjects.game.letterCounter++;
-            if (gameObjects.game.challenges[0].restriction <=
-                gameObjects.game.letterCounter)
-                gameObjects.game.isInChallenge = false;
+        const challenge1 = gameObjects.game.challenges.find((x) => x.id == 1);
+        if (challenge1) {
+            if (challenge1.onChallenge) {
+                gameObjects.game.letterCounter++;
+                if (challenge1.restriction <=
+                    gameObjects.game.letterCounter)
+                    gameObjects.game.isInChallenge = false;
+            }
         }
         console.log(gameObjects.game.letterCounter);
         letters++;
@@ -381,23 +405,23 @@ function Tab(tabName) {
 }
 function SetCosts() {
     const multiUpgrade1 = document.querySelector("#multiUpgrade1");
-    const multiUpgrade1Object = gameObjects.game.multiUpgrades.find(x => x.id == 1);
+    const multiUpgrade1Object = gameObjects.game.multiUpgrades.find((x) => x.id == 1);
     if (multiUpgrade1)
         multiUpgrade1.textContent =
-            "+1 point per word! Cost: " + (multiUpgrade1Object ?
-                Math.round(multiUpgrade1Object.cost) : 50);
+            "+1 point per word! Cost: " +
+                (multiUpgrade1Object ? Math.round(multiUpgrade1Object.cost) : 50);
     const multiUpgrade2 = document.querySelector("#multiUpgrade2");
-    const multiUpgrade2Object = gameObjects.game.multiUpgrades.find(x => x.id == 2);
+    const multiUpgrade2Object = gameObjects.game.multiUpgrades.find((x) => x.id == 2);
     if (multiUpgrade2)
         multiUpgrade2.textContent =
-            "+1 letter per word! Cost: " + (multiUpgrade2Object ?
-                Math.round(multiUpgrade2Object.cost) : 100);
+            "+1 letter per word! Cost: " +
+                (multiUpgrade2Object ? Math.round(multiUpgrade2Object.cost) : 100);
     const multiUpgrade3 = document.querySelector("#multiUpgrade3");
-    const multiUpgrade3Object = gameObjects.game.multiUpgrades.find(x => x.id == 3);
+    const multiUpgrade3Object = gameObjects.game.multiUpgrades.find((x) => x.id == 3);
     if (multiUpgrade3)
         multiUpgrade3.textContent =
-            "+25% points! Cost: " + (multiUpgrade3Object ?
-                Math.round(multiUpgrade3Object.cost) : 500);
+            "+25% points! Cost: " +
+                (multiUpgrade3Object ? Math.round(multiUpgrade3Object.cost) : 500);
     const cardsButton = document.querySelector("#cardsButton");
     if (cardsButton)
         cardsButton.textContent = `Get a Pack! Cost: ${Math.round(gameObjects.game.cardCost) == 0

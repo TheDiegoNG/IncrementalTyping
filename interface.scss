@@ -264,8 +264,22 @@ button {
   font-size: var(--small-custom-text);
 }
 
-.upgradesDesc {
+.upgradeText {
   margin-top: 3rem;
+  text-align: center;
+}
+
+.upgradesTitle,
+.upgradeDesc {
+  margin: 0;
+}
+
+.upgradesTitle {
+  font-size: var(--small-custom-text);
+}
+
+.upgradesDesc {
+  font-size: var(--xsmall-custom-text);
 }
 
 .upgradeWrapper {
@@ -497,7 +511,7 @@ button {
   color: var(--light-black);
   text-align: center;
   transition: transform 200ms cubic-bezier(0.15, 0.72, 0.2, 0.83);
-  transform: translateX(--offset) rotate(--degrees);
+  transform: translateX(var(--offset)) rotate(var(--degrees));
 }
 
 

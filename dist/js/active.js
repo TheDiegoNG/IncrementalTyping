@@ -63,7 +63,8 @@ export function CalculatePoints(wordLength) {
                 1 *
                     gameObjects.game.cards.filter((x) => x.name === "Fastest Progress (L)")
                         .length;
-    totalPoints *= 1 + gameObjects.game.multiUpgrades[2].amountBought * 0.25;
+    const multiUpgrade2 = gameObjects.game.multiUpgrades.find(x => x.id == 2);
+    totalPoints *= !multiUpgrade2 ? 1 : 1 + multiUpgrade2.amountBought * 0.25;
     if (utilModule.IsPurchasedPrestigeUpgrade(1))
         totalPoints *= 2;
     return totalPoints;

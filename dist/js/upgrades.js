@@ -26,29 +26,38 @@ passiveUpgrades.push(new Upgrade("The Gacha Gods have spoken", "+2 Cards Per Rol
 passiveUpgrades.push(new Upgrade("Better Scaling for MultiUpgrades!", "x1.25 Points", 100, 3));
 passiveUpgrades.push(new Upgrade("It seems that the next time you Prestige you can bring the enhancer with you. But the upgrades must wear out", "Keep your Passive Income (Not your upgrades) when Prestige! (PP resets too)", 500, 4));
 function ChangeBasicUpgradesText(upgradeNumber) {
-    const basicUpgradesText = document.querySelector("#basicUpgradesDesc");
+    const basicUpgradesTitle = document.querySelector("#basicUpgradesTitle");
+    const basicUpgradesDesc = document.querySelector("#basicUpgradesDesc");
     console.log(upgradeNumber);
     const upgrade = basicUpgrades.find(x => x.id == upgradeNumber);
     if (!upgrade)
         return;
-    if (basicUpgradesText)
-        basicUpgradesText.textContent = upgrade.name;
+    if (basicUpgradesTitle)
+        basicUpgradesTitle.textContent = upgrade.name;
+    if (basicUpgradesDesc)
+        basicUpgradesDesc.textContent = upgrade.description;
 }
 function ChangePassiveUpgradesText(upgradeNumber) {
+    const passiveUpgradesTitle = document.querySelector("#passiveUpgradesTitle");
     const passiveUpgradesText = document.querySelector("#passiveUpgradesDesc");
     const upgrade = passiveUpgrades.find(x => x.id == upgradeNumber);
     if (!upgrade)
         return;
+    if (passiveUpgradesTitle)
+        passiveUpgradesTitle.textContent = upgrade.name;
     if (passiveUpgradesText)
-        passiveUpgradesText.textContent = upgrade.name;
+        passiveUpgradesText.textContent = upgrade.description;
 }
 function ChangePrestigeUpgradesText(upgradeNumber) {
+    const prestigeUpgradesTitle = document.querySelector("#prestigeUpgradesTitle");
     const prestigeUpgradesText = document.querySelector("#prestigeUpgradesDesc");
     const upgrade = prestigeUpgrades.find(x => x.id == upgradeNumber);
     if (!upgrade)
         return;
+    if (prestigeUpgradesTitle)
+        prestigeUpgradesTitle.textContent = upgrade.name;
     if (prestigeUpgradesText)
-        prestigeUpgradesText.textContent = upgrade.name;
+        prestigeUpgradesText.textContent = upgrade.description;
 }
 console.time("GameTime");
 const upgradeButtons = document.querySelectorAll('.upgradeSquare');

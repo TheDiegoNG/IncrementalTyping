@@ -254,8 +254,22 @@ button {
   font-size: var(--small-custom-text);
 }
 
-.upgradesDesc {
+.upgradeText {
   margin-top: 3rem;
+  text-align: center;
+}
+
+.upgradesTitle,
+.upgradeDesc {
+  margin: 0;
+}
+
+.upgradesTitle {
+  font-size: var(--small-custom-text);
+}
+
+.upgradesDesc {
+  font-size: var(--xsmall-custom-text);
 }
 
 .upgradeWrapper {
@@ -482,7 +496,7 @@ button {
   color: var(--light-black);
   text-align: center;
   transition: transform 200ms cubic-bezier(0.15, 0.72, 0.2, 0.83);
-  transform: translateX(--offset) rotate(--degrees);
+  transform: translateX(var(--offset)) rotate(var(--degrees));
 }
 
 .singleCard:nth-child(1) {
@@ -493,6 +507,206 @@ button {
 .viewerCardsContainer:hover > .singleCard:nth-child(1) {
   --degrees: -15deg;
   --offset: -60%;
+}
+
+.singleCard:nth-child(2) {
+  --degrees: -4deg;
+  --offset: -15%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(2) {
+  --degrees: -12deg;
+  --offset: -45%;
+}
+
+.singleCard:nth-child(3) {
+  --degrees: -3deg;
+  --offset: -10%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(3) {
+  --degrees: -9deg;
+  --offset: -30%;
+}
+
+.singleCard:nth-child(4) {
+  --degrees: -2deg;
+  --offset: -5%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(4) {
+  --degrees: -6deg;
+  --offset: -15%;
+}
+
+.singleCard:nth-child(5) {
+  --degrees: -1deg;
+  --offset: 0%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(5) {
+  --degrees: -3deg;
+  --offset: 0%;
+}
+
+.singleCard:nth-child(6) {
+  --degrees: 0deg;
+  --offset: 5%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(6) {
+  --degrees: 0deg;
+  --offset: 15%;
+}
+
+.singleCard:nth-child(7) {
+  --degrees: 1deg;
+  --offset: 10%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(7) {
+  --degrees: 3deg;
+  --offset: 30%;
+}
+
+.singleCard:nth-child(8) {
+  --degrees: 2deg;
+  --offset: 15%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(8) {
+  --degrees: 6deg;
+  --offset: 45%;
+}
+
+.singleCard:nth-child(9) {
+  --degrees: 3deg;
+  --offset: 20%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(9) {
+  --degrees: 9deg;
+  --offset: 60%;
+}
+
+.singleCard:nth-child(10) {
+  --degrees: 4deg;
+  --offset: 25%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(10) {
+  --degrees: 12deg;
+  --offset: 75%;
+}
+
+.singleCard:nth-child(11) {
+  --degrees: 5deg;
+  --offset: 30%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(11) {
+  --degrees: 15deg;
+  --offset: 90%;
+}
+
+.singleCard:nth-child(12) {
+  --degrees: 6deg;
+  --offset: 35%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(12) {
+  --degrees: 18deg;
+  --offset: 105%;
+}
+
+.singleCard:nth-child(13) {
+  --degrees: 7deg;
+  --offset: 40%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(13) {
+  --degrees: 21deg;
+  --offset: 120%;
+}
+
+.singleCard:nth-child(14) {
+  --degrees: 8deg;
+  --offset: 45%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(14) {
+  --degrees: 24deg;
+  --offset: 135%;
+}
+
+.singleCard:nth-child(15) {
+  --degrees: 9deg;
+  --offset: 50%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(15) {
+  --degrees: 27deg;
+  --offset: 150%;
+}
+
+.singleCard:nth-child(16) {
+  --degrees: 10deg;
+  --offset: 55%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(16) {
+  --degrees: 30deg;
+  --offset: 165%;
+}
+
+.singleCard:nth-child(17) {
+  --degrees: 11deg;
+  --offset: 60%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(17) {
+  --degrees: 33deg;
+  --offset: 180%;
+}
+
+.singleCard:nth-child(18) {
+  --degrees: 12deg;
+  --offset: 65%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(18) {
+  --degrees: 36deg;
+  --offset: 195%;
+}
+
+.singleCard:nth-child(19) {
+  --degrees: 13deg;
+  --offset: 70%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(19) {
+  --degrees: 39deg;
+  --offset: 210%;
+}
+
+.singleCard:nth-child(20) {
+  --degrees: 14deg;
+  --offset: 75%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(20) {
+  --degrees: 42deg;
+  --offset: 225%;
+}
+
+.singleCard:nth-child(21) {
+  --degrees: 15deg;
+  --offset: 80%;
+}
+
+.viewerCardsContainer:hover > .singleCard:nth-child(21) {
+  --degrees: 45deg;
+  --offset: 240%;
 }
 
 .viewerActive {

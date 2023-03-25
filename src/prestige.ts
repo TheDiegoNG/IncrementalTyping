@@ -59,7 +59,6 @@ function PrestigeStats() {
   gameObjects.game.passiveRate = 1000;
   gameObjects.game.cards = [];
   gameObjects.game.cardCost = 0;
-  gameObjects.game.challenges = [];
   gameObjects.game.isInChallenge = false;
 
   const cardsContainer = document.querySelector("#cardsContainer");

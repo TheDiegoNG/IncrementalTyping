@@ -8,7 +8,7 @@ challengesElements.forEach((challenge, index) => {
     const challengeNumber = challengeId.match(/\d+$/);
     if (challengeNumber) {
         challenge.addEventListener("click", (e) => {
-            StartChallenge(parseInt(challengeNumber[0]) - 1);
+            StartChallenge(parseInt(challengeNumber[0]));
         });
     }
 });
@@ -26,10 +26,11 @@ function StartChallenge(challengeNumber) {
     prestigeModule.Prestige();
     setTimeout(function () {
         LoadAchievements();
+        LoadChallenges();
         gameObjects.game = utilModule.Copy(gameObjects.challengeGame);
         gameObjects.game.isInChallenge = true;
         StartTimer(60, challengeNumber);
-        challenge.onChallenge = true;
+        gameObjects.game.challenges.find(x => x.id == challengeNumber).onChallenge = true;
     }, 500);
 }
 const exitChallengeButton = document.querySelector("#exitChallengeButton");
@@ -114,10 +115,17 @@ if (progressBar && progressBar instanceof HTMLElement) {
 function LoadAchievements() {
     gameObjects.challengeGame.achievements = utilModule.Copy(gameObjects.game.achievements);
 }
+function LoadChallenges() {
+    gameObjects.challengeGame.challenges = utilModule.Copy(gameObjects.game.challenges);
+}
 export function CheckProgress() {
     if (!progressBar || !(progressBar instanceof HTMLElement))
         return;
     var progress = (gameObjects.game.wordsAmount * 100) / GetActiveChallengeObjective();
     progressBar.style.width = `${progress}%`;
 }
-var GetActiveChallengeObjective = () => gameObjects.game.challenges.find((x) => x.onChallenge).objective;
+function GetActiveChallengeObjective() {
+    const challenge = gameObjects.game.challenges.find((x) => x.onChallenge);
+    if (challenge)
+        return challenge.objective;
+}
