@@ -123,7 +123,7 @@ function SetWords() {
 function GenerateWord() {
     var filteredWordList = wordList.filter((x) => x.length <= gameObjects.game.maxLength);
     var generatedWord = filteredWordList[Math.floor(Math.random() * filteredWordList.length)];
-    if (utilModule.HasCard("All Lowercase") || utilModule.IsInChallenge(0))
+    if (utilModule.HasCard("All Lowercase") || utilModule.IsInChallenge(1))
         generatedWord = generatedWord.toLowerCase();
     return generatedWord;
 }
@@ -143,7 +143,7 @@ function checkText(event) {
                 wordBox.value = "";
             var pointsLetters = textBoxText.length;
             var lettersValue = activeModule.GetPointsLetters(textBoxText);
-            if (utilModule.IsPurchasedUpgrade(6)) {
+            if (utilModule.IsPurchasedUpgrade(7)) {
                 pointsLetters += lettersValue;
                 if (lettersValue > activeModule.GetPointsLetters(gameObjects.game.bestWord))
                     gameObjects.game.bestWord = textBoxText;
@@ -227,13 +227,13 @@ window.setInterval(function () {
         achievementsMenuButton.style.display = "flex";
     }
     const lettersPerSecond = document.querySelector("#LettersPerSecond");
-    if (utilModule.IsPurchasedUpgrade(2) &&
+    if (utilModule.IsPurchasedUpgrade(3) &&
         lettersPerSecond &&
         lettersPerSecond instanceof HTMLElement)
         lettersPerSecond.style.display = "block";
     const passiveMenuButton = document.querySelector("#passiveMenuButton");
     const passiveUpgradesWrapper = document.querySelector("#PassiveUpgradesWrapper");
-    if (utilModule.IsPurchasedUpgrade(3) &&
+    if (utilModule.IsPurchasedUpgrade(4) &&
         passiveMenuButton &&
         passiveMenuButton instanceof HTMLElement &&
         passiveUpgradesWrapper &&
@@ -242,12 +242,12 @@ window.setInterval(function () {
         passiveUpgradesWrapper.style.display = "flex";
     }
     const cardsMenuButton = document.querySelector("#cardsMenuButton");
-    if (utilModule.IsPurchasedUpgrade(8) &&
+    if (utilModule.IsPurchasedUpgrade(9) &&
         cardsMenuButton &&
         cardsMenuButton instanceof HTMLElement)
         cardsMenuButton.style.display = "flex";
     const challengesMenuButton = document.querySelector("#challengesMenuButton");
-    if (utilModule.IsPurchasedUpgrade(10) &&
+    if (utilModule.IsPurchasedUpgrade(11) &&
         challengesMenuButton &&
         challengesMenuButton instanceof HTMLElement)
         challengesMenuButton.style.display = "flex";

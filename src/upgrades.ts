@@ -35,6 +35,7 @@ passiveUpgrades.push(new Upgrade("It seems that the next time you Prestige you c
 
 function ChangeBasicUpgradesText(upgradeNumber: number) {
     const basicUpgradesText = document.querySelector("#basicUpgradesDesc");
+    console.log(upgradeNumber);
     const upgrade = basicUpgrades.find(x => x.id == upgradeNumber);
     if(!upgrade) return;
     if(basicUpgradesText) basicUpgradesText.textContent = upgrade.name;
@@ -64,26 +65,26 @@ upgradeButtons.forEach((upgradebutton, index) => {
     const buttonNumber = buttonId.match(/\d+$/);
     if(buttonId.startsWith('upgrade')) {
         upgradebutton.addEventListener('click', e => {
-            GetUpgrade(parseInt(buttonNumber![0]) - 1)
+            GetUpgrade(parseInt(buttonNumber![0]))
         });
         upgradebutton.addEventListener('mouseover', e => {
-            ChangeBasicUpgradesText(parseInt(buttonNumber![0]) - 1)
+            ChangeBasicUpgradesText(parseInt(buttonNumber![0]))
         });
     }
     if(buttonId.startsWith('passive')) {
         upgradebutton.addEventListener('click', e => {
-            GetPassiveUpgrade(parseInt(buttonNumber![0]) - 1)
+            GetPassiveUpgrade(parseInt(buttonNumber![0]))
         });
         upgradebutton.addEventListener('mouseover', e => {
-            ChangePassiveUpgradesText(parseInt(buttonNumber![0]) - 1)
+            ChangePassiveUpgradesText(parseInt(buttonNumber![0]))
         });
     }
     if(buttonId.startsWith('prestige')) {
         upgradebutton.addEventListener('click', e => {
-            GetPrestigeUpgrade(parseInt(buttonNumber![0]) - 1)
+            GetPrestigeUpgrade(parseInt(buttonNumber![0]))
         });
         upgradebutton.addEventListener('mouseover', e => {
-            ChangePrestigeUpgradesText(parseInt(buttonNumber![0]) - 1)
+            ChangePrestigeUpgradesText(parseInt(buttonNumber![0]))
         });
     }
 });
@@ -91,6 +92,7 @@ upgradeButtons.forEach((upgradebutton, index) => {
 
 export function GetUpgrade(upgradeNumber: number) {
     const upgrade = basicUpgrades.find(x => x.id == upgradeNumber);
+    console.log(upgradeNumber);
     if(!upgrade) return;
     if(gameObjects.game.upgrades.find(x => x.id == upgradeNumber) == undefined  && gameObjects.game.points >= upgrade.cost)
     {
@@ -131,16 +133,16 @@ export function SetUpgrades() {
 function SetActiveUpgrades() { 
     let myTable = document.querySelector('#upgradesTable');
     if(!myTable) return;
-    let cells = myTable.querySelectorAll('div');
-    cells.forEach(function callback(value, index) {
+    let cells = myTable.querySelectorAll('button');
+    cells.forEach(function callback(value, index) { 
         value.style.color = gameObjects.game.upgrades.find(x => x.id == index + 1) != undefined ? "#47682C" : "#FFFFFF";
     });
 }
 
 function SetPassiveUpgrades() { 
-    let myTable = document.querySelector('#passiveUpgradesTable');
+    let myTable = document.querySelector('#passiveUpgradesTable'); 
     if(!myTable) return;
-    let cells = myTable.querySelectorAll('div');
+    let cells = myTable.querySelectorAll('button');
     cells.forEach(function callback(value, index) {
         value.style.color = gameObjects.game.passiveUpgrades.find(x => x.id == index + 1) != undefined ? "#47682C" : "#FFFFFF";
     });
@@ -149,7 +151,7 @@ function SetPassiveUpgrades() {
 function SetPrestigeUpgrades() { 
     let myTable = document.querySelector('#prestigeUpgradesTable');
     if(!myTable) return;
-    let cells = myTable.querySelectorAll('div');
+    let cells = myTable.querySelectorAll('button');
     cells.forEach(function callback(value, index) {
         value.style.color = gameObjects.game.prestigeUpgrades.find(x => x.id == index + 1) != undefined ? "#47682C" : "#FFFFFF";
     });

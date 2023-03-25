@@ -124,7 +124,7 @@ function GenerateWord() {
   var generatedWord =
     filteredWordList[Math.floor(Math.random() * filteredWordList.length)];
 
-  if (utilModule.HasCard("All Lowercase") || utilModule.IsInChallenge(0))
+  if (utilModule.HasCard("All Lowercase") || utilModule.IsInChallenge(1))
     generatedWord = generatedWord.toLowerCase();
 
   return generatedWord;
@@ -146,7 +146,7 @@ async function checkText(event: Event) {
     if (wordBox) wordBox.value = "";
     var pointsLetters = textBoxText.length;
     var lettersValue = activeModule.GetPointsLetters(textBoxText);
-    if (utilModule.IsPurchasedUpgrade(6)) {
+    if (utilModule.IsPurchasedUpgrade(7)) {
       pointsLetters += lettersValue;
       if (lettersValue > activeModule.GetPointsLetters(gameObjects.game.bestWord))
         gameObjects.game.bestWord = textBoxText;
@@ -257,7 +257,7 @@ window.setInterval(function () {
   const lettersPerSecond = document.querySelector("#LettersPerSecond");
 
   if (
-    utilModule.IsPurchasedUpgrade(2) &&
+    utilModule.IsPurchasedUpgrade(3) &&
     lettersPerSecond &&
     lettersPerSecond instanceof HTMLElement
   )
@@ -268,7 +268,7 @@ window.setInterval(function () {
     "#PassiveUpgradesWrapper"
   );
   if (
-    utilModule.IsPurchasedUpgrade(3) &&
+    utilModule.IsPurchasedUpgrade(4) &&
     passiveMenuButton &&
     passiveMenuButton instanceof HTMLElement &&
     passiveUpgradesWrapper &&
@@ -280,7 +280,7 @@ window.setInterval(function () {
 
   const cardsMenuButton = document.querySelector("#cardsMenuButton");
   if (
-    utilModule.IsPurchasedUpgrade(8) &&
+    utilModule.IsPurchasedUpgrade(9) &&
     cardsMenuButton &&
     cardsMenuButton instanceof HTMLElement
   )
@@ -288,7 +288,7 @@ window.setInterval(function () {
 
   const challengesMenuButton = document.querySelector("#challengesMenuButton");
   if (
-    utilModule.IsPurchasedUpgrade(10) &&
+    utilModule.IsPurchasedUpgrade(11) &&
     challengesMenuButton &&
     challengesMenuButton instanceof HTMLElement
   )

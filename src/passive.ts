@@ -26,7 +26,7 @@ function createWord() {
   if (passivePointsWord) passivePointsWord.textContent = passiveWord;
   var points = GetPassivePoints(passiveWord);
   points *= portableGenerator.amountGained;
-  if (utilModule.IsPurchasedUpgrade(3))
+  if (utilModule.IsPurchasedUpgrade(4))
     gameObjects.game.passivePoints += points;
 }
 
@@ -35,7 +35,7 @@ setInterval(createWord, gameObjects.game.passiveRate);
 function GetPassivePoints(passiveWord: string) {
   var totalPoints = 0;
   totalPoints += passiveWord.length;
-  if (utilModule.IsPurchasedPassiveUpgrade(3))
+  if (utilModule.IsPurchasedPassiveUpgrade(4))
     totalPoints += activeModule.GetPointsLetters(passiveWord);
   if (utilModule.HasCard("+2 Passive Points (C)"))
     totalPoints +=
@@ -57,9 +57,9 @@ function GetPassivePoints(passiveWord: string) {
       25 *
       gameObjects.game.cards.filter((x) => x.name === "+25 Passive Points (L)")
         .length;
-  if (utilModule.IsPurchasedPassiveUpgrade(1)) totalPoints += 5;
-  if (utilModule.IsPurchasedPassiveUpgrade(0)) totalPoints *= 1.25;
-  if (utilModule.IsPurchasedPassiveUpgrade(2)) totalPoints *= 1.5;
+  if (utilModule.IsPurchasedPassiveUpgrade(2)) totalPoints += 5;
+  if (utilModule.IsPurchasedPassiveUpgrade(1)) totalPoints *= 1.25;
+  if (utilModule.IsPurchasedPassiveUpgrade(3)) totalPoints *= 1.5;
   if (utilModule.HasCard("10% Passive Points (C)"))
     totalPoints *=
       1 +
@@ -304,7 +304,7 @@ export function CalculatePassiveGenerators() {
     index < gameObjects.game.passiveGenerators.length;
     index++
   ) {
-    if (utilModule.IsPurchasedPassiveUpgrade(5)) {
+    if (utilModule.IsPurchasedPassiveUpgrade(6)) {
       gameObjects.game.passiveGenerators.find(
         (x) => x.id == index - 1
       )!.amountGained +=

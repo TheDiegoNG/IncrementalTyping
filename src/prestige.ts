@@ -45,8 +45,8 @@ function PrestigeStats() {
   gameObjects.game.allTimePoints = 0;
   gameObjects.game.upgrades = [];
   if (
-    utilModule.IsPurchasedUpgrade(3) &&
-    utilModule.IsPurchasedPrestigeUpgrade(3)
+    utilModule.IsPurchasedUpgrade(4) &&
+    utilModule.IsPurchasedPrestigeUpgrade(4)
   )
     upgradesmodule.GetUpgrade(3);
   gameObjects.game.maxLength = 4;

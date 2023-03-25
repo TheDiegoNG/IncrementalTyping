@@ -6,9 +6,9 @@ export function CalculatePoints(wordLength) {
     totalPoints += wordLength;
     const multiUpgrade1 = gameObjects.game.multiUpgrades.find(x => x.id == 1);
     totalPoints += multiUpgrade1 ? multiUpgrade1.amountBought : 0;
-    if (utilModule.IsPurchasedUpgrade(1))
+    if (utilModule.IsPurchasedUpgrade(2))
         totalPoints += 4;
-    if (utilModule.IsPurchasedUpgrade(11))
+    if (utilModule.IsPurchasedUpgrade(12))
         totalPoints += 20;
     if (utilModule.HasCard("+1 Points (C)"))
         totalPoints +=
@@ -26,18 +26,18 @@ export function CalculatePoints(wordLength) {
         totalPoints +=
             1 *
                 gameObjects.game.cards.filter((x) => x.name === "+10 Points (L)").length;
-    if (utilModule.IsPurchasedUpgrade(7))
+    if (utilModule.IsPurchasedUpgrade(8))
         totalPoints += 10;
-    if (utilModule.IsPurchasedUpgrade(0))
+    if (utilModule.IsPurchasedUpgrade(1))
         totalPoints *= 1.5;
-    if (utilModule.IsPurchasedUpgrade(4))
+    if (utilModule.IsPurchasedUpgrade(5))
         totalPoints *= 1.3;
-    if (utilModule.IsPurchasedUpgrade(9))
+    if (utilModule.IsPurchasedUpgrade(10))
         totalPoints *= 2;
-    if (utilModule.IsPurchasedUpgrade(5) &&
+    if (utilModule.IsPurchasedUpgrade(6) &&
         gameObjects.game.achievements.length > 0)
         totalPoints *= Math.sqrt(gameObjects.game.achievements.length);
-    if (utilModule.IsPurchasedUpgrade(3) && gameObjects.game.passivePoints > 0)
+    if (utilModule.IsPurchasedUpgrade(4) && gameObjects.game.passivePoints > 0)
         totalPoints *= Math.log10(gameObjects.game.passivePoints);
     if (utilModule.HasCard("Fast+ Progress (C)"))
         totalPoints *=
@@ -64,7 +64,7 @@ export function CalculatePoints(wordLength) {
                     gameObjects.game.cards.filter((x) => x.name === "Fastest Progress (L)")
                         .length;
     totalPoints *= 1 + gameObjects.game.multiUpgrades[2].amountBought * 0.25;
-    if (utilModule.IsPurchasedPrestigeUpgrade(0))
+    if (utilModule.IsPurchasedPrestigeUpgrade(1))
         totalPoints *= 2;
     return totalPoints;
 }
@@ -107,7 +107,7 @@ function AddMultiUpgrade(upgradeNumber) {
         upgradeBought.cost =
             costAux *
                 Math.pow((upgradeBought.amountBought + 1), Math.log10(upgradeBought.amountBought + 1));
-        if (utilModule.IsPurchasedPrestigeUpgrade(2))
+        if (utilModule.IsPurchasedPrestigeUpgrade(3))
             upgradeBought.cost =
                 costAux *
                     Math.pow((upgradeBought.amountBought / 2 + 1), Math.log10(upgradeBought.amountBought / 2 + 1));
