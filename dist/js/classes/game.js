@@ -25,7 +25,7 @@ class Game {
         this.prestigeUpgrades = [];
     }
 }
-let game = new Game(1000000000000000000000);
+let game = new Game(0);
 let challengeGame = new Game(0);
 let activeGame = new Game(0);
 export const gameObjects = {
