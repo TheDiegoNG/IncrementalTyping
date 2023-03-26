@@ -1,6 +1,6 @@
-import * as utilModule from "./util.js";
-import { gameObjects } from "./classes/game.js";
-import { Upgrade } from "./classes/upgrade.js";
+import * as utilModule from "./util";
+import { gameObjects } from "./classes/game";
+import { Upgrade } from "./classes/upgrade";
 
 export function CalculatePoints(wordLength: number) {
   var totalPoints: number = 0;

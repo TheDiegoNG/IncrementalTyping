@@ -1,6 +1,6 @@
-import * as utilModule from "./util.js";
-import { gameObjects } from "./classes/game.js";
-import { Card } from "./classes/card.js";
+import * as utilModule from "./util";
+import { gameObjects } from "./classes/game";
+import { Card } from "./classes/card";
 
 var commonCards: Card[] = [];
 

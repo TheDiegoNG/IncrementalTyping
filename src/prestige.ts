@@ -1,6 +1,6 @@
-import * as utilModule from "./util.js";
-import * as upgradesmodule from "./upgrades.js";
-import { gameObjects } from "./classes/game.js";
+import * as utilModule from "./util";
+import * as upgradesmodule from "./upgrades";
+import { gameObjects } from "./classes/game";
 
 export function SetPrestige() {
   const prestigePointsToGet = document.querySelector("#prestigePointsToGet");

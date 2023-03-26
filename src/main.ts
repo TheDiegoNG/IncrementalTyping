@@ -1,17 +1,18 @@
-import { Toast } from "./toastNotification.js";
-import { gameObjects } from "./classes/game.js";
-import * as utilModule from "./util.js";
-import * as achievementModule from "./achievements.js";
-import { achievements } from "./achievements.js";
-import * as statsModule from "./stats.js";
-import * as prestigeModule from "./prestige.js";
-import * as upgradesModule from "./upgrades.js";
-import * as cardsModule from "./cards.js";
-import * as optionsModule from "./options.js";
-import * as challengesModule from "./challenges.js";
-import * as passiveModule from "./passive.js";
-import * as activeModule from "./active.js";
-import { multiUpgrades } from "./active.js";
+import { Toast } from "./toastNotification";
+import { gameObjects } from "./classes/game";
+import * as utilModule from "./util";
+import * as achievementModule from "./achievements";
+import { achievements } from "./achievements";
+import * as statsModule from "./stats";
+import * as prestigeModule from "./prestige";
+import * as upgradesModule from "./upgrades";
+import * as cardsModule from "./cards";
+import * as optionsModule from "./options";
+import * as challengesModule from "./challenges";
+import * as passiveModule from "./passive";
+import * as activeModule from "./active";
+import { multiUpgrades } from "./active";
+import translator from "./translator";
 
 const wordListUrl =
   "https://raw.githubusercontent.com/dwyl/english-words/master/words.txt";
@@ -208,6 +209,7 @@ if (wordToGuessWrapper) {
 
 window.setInterval(function () {
   SetCosts();
+  updateText();
   statsModule.SetStats();
   achievementModule.CheckAchievements();
   prestigeModule.SetPrestige();
@@ -603,3 +605,21 @@ window.onmousemove = (e) => {
   //     easing: "ease"
   // });
 };
+
+const multiUpgrade1 = document.querySelector('#multiUpgrade1Desc')!;
+const multiUpgrade2 = document.querySelector('#multiUpgrade2Desc')!;
+const multiUpgrade3 = document.querySelector('#multiUpgrade3Desc')!;
+
+function updateText() {
+  const multiUpgrade1Desc = translator.t('multiUpgrade1Desc');
+  multiUpgrade1.textContent = multiUpgrade1Desc;
+
+  const multiUpgrade2Desc = translator.t('multiUpgrade2Desc');
+  multiUpgrade2.textContent = multiUpgrade2Desc;
+
+  const multiUpgrade3Desc = translator.t('multiUpgrade3Desc');
+  multiUpgrade3.textContent = multiUpgrade3Desc;
+
+}
+
+updateText();

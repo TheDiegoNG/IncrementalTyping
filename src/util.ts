@@ -1,4 +1,4 @@
-import { gameObjects } from "./classes/game.js";
+import { gameObjects } from "./classes/game";
 
 export var IsPurchasedUpgrade = (upgradeNumber: number) => gameObjects.game.upgrades.find(x => x.id == upgradeNumber);
 

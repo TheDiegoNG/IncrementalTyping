@@ -82,15 +82,15 @@
     <section id="activeMenu" class="upgradesContainer">
         <div class="multiUpgradesButtons">
             <div id="multiUpgrade1" class="multiUpgrade">
-                <p>+1 point per word!</p> 
+                <p id="multiUpgrade1Desc">+1 point per word!</p> 
                 <p id="multiUpgrade1Text"></p>
             </div>
             <div id="multiUpgrade2" class="multiUpgrade">
-                <p>+1 letter per word!</p>
+                <p id="multiUpgrade2Desc">+1 letter per word!</p>
                 <p id="multiUpgrade2Text"></p>
             </div>
             <div id="multiUpgrade3" class="multiUpgrade">
-                <p>+25% points!</p>
+                <p id="multiUpgrade3Desc">+25% points!</p>
                 <p id="multiUpgrade3Text"></p>
         </div>
     </section>
@@ -313,26 +313,18 @@
                 </select>
                 <button id="nextFont">&#8594;</button>
             </div>
+            <div id="languageContainer" class="languageContainer">
+                <p class="optionLanguage">Language:</p>
+                <button id="prevLanguage">&#8592;</button>
+                <select id="languageSelector" class="languageSelector">
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                </select>
+                <button id="nextLanguage">&#8594;</button>
+            </div>
         </div>
     </section>
 </body>
-<script type="module" src="dist\js\classes\achievement.js"></script>
-<script type="module" src="dist\js\classes\card.js"></script>
-<script type="module" src="dist\js\classes\challenge.js"></script>
-<script type="module" src="dist\js\classes\generator.js"></script>
-<script type="module" src="dist\js\classes\upgrade.js"></script>
-<script type="module" src="dist\js\classes\game.js"></script>
-<script type="module" src="dist\js\toastNotification.js"></script>
-<script type="module" src="dist\js\util.js"></script>
-<script type="module" src="dist\js\active.js"></script>
-<script type="module" src="dist\js\passive.js"></script>
-<script type="module" src="dist\js\upgrades.js"></script>
-<script type="module" src="dist\js\prestige.js"></script>
-<script type="module" src="dist\js\cards.js"></script>
-<script type="module" src="dist\js\challenges.js"></script>
-<script type="module" src="dist\js\achievements.js"></script>
-<script type="module" src="dist\js\stats.js"></script>
-<script type="module" src="dist\js\options.js"></script>
-<script type="module" src="dist\js\main.js"></script>
+<script src="dist\bundle.js"></script>
 
 </html>

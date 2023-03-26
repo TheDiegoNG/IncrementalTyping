@@ -1,7 +1,7 @@
-import * as utilModule from "./util.js";
-import { gameObjects } from "./classes/game.js";
-import * as prestigeModule from "./prestige.js";
-import { Challenge } from "./classes/challenge.js";
+import * as utilModule from "./util";
+import { gameObjects } from "./classes/game";
+import * as prestigeModule from "./prestige";
+import { Challenge } from "./classes/challenge";
 
 var challengesElements = document.querySelectorAll(".challenge");
 

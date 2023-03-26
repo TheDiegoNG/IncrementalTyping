@@ -1,5 +1,5 @@
-import { gameObjects } from "./classes/game.js";
-import { Upgrade } from "./classes/upgrade.js";
+import { gameObjects } from "./classes/game";
+import { Upgrade } from "./classes/upgrade";
 
 const basicUpgrades: Upgrade[] = [];
 

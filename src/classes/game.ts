@@ -1,8 +1,8 @@
-import { Achievement } from "./achievement.js";
-import { Card } from "./card.js";
-import { Challenge } from "./challenge.js";
-import { Generator } from "./generator.js";
-import { Upgrade } from "./upgrade.js";
+import { Achievement } from "./achievement";
+import { Card } from "./card";
+import { Challenge } from "./challenge";
+import { Generator } from "./generator";
+import { Upgrade } from "./upgrade";
 
 class Game {
   points: number;

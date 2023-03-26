@@ -1,7 +1,7 @@
-import { gameObjects } from "./classes/game.js";
-import * as utilModule from "./util.js";
-import * as activeModule from "./active.js";
-import { Generator } from "./classes/generator.js";
+import { gameObjects } from "./classes/game";
+import * as utilModule from "./util";
+import * as activeModule from "./active";
+import { Generator } from "./classes/generator";
 
 const generators: Generator[] = [];
 

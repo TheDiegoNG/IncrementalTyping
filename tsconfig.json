@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "es6",
+    "moduleResolution": "node",
     "lib": ["es2015", "DOM"],
     "strict": true,
     "esModuleInterop": true,
