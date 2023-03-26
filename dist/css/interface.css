@@ -209,7 +209,7 @@ button {
   flex-direction: column;
   justify-content: space-between;
   padding-block: 2rem;
-  width: 25vw;
+  width: 20vw;
   aspect-ratio: 5/7;
   font-family: var(--secondary-font);
   font-size: var(--medium-big-custom-text);
