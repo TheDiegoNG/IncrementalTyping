@@ -216,12 +216,12 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   padding-block: 2rem;
   width: 20vw;
-  aspect-ratio: 5 / 7;
+  aspect-ratio: 5 / 6;
   font-family: var(--secondary-font);
-  font-size: var(--medium-big-custom-text);
+  font-size: var(--medium-custom-text);
   border-radius: 3rem;
   background: var(--primary-900);
   overflow: hidden;
