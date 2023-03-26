@@ -5,8 +5,8 @@ import { Upgrade } from "./classes/upgrade.js";
 export function CalculatePoints(wordLength: number) {
   var totalPoints: number = 0;
   totalPoints += wordLength;
-  const multiUpgrade1 = gameObjects.game.multiUpgrades.find(x => x.id == 1);
-  totalPoints +=  multiUpgrade1 ? multiUpgrade1.amountBought : 0;
+  const multiUpgrade1 = gameObjects.game.multiUpgrades.find((x) => x.id == 1);
+  totalPoints += multiUpgrade1 ? multiUpgrade1.amountBought : 0;
   if (utilModule.IsPurchasedUpgrade(2)) totalPoints += 4;
   if (utilModule.IsPurchasedUpgrade(12)) totalPoints += 20;
   if (utilModule.HasCard("+1 Points (C)"))
@@ -60,7 +60,7 @@ export function CalculatePoints(wordLength: number) {
       1 *
         gameObjects.game.cards.filter((x) => x.name === "Fastest Progress (L)")
           .length;
-  const multiUpgrade2 = gameObjects.game.multiUpgrades.find(x => x.id == 2);
+  const multiUpgrade2 = gameObjects.game.multiUpgrades.find((x) => x.id == 2);
   totalPoints *= !multiUpgrade2 ? 1 : 1 + multiUpgrade2.amountBought * 0.25;
   if (utilModule.IsPurchasedPrestigeUpgrade(1)) totalPoints *= 2;
   return totalPoints;
@@ -123,7 +123,7 @@ function AddMultiUpgrade(upgradeNumber: number) {
     );
     if (!upgradeBought) return;
 
-      upgradeBought.amountBought++;
+    upgradeBought.amountBought++;
 
     var costAux = upgradeBought.cost;
     upgradeBought.cost =
@@ -135,7 +135,7 @@ function AddMultiUpgrade(upgradeNumber: number) {
         costAux *
         (upgradeBought.amountBought / 2 + 1) **
           Math.log10(upgradeBought.amountBought / 2 + 1);
-    if(upgradeNumber == 2) gameObjects.game.maxLength++;
+    if (upgradeNumber == 2) gameObjects.game.maxLength++;
   }
 }
 

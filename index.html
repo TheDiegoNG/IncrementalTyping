@@ -3,14 +3,12 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="dist\css\interface.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;600&family=Nabla&family=Raleway:wght@100&family=Saira+Condensed:wght@900&family=Source+Code+Pro&display=swap"
-        rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&family=Montserrat:wght@100;400;600&family=Nabla&family=Raleway:wght@100&family=Saira+Condensed:wght@900&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>IncrementalTyping</title>
 </head>
 
@@ -24,84 +22,110 @@
         <div id="PopUpNotif" class="PopUp"></div> -->
     </div>
     <div class="wordToGuessContainer">
-        <p id="challengeTimer" class="challengeTimer">
+        <p id="challengeTimer" class="challengeTimer"></p>
         <div id="WordsContainer" class="wordsContainer">
-            <p id="WordsLeft" class="wordsLeft">
-            <p id="WordsLeft2" class="wordsLeft">
-            <div id="WordToGuessWrapper" class="wordToGuessWrapper"><p id="WordToGuess" class="wordToGuess"></div>
-            <p id="WordsRight" class="wordsRight">
-            <p id="WordsRight2" class="wordsRight">
+            <p id="WordsLeft" class="wordsLeft"></p>
+            <p id="WordsLeft2" class="wordsLeft"></p>
+            <div id="WordToGuessWrapper" class="wordToGuessWrapper">
+                <p id="WordToGuess" class="wordToGuess"></p>
+            </div>
+            <p id="WordsRight" class="wordsRight"></p>
+            <p id="WordsRight2" class="wordsRight"></p>
         </div>
-        <p id="LettersPerSecond" class="lettersPerSecond" style="display:none;"></p>
+
+        <p id="LettersPerSecond" class="lettersPerSecond" style="display: none"></p>
         <div>
             <div id="WordWrapper" class="wordWrapper">
-                <input type="text" id="WordBox" class="wordBox" name="WordBox">
+                <input type="text" id="WordBox" class="wordBox" name="WordBox" />
                 <div id="gameButtonWrapper" class="gameButtonWrapper hoverEffectContainer">
-                    <button id="saveButton" class="gameButton hoverEffectChild">Save</button>
-                    <button id="logButton" class="gameButton hoverEffectChild">Log</button>
+                    <button id="saveButton" class="gameButton hoverEffectChild">
+                        Save
+                    </button>
+                    <button id="logButton" class="gameButton hoverEffectChild">
+                        Log
+                    </button>
                 </div>
             </div>
         </div>
-        <p id="PointsCounter" class="pointsCounter">
+        <p id="PointsCounter" class="pointsCounter"></p>
     </div>
+
     <div id="TabsContainer" class="tabsContainer hoverEffectContainer">
-        <button id="activeMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Active</button>
-        <button id="passiveMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Passive</button>
-        <button id="upgradesMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Upgrades</button>
-        <button id="challengesMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Challenges</button>
-        <button id="prestigeMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Prestige</button>
-        <button id="cardsMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Cards</button>
-        <button id="achievementsMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Achievements</button>
-        <button id="statsMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Stats</button>
-        <button id="optionsMenuButton" class="menuButton hoverEffectChild"
-            style="display:none;">Options</button>
+        <button id="activeMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Active
+        </button>
+        <button id="passiveMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Passive
+        </button>
+        <button id="upgradesMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Upgrades
+        </button>
+        <button id="challengesMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Challenges
+        </button>
+        <button id="prestigeMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Prestige
+        </button>
+        <button id="cardsMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Cards
+        </button>
+        <button id="achievementsMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Achievements
+        </button>
+        <button id="statsMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Stats
+        </button>
+        <button id="optionsMenuButton" class="menuButton hoverEffectChild" style="display: none">
+            Options
+        </button>
     </div>
     <section id="activeMenu" class="upgradesContainer">
-        <div class="multiUpgradesContainer">
-            <div class="multiUpgradesButtons hoverEffectContainer">
-                <button id="multiUpgrade1" class="hoverEffectChild">+1 point per word!</button>
-                <button id="multiUpgrade2" class="hoverEffectChild">+1 point per word!</button>
-                <button id="multiUpgrade3" class="hoverEffectChild">+25% points!</button>
+        <div class="multiUpgradesButtons">
+            <div id="multiUpgrade1" class="multiUpgrade">
+                <p>+1 point per word!</p> 
+                <p id="multiUpgrade1Text"></p>
             </div>
+            <div id="multiUpgrade2" class="multiUpgrade">
+                <p>+1 letter per word!</p>
+                <p id="multiUpgrade2Text"></p>
+            </div>
+            <div id="multiUpgrade3" class="multiUpgrade">
+                <p>+25% points!</p>
+                <p id="multiUpgrade3Text"></p>
         </div>
     </section>
     <section id="passiveMenu">
         <div id="PassivePointsWrapper" class="passivePointsWrapper">
             <div id="PassivePointsLeft" class="passivePointsLeft">
-                <p id="passivePointsWord" class="passivePointsWord">
-                <p id="passivePoints" class="passivePoints">
+                <p id="passivePointsWord" class="passivePointsWord"></p>
+                <p id="passivePoints" class="passivePoints"></p>
             </div>
+
             <div id="PassivePointsRight" class="passivePointsRight">
-                <p id="PassivePointsGenerator0" class="passivePointsGenerator">Generate
-                    Passive Points! | Generators:</p>
-                <p id="PassivePointsGenerator1" class="passivePointsGenerator"
-                    style="display: none;">Generate the
-                    First Generator | Generators:</p>
-                <p id="PassivePointsGenerator2" class="passivePointsGenerator"
-                    style="display: none;">Generate the
-                    Second Generator | Generators:</p>
-                <p id="PassivePointsGenerator3" class="passivePointsGenerator"
-                    style="display: none;">Generate the
-                    Third Generator | Generators:</p>
-                <p id="PassivePointsGenerator4" class="passivePointsGenerator"
-                    style="display: none;">Generate the
-                    Fourth Generator | Generators:</p>
-                <p id="PassivePointsGenerator5" class="passivePointsGenerator"
-                    style="display: none;">Generate the
-                    Fifth Generator | Generators:</p>
-                <p id="PassivePointsGenerator6" class="passivePointsGenerator"
-                    style="display: none;">Generate the
-                    Sixth Generator | Generators:</p>
-                <button id="GeneratorButton" class="generatorButton">Buy the next Tier of
-                    Generators! | Cost</button>
+                <p id="PassivePointsGenerator0" class="passivePointsGenerator">
+                    Generate Passive Points! | Generators:
+                </p>
+                <p id="PassivePointsGenerator1" class="passivePointsGenerator" style="display: none">
+                    Generate the First Generator | Generators:
+                </p>
+                <p id="PassivePointsGenerator2" class="passivePointsGenerator" style="display: none">
+                    Generate the Second Generator | Generators:
+                </p>
+                <p id="PassivePointsGenerator3" class="passivePointsGenerator" style="display: none">
+                    Generate the Third Generator | Generators:
+                </p>
+                <p id="PassivePointsGenerator4" class="passivePointsGenerator" style="display: none">
+                    Generate the Fourth Generator | Generators:
+                </p>
+                <p id="PassivePointsGenerator5" class="passivePointsGenerator" style="display: none">
+                    Generate the Fifth Generator | Generators:
+                </p>
+                <p id="PassivePointsGenerator6" class="passivePointsGenerator" style="display: none">
+                    Generate the Sixth Generator | Generators:
+                </p>
+                <button id="GeneratorButton" class="generatorButton">
+                    Buy the next Tier of Generators! | Cost
+                </button>
             </div>
         </div>
     </section>
@@ -147,12 +171,14 @@
                         <span>L</span>
                     </button>
                 </div>
-                <div class="upgradeText">    
-                    <p id="basicUpgradesTitle" class="upgradesTitle">Hover and upgrade to see its description!</p>
+                <div class="upgradeText">
+                    <p id="basicUpgradesTitle" class="upgradesTitle">
+                        Hover and upgrade to see its description!
+                    </p>
                     <p id="basicUpgradesDesc" class="upgradesDesc"></p>
                 </div>
             </div>
-            <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper" style="display:none;">
+            <div id="PassiveUpgradesWrapper" class="upgradeTypeWrapper" style="display: none">
                 <h2>Passive Upgrades</h2>
                 <div id="passiveUpgradesTable" class="upgradesTable hoverEffectContainer">
                     <button class="upgradeSquare hoverEffectChild" id="passiveUpgrade1">
@@ -193,11 +219,13 @@
                     </button>
                 </div>
                 <div class="upgradeText">
-                    <p id="passiveUpgradesTitle" class="upgradesTitle">Hover and upgrade to see its description!</p>
+                    <p id="passiveUpgradesTitle" class="upgradesTitle">
+                        Hover and upgrade to see its description!
+                    </p>
                     <p id="passiveUpgradesDesc" class="upgradesDesc"></p>
                 </div>
             </div>
-            <div id="PrestigeUpgradesWrapper" class="upgradeTypeWrapper" style="display:none;">
+            <div id="PrestigeUpgradesWrapper" class="upgradeTypeWrapper" style="display: none">
                 <h2>Prestige Upgrades</h2>
                 <div id="prestigeUpgradesTable" class="upgradesTable hoverEffectContainer">
                     <button class="upgradeSquare hoverEffectChild" id="prestigeUpgrade1">
@@ -214,7 +242,9 @@
                     </button>
                 </div>
                 <div class="upgradeText">
-                    <p id="prestigeUpgradesTitle" class="upgradesTitle">Hover and upgrade to see its description!</p>
+                    <p id="prestigeUpgradesTitle" class="upgradesTitle">
+                        Hover and upgrade to see its description!
+                    </p>
                     <p id="prestigeUpgradesDesc" class="upgradesDesc"></p>
                 </div>
             </div>
@@ -224,16 +254,16 @@
         <div id="cardsHeaderContainer" class="cardsHeaderContainer">
             <button id="cardsButton" class="cardsButton"></button>
         </div>
-        <p id="cardBonus" class="cardBonus">
+        <p id="cardBonus" class="cardBonus"></p>
         <div id="cardsContainer" class="cardsContainer"></div>
     </section>
     <section id="prestigeMenu">
         <div id="prestigePointsContainer" class="prestigePointsContainer">
             <p id="prestigePointsToGet">Prestige Points when Prestige:</p>
-            <p id="prestigePointsAmount">Prestige Points: </p>
-            <button id="prestigeButton" class="cardsButton"> Prestige!</button>
+            <p id="prestigePointsAmount">Prestige Points:</p>
+            <button id="prestigeButton" class="cardsButton">Prestige!</button>
         </div>
-        </section>
+    </section>
     <section id="challengesMenu">
         <div id="challengesContainerWrapper" class="challengesContainerWrapper hoverEffectContainer">
             <button id="challenge1" class="challenge hoverEffectChild">
@@ -244,7 +274,9 @@
                 Write 50 4-letter words in only 1 minute
                 <span class="challengeReward">REWARD: 50% more Points!</span>
             </button>
-            <button id="exitChallengeButton" class="exitChallengeButton">Exit Challenge</button>
+            <button id="exitChallengeButton" class="exitChallengeButton">
+                Exit Challenge
+            </button>
         </div>
     </section>
     <section id="achievementsMenu">
@@ -252,15 +284,15 @@
     </section>
     <section id="statsMenu">
         <div id="statsContainer" class="statsContainer">
-            <p id="pointsStat">
-            <p id="maxLengthStat">
-            <p id="bestWordStat">
-            <p id="multiupgradesStat">
-            <p id="achievementsAmountStat">
-            <p id="wordsAmountStat">
-            <p id="passiveLengthStat">
-            <p id="passivePointsStat">
-            <p id="cardsAmountStat">
+            <p id="pointsStat"></p>
+            <p id="maxLengthStat"></p>
+            <p id="bestWordStat"></p>
+            <p id="multiupgradesStat"></p>
+            <p id="achievementsAmountStat"></p>
+            <p id="wordsAmountStat"></p>
+            <p id="passiveLengthStat"></p>
+            <p id="passivePointsStat"></p>
+            <p id="cardsAmountStat"></p>
         </div>
     </section>
     <section id="optionsMenu">
@@ -272,8 +304,12 @@
                     <option value="'Montserrat', sans-serif">Montserrat</option>
                     <option value="'Nabla', cursive">Nabla</option>
                     <option value="'Raleway', sans-serif">Raleway</option>
-                    <option value="'Saira Condensed', sans-serif">Saira Condensed</option>
-                    <option value="'Source Code Pro', monospace">Source Code Pro</option>
+                    <option value="'Saira Condensed', sans-serif">
+                        Saira Condensed
+                    </option>
+                    <option value="'Source Code Pro', monospace">
+                        Source Code Pro
+                    </option>
                 </select>
                 <button id="nextFont">&#8594;</button>
             </div>
@@ -298,4 +334,5 @@
 <script type="module" src="dist\js\stats.js"></script>
 <script type="module" src="dist\js\options.js"></script>
 <script type="module" src="dist\js\main.js"></script>
+
 </html>
