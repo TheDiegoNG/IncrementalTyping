@@ -4,7 +4,7 @@ import { Upgrade } from "./classes/upgrade.js";
 export function CalculatePoints(wordLength) {
     var totalPoints = 0;
     totalPoints += wordLength;
-    const multiUpgrade1 = gameObjects.game.multiUpgrades.find(x => x.id == 1);
+    const multiUpgrade1 = gameObjects.game.multiUpgrades.find((x) => x.id == 1);
     totalPoints += multiUpgrade1 ? multiUpgrade1.amountBought : 0;
     if (utilModule.IsPurchasedUpgrade(2))
         totalPoints += 4;
@@ -63,7 +63,7 @@ export function CalculatePoints(wordLength) {
                 1 *
                     gameObjects.game.cards.filter((x) => x.name === "Fastest Progress (L)")
                         .length;
-    const multiUpgrade2 = gameObjects.game.multiUpgrades.find(x => x.id == 2);
+    const multiUpgrade2 = gameObjects.game.multiUpgrades.find((x) => x.id == 2);
     totalPoints *= !multiUpgrade2 ? 1 : 1 + multiUpgrade2.amountBought * 0.25;
     if (utilModule.IsPurchasedPrestigeUpgrade(1))
         totalPoints *= 2;

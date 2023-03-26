@@ -3,13 +3,22 @@
   --xsmall-custom-text: 1rem;
   --small-custom-text: clamp(1rem, 1vw, 2rem);
   --medium-custom-text: clamp(1.5rem, 3vw, 5rem);
+  --medium-big-custom-text: clamp(2rem, 4vw, 6rem);
   --big-custom-text: clamp(2rem, 7vw, 10rem);
-  --light-black: rgb(20, 20, 20);
+  --black-900: rgb(20, 20, 20);
   --golden: rgb(237, 203, 177);
   --green: rgb(96, 153, 45);
-  --blue: rgb(108, 145, 194);
   --fucsia: rgb(170, 62, 152);
   --primary-font: "Montserrat", sans-serif;
+  --secondary-font: "Karla", sans-serif;
+  --primary-900: hsl(214, 41%, 10%);
+  --primary-700: hsl(214, 41%, 30%);
+  --primary-400: hsl(214, 41%, 60%);
+  --primary-200: hsl(214, 41%, 80%);
+  --accent-800: hsl(359, 100%, 20%);
+  --accent-600: hsl(359, 100%, 40%);
+  --accent-300: hsl(359, 100%, 70%);
+  --accent-100: hsl(359, 100%, 90%);
 }
 
 html {
@@ -24,7 +33,7 @@ html {
 
 body {
   background: hsl(224, 32%, 12%);
-  background-image: conic-gradient(from 0deg at 50% 50%, var(--light-black), var(--blue), rgb(46, 12, 80), rgb(46, 12, 80), var(--blue), var(--light-black));
+  background-image: conic-gradient(from 0deg at 50% 50%, var(--black-900), var(--primary-700), var(--primary-400), var(--primary-400), var(--primary-700), var(--black-900));
   background-size: 200%;
   background-blend-mode: multiply;
   animation: background-pan 30s linear infinite;
@@ -58,7 +67,7 @@ body::-webkit-scrollbar {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-image: linear-gradient(to right, var(--golden), var(--light-black), var(--golden));
+  background-image: linear-gradient(to right, var(--golden), var(--black-900), var(--golden));
   background-size: 200%;
   animation: background-pan 2s linear infinite;
   z-index: 999;
@@ -185,23 +194,49 @@ button {
   font-family: var(--primary-font);
 }
 
-.multiUpgradesContainer {
+.multiUpgradesButtons {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
+  font-size: var(--medium-custom-text);
   text-align: center;
 }
 
-.multiUpgradesButtons {
+.multiUpgrade {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  padding-block: 2rem;
+  width: 25vw;
+  aspect-ratio: 5/7;
+  font-family: var(--secondary-font);
+  font-size: var(--medium-big-custom-text);
+  border-radius: 3rem;
+  background: var(--primary-900);
+  overflow: hidden;
 }
 
-.multiUpgradesButtons > Button {
-  font-size: var(--small-custom-text);
+.multiUpgrade > p {
+  z-index: 1;
+}
+
+.multiUpgrade::after {
+  content: "";
+  position: absolute;
+  transition: background-position 250ms ease, transform 250ms ease;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, var(--primary-700), var(--primary-200));
+  background-position: 0%;
+  background-size: 200%;
+  inset: -50%;
+}
+
+.multiUpgrade:hover::after {
+  background-position: 100%;
+  transform: rotate(180deg);
 }
 
 .passivePointsWrapper {
@@ -427,7 +462,7 @@ button {
 
 .cardsButton {
   animation: background-pan 2s linear infinite;
-  background: linear-gradient(to right, var(--light-black), var(--golden), var(--light-black));
+  background: linear-gradient(to right, var(--black-900), var(--golden), var(--black-900));
   background-size: 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -492,8 +527,9 @@ button {
   aspect-ratio: 5/7;
   border-radius: 1vmin;
   font-size: var(--medium-custom-text);
-  font-family: "Saira Condensed", sans-serif;
-  color: var(--light-black);
+  font-family: var(--secondary-font);
+  text-transform: uppercase;
+  color: var(--black-900);
   text-align: center;
   transition: transform 200ms cubic-bezier(0.15, 0.72, 0.2, 0.83);
   transform: translateX(var(--offset)) rotate(var(--degrees));
@@ -729,7 +765,7 @@ button {
   aspect-ratio: 5/7;
   border-radius: 1vmin;
   font-size: var(--small-custom-text);
-  color: var(--light-black);
+  color: var(--black-900);
   text-align: center;
 }
 
@@ -739,20 +775,20 @@ button {
 }
 
 .uncommonCard {
-  border: 5px solid var(--blue);
-  background: var(--blue);
+  border: 5px solid var(--primary-400);
+  background: var(--primary-400);
 }
 
 .epicCard {
   border: 5px solid var(--fucsia);
-  background: linear-gradient(to bottom, var(--fucsia), var(--light-black), var(--fucsia));
+  background: linear-gradient(to bottom, var(--fucsia), var(--black-900), var(--fucsia));
   color: var(--fucsia);
 }
 
 .legendaryCard {
   animation: background-pan 2s linear infinite;
   border: 5px solid var(--golden);
-  background: linear-gradient(to bottom, var(--golden), var(--light-black), var(--golden));
+  background: linear-gradient(to bottom, var(--golden), var(--black-900), var(--golden));
   color: rgb(240, 240, 240);
 }
 
@@ -803,7 +839,7 @@ button {
 }
 
 .challengeTimer.success {
-  background: linear-gradient(to right, var(--green), var(--light-black), var(--green));
+  background: linear-gradient(to right, var(--green), var(--black-900), var(--green));
   background-size: 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -823,7 +859,7 @@ button {
 }
 
 .challengeReward {
-  background: linear-gradient(to right, var(--green), var(--blue), var(--golden), var(--fucsia), var(--green));
+  background: linear-gradient(to right, var(--green), var(--primary-400), var(--golden), var(--fucsia), var(--green));
   background-size: 200%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -922,7 +958,7 @@ button {
 }
 
 .achievement.unlocked {
-  background: linear-gradient(45deg, rgb(40, 40, 40), var(--light-black), var(--golden));
+  background: linear-gradient(45deg, rgb(40, 40, 40), var(--black-900), var(--golden));
   box-shadow: 0 0 0.3rem white;
 }
 

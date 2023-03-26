@@ -203,11 +203,12 @@ window.setInterval(function () {
     achievementModule.SetUnlockedAchievements();
     const pointsCounter = document.querySelector("#PointsCounter");
     if (pointsCounter)
-        pointsCounter.textContent = Math.round(gameObjects.game.points).toExponential(2);
+        pointsCounter.textContent = utilModule.formatNumber(Math.round(gameObjects.game.points));
     const passivePoints = document.querySelector("#passivePoints");
     if (passivePoints)
         passivePoints.textContent =
-            Math.round(gameObjects.game.passivePoints).toExponential(2) + " PP";
+            utilModule.formatNumber(Math.round(gameObjects.game.passivePoints)) +
+                " PP";
     const activeMenuButton = document.querySelector("#activeMenuButton");
     if (activeMenuButton && activeMenuButton instanceof HTMLElement)
         activeMenuButton.style.display = "flex";
@@ -296,8 +297,7 @@ if (input) {
         if (challenge1) {
             if (challenge1.onChallenge) {
                 gameObjects.game.letterCounter++;
-                if (challenge1.restriction <=
-                    gameObjects.game.letterCounter)
+                if (challenge1.restriction <= gameObjects.game.letterCounter)
                     gameObjects.game.isInChallenge = false;
             }
         }
@@ -404,29 +404,29 @@ function Tab(tabName) {
     }
 }
 function SetCosts() {
-    const multiUpgrade1 = document.querySelector("#multiUpgrade1");
+    const multiUpgrade1Text = document.querySelector("#multiUpgrade1Text");
     const multiUpgrade1Object = gameObjects.game.multiUpgrades.find((x) => x.id == 1);
-    if (multiUpgrade1)
-        multiUpgrade1.textContent =
-            "+1 point per word! Cost: " +
-                (multiUpgrade1Object ? Math.round(multiUpgrade1Object.cost) : 50);
-    const multiUpgrade2 = document.querySelector("#multiUpgrade2");
+    if (multiUpgrade1Text)
+        multiUpgrade1Text.textContent = multiUpgrade1Object
+            ? utilModule.formatNumber(Math.round(multiUpgrade1Object.cost))
+            : "50";
+    const multiUpgrade2Text = document.querySelector("#multiUpgrade2Text");
     const multiUpgrade2Object = gameObjects.game.multiUpgrades.find((x) => x.id == 2);
-    if (multiUpgrade2)
-        multiUpgrade2.textContent =
-            "+1 letter per word! Cost: " +
-                (multiUpgrade2Object ? Math.round(multiUpgrade2Object.cost) : 100);
-    const multiUpgrade3 = document.querySelector("#multiUpgrade3");
+    if (multiUpgrade2Text)
+        multiUpgrade2Text.textContent = multiUpgrade2Object
+            ? utilModule.formatNumber(Math.round(multiUpgrade2Object.cost))
+            : "100";
+    const multiUpgrade3Text = document.querySelector("#multiUpgrade3Text");
     const multiUpgrade3Object = gameObjects.game.multiUpgrades.find((x) => x.id == 3);
-    if (multiUpgrade3)
-        multiUpgrade3.textContent =
-            "+25% points! Cost: " +
-                (multiUpgrade3Object ? Math.round(multiUpgrade3Object.cost) : 500);
+    if (multiUpgrade3Text)
+        multiUpgrade3Text.textContent = multiUpgrade3Object
+            ? utilModule.formatNumber(Math.round(multiUpgrade3Object.cost))
+            : "500";
     const cardsButton = document.querySelector("#cardsButton");
     if (cardsButton)
         cardsButton.textContent = `Get a Pack! Cost: ${Math.round(gameObjects.game.cardCost) == 0
             ? "Free!"
-            : Math.round(gameObjects.game.cardCost)}`;
+            : utilModule.formatNumber(Math.round(gameObjects.game.cardCost))}`;
 }
 const saveButton = document.querySelector("#saveButton");
 const logButton = document.querySelector("#logButton");

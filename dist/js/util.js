@@ -11,3 +11,4 @@ export var IsInChallenge = (challengeNumber) => {
     return challenge.onChallenge;
 };
 export var IsUnlockedAchievement = (achievementName) => gameObjects.game.achievements.find(x => x.name == achievementName);
+export var formatNumber = (num) => num.toString().length <= 6 ? num.toString() : num.toExponential(2).toString();
