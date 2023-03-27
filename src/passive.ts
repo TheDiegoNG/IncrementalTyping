@@ -2,6 +2,7 @@ import { gameObjects } from "./classes/game";
 import * as utilModule from "./util";
 import * as activeModule from "./active";
 import { Generator } from "./classes/generator";
+import translator from "./translator";
 
 export const generators: Generator[] = [];
 
@@ -160,83 +161,83 @@ if (GeneratorButton)
 
 export function SetGenerators() {
   const portableGenerator = gameObjects.game.passiveGenerators.find(
-    (x) => x.name == "Portable Generator"
+    (x) => x.id == 1
   );
   if (basicGenerator) {
-    basicGenerator.textContent = `Generate Passive Points! | Generators: ${
+    basicGenerator.textContent = `${translator.t('passiveFirstGenerator')} ${
       portableGenerator ? portableGenerator.amountGained.toFixed(2) : 0
-    } (Bought: ${
+    } (${translator.t('bought')}: ${
       portableGenerator ? portableGenerator.amountBought : 0
-    }) | Cost: ${
+    }) | ${translator.t('cost')}: ${
       portableGenerator ? portableGenerator.cost.toFixed(2) : 5
-    } Passive Points`;
+    } ${translator.t('passiveCurrency1')}`;
   }
   const smallGenerator = gameObjects.game.passiveGenerators.find(
-    (x) => x.name == "Small Generator"
+    (x) => x.id == 2
   );
   if (PPGenerator)
-    PPGenerator.textContent = `Generate the First Generator | Generators: ${
+    PPGenerator.textContent = `${translator.t('passiveSecondGenerator')} ${
       smallGenerator ? smallGenerator.amountGained.toFixed(2) : 0
-    } (Bought: ${smallGenerator ? smallGenerator.amountBought : 0}) | Cost: ${
+    } (${translator.t('bought')}: ${smallGenerator ? smallGenerator.amountBought : 0}) | ${translator.t('cost')}: ${
       smallGenerator ? smallGenerator.cost.toFixed(2) : 6
-    } 1st Generators`;
+    } ${translator.t('passiveCurrency2')}`;
   const mediumsizedGenerator = gameObjects.game.passiveGenerators.find(
-    (x) => x.name == "Medium-sized Generator"
+    (x) => x.id == 3
   );
   if (PPGenerator2)
-    PPGenerator2.textContent = `Generate the Second Generator | Generators: ${
+    PPGenerator2.textContent = `${translator.t('passiveThirdGenerator')} ${
       mediumsizedGenerator ? mediumsizedGenerator.amountGained.toFixed(2) : 0
-    } (Bought: ${
+    } (${translator.t('bought')}: ${
       mediumsizedGenerator ? mediumsizedGenerator.amountBought : 0
-    }) | Cost: ${
+    }) | ${translator.t('cost')}: ${
       mediumsizedGenerator ? mediumsizedGenerator.cost.toFixed(2) : 9
-    } 2nd Generators`;
+    } ${translator.t('passiveCurrency3')}`;
   const ampleGenerator = gameObjects.game.passiveGenerators.find(
-    (x) => x.name == "Ample Generator"
+    (x) => x.id == 4
   );
   if (PPGenerator3)
-    PPGenerator3.textContent = `Generate the Third Generator | Generators: ${
+    PPGenerator3.textContent = `${translator.t('passiveFourthGenerator')} ${
       ampleGenerator ? ampleGenerator.amountGained.toFixed(2) : 0
-    } (Bought: ${ampleGenerator ? ampleGenerator.amountBought : 0}) | Cost: ${
+    } (${translator.t('bought')}: ${ampleGenerator ? ampleGenerator.amountBought : 0}) | ${translator.t('cost')}: ${
       ampleGenerator ? ampleGenerator.cost.toFixed(2) : 12
-    } 3rd Generators`;
+    } ${translator.t('passiveCurrency4')}`;
   const substantialGenerator = gameObjects.game.passiveGenerators.find(
-    (x) => x.name == "Substantial Generator"
+    (x) => x.id == 5
   );
   if (PPGenerator4)
-    PPGenerator4.textContent = `Generate the Fourth Generator | Generators: ${
+    PPGenerator4.textContent = `${translator.t('passiveFifthGenerator')} ${
       substantialGenerator ? substantialGenerator.amountGained.toFixed(2) : 0
-    } (Bought: ${
+    } (${translator.t('bought')}: ${
       substantialGenerator ? substantialGenerator.amountBought : 0
-    }) | Cost: ${
+    }) | ${translator.t('cost')}: ${
       substantialGenerator ? substantialGenerator.cost.toFixed(2) : 15
-    } 4th Generators`;
+    } ${translator.t('passiveCurrency5')}`;
   const reasonableGenerator = gameObjects.game.passiveGenerators.find(
-    (x) => x.name == "Reasonable Generator"
+    (x) => x.id == 6
   );
   if (PPGenerator5)
-    PPGenerator5.textContent = `Generate the Fifth Generator | Generators: ${
+    PPGenerator5.textContent = `${translator.t('passiveSixthGenerator')} ${
       reasonableGenerator ? reasonableGenerator.amountGained.toFixed(2) : 0
-    } (Bought: ${
+    } (${translator.t('bought')}: ${
       reasonableGenerator ? reasonableGenerator.amountBought : 0
-    }) | Cost: ${
+    }) | ${translator.t('cost')}: ${
       reasonableGenerator ? reasonableGenerator.cost.toFixed(2) : 18
-    } 5th Generators`;
+    } ${translator.t('passiveCurrency6')}`;
   const largeGenerator = gameObjects.game.passiveGenerators.find(
-    (x) => x.name == "Large Generator"
+    (x) => x.id == 7
   );
   if (PPGenerator6)
-    PPGenerator6.textContent = `Generate the Sixth Generator | Generators: ${
+    PPGenerator6.textContent = `${translator.t('passiveSeventhGenerator')} ${
       largeGenerator ? largeGenerator.amountGained.toFixed(2) : 0
-    } (Bought: ${largeGenerator ? largeGenerator.amountBought : 0}) | Cost: ${
+    } (${translator.t('bought')}: ${largeGenerator ? largeGenerator.amountBought : 0}) | ${translator.t('cost')}: ${
       largeGenerator ? largeGenerator.cost.toFixed(2) : 21
-    } 6th Generators`;
+    } ${translator.t('passiveCurrency7')}`;
   if (GeneratorButton)
-    GeneratorButton.textContent = `Buy the next Tier of Generators! | Cost ${
+    GeneratorButton.textContent = `${translator.t('tierCurrency')} | ${translator.t('cost')} ${
       generators.find(
         (x) => x.id == gameObjects.game.passiveGenerators.length + 1
       )!.cost
-    } Previous Tier Generators!`;
+    } ${translator.t('tierCurrencyAddition')}`;
 }
 
 function BuyGenerator(generatorNumber: number) {
@@ -259,7 +260,6 @@ function BuyGenerator(generatorNumber: number) {
       gameObjects.game.passiveGenerators.find((x) => x.id == generatorNumber - 1)!
         .amountGained >= yourGenerator.cost
     ) {
-      console.log(yourGenerator);
       gameObjects.game.passiveGenerators.find(
         (x) => x.id == generatorNumber - 1
       )!.amountGained -= yourGenerator.cost;
@@ -277,7 +277,6 @@ function BuyGeneratorTier() {
   const generatorToBuy = generators.find(
     (x) => x.id == gameObjects.game.passiveGenerators.length + 1
   );
-  console.log(generatorToBuy);
   if (!generatorToBuy) return;
   if (
     gameObjects.game.passiveGenerators.find(

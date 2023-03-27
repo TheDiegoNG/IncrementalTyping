@@ -6,7 +6,7 @@ export var IsPurchasedPassiveUpgrade = (upgradeNumber: number) => gameObjects.ga
 
 export var IsPurchasedPrestigeUpgrade = (upgradeNumber: number) => gameObjects.game.prestigeUpgrades.find(x => x.id == upgradeNumber);
 
-export var HasCard = (cardName: string) => gameObjects.game.cards.find(x => x.name === cardName);
+export var HasCard = (cardNumber: number) => gameObjects.game.cards.find(x => x.id == cardNumber);
 
 export var Copy = (object: object) => JSON.parse(JSON.stringify(object));
 

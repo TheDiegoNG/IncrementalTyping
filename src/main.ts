@@ -8,6 +8,7 @@ import * as prestigeModule from "./prestige";
 import * as upgradesModule from "./upgrades";
 import { basicUpgrades, passiveUpgrades, prestigeUpgrades } from "./upgrades";
 import * as cardsModule from "./cards";
+import { commonCards, uncommonCards, epicCards, legendaryCards } from "./cards";
 import * as optionsModule from "./options";
 import * as challengesModule from "./challenges";
 import * as passiveModule from "./passive";
@@ -67,6 +68,8 @@ window.onload = async function () {
   gameObjects.challengeGame = utilModule.Copy(gameObjects.game);
   LoadGame();
   SetWords();
+  SetTexts();
+  updateText();
   achievementModule.CreateAchievements();
   Tab("activeMenu");
 };
@@ -607,19 +610,36 @@ window.onmousemove = (e) => {
   // });
 };
 
-const multiUpgrade1 = document.querySelector('#multiUpgrade1Desc')!;
-const multiUpgrade2 = document.querySelector('#multiUpgrade2Desc')!;
-const multiUpgrade3 = document.querySelector('#multiUpgrade3Desc')!;
+function SetTexts() {
+  document.querySelector('#basicUpgradesTitle')!.textContent = translator.t('genericUpgradeTitle');
+  document.querySelector('#passiveUpgradesTitle')!.textContent = translator.t('genericUpgradeTitle');
+  document.querySelector('#prestigeUpgradesTitle')!.textContent = translator.t('genericUpgradeTitle');
+}
 
 function updateText() {
-  const multiUpgrade1Desc = translator.t('multiUpgrade1Desc');
-  multiUpgrade1.textContent = multiUpgrade1Desc;
 
-  const multiUpgrade2Desc = translator.t('multiUpgrade2Desc');
-  multiUpgrade2.textContent = multiUpgrade2Desc;
+  //Buttons
+  document.querySelector('#activeMenuButton')!.textContent = translator.t('activeMenuButton');
+  document.querySelector('#passiveMenuButton')!.textContent = translator.t('passiveMenuButton');
+  document.querySelector('#upgradesMenuButton')!.textContent = translator.t('upgradesMenuButton');
+  document.querySelector('#challengesMenuButton')!.textContent = translator.t('challengesMenuButton');
+  document.querySelector('#prestigeMenuButton')!.textContent = translator.t('prestigeMenuButton');
+  document.querySelector('#cardsMenuButton')!.textContent = translator.t('cardsMenuButton');
+  document.querySelector('#achievementsMenuButton')!.textContent = translator.t('achievementsMenuButton');
+  document.querySelector('#statsMenuButton')!.textContent = translator.t('statsMenuButton');
+  document.querySelector('#optionsMenuButton')!.textContent = translator.t('optionsMenuButton');
 
-  const multiUpgrade3Desc = translator.t('multiUpgrade3Desc');
-  multiUpgrade3.textContent = multiUpgrade3Desc;
+
+  //MultiUpgrades
+  document.querySelector('#multiUpgrade1Desc')!.textContent = translator.t('multiUpgrade1Desc');
+  document.querySelector('#multiUpgrade2Desc')!.textContent = translator.t('multiUpgrade2Desc');
+  document.querySelector('#multiUpgrade3Desc')!.textContent = translator.t('multiUpgrade3Desc');
+
+
+  //Upgrades
+  document.querySelector('#basicUpgradeHeading')!.textContent = translator.t('basicUpgradeHeading');
+  document.querySelector('#passiveUpgradeHeading')!.textContent = translator.t('passiveUpgradeHeading');
+  document.querySelector('#prestigeUpgradeHeading')!.textContent = translator.t('prestigeUpgradeHeading');
 
   basicUpgrades.find(x => x.id == 1)!.name = translator.t('basicUpgrade1Title')
   basicUpgrades.find(x => x.id == 1)!.description = translator.t('basicUpgrade1Desc')
@@ -645,4 +665,49 @@ function updateText() {
   basicUpgrades.find(x => x.id == 11)!.description = translator.t('basicUpgrade11Desc')
   basicUpgrades.find(x => x.id == 12)!.name = translator.t('basicUpgrade12Title')
   basicUpgrades.find(x => x.id == 12)!.description = translator.t('basicUpgrade12Desc')
+  passiveUpgrades.find(x => x.id == 1)!.name = translator.t('passiveUpgrade1Title')
+  passiveUpgrades.find(x => x.id == 1)!.description = translator.t('passiveUpgrade1Desc')
+  passiveUpgrades.find(x => x.id == 2)!.name = translator.t('passiveUpgrade2Title')
+  passiveUpgrades.find(x => x.id == 2)!.description = translator.t('passiveUpgrade2Desc')
+  passiveUpgrades.find(x => x.id == 3)!.name = translator.t('passiveUpgrade3Title')
+  passiveUpgrades.find(x => x.id == 3)!.description = translator.t('passiveUpgrade3Desc')
+  passiveUpgrades.find(x => x.id == 4)!.name = translator.t('passiveUpgrade4Title')
+  passiveUpgrades.find(x => x.id == 4)!.description = translator.t('passiveUpgrade4Desc')
+  passiveUpgrades.find(x => x.id == 5)!.name = translator.t('passiveUpgrade5Title')
+  passiveUpgrades.find(x => x.id == 5)!.description = translator.t('passiveUpgrade5Desc')
+  passiveUpgrades.find(x => x.id == 6)!.name = translator.t('passiveUpgrade6Title')
+  passiveUpgrades.find(x => x.id == 6)!.description = translator.t('passiveUpgrade6Desc')
+  prestigeUpgrades.find(x => x.id == 1)!.name = translator.t('prestigeUpgrade1Title')
+  prestigeUpgrades.find(x => x.id == 1)!.description = translator.t('prestigeUpgrade1Desc')
+  prestigeUpgrades.find(x => x.id == 2)!.name = translator.t('prestigeUpgrade2Title')
+  prestigeUpgrades.find(x => x.id == 2)!.description = translator.t('prestigeUpgrade2Desc')
+  prestigeUpgrades.find(x => x.id == 3)!.name = translator.t('prestigeUpgrade3Title')
+  prestigeUpgrades.find(x => x.id == 3)!.description = translator.t('prestigeUpgrade3Desc')
+  prestigeUpgrades.find(x => x.id == 4)!.name = translator.t('prestigeUpgrade4Title')
+  prestigeUpgrades.find(x => x.id == 4)!.description = translator.t('prestigeUpgrade4Desc')
+
+  //Cards
+  commonCards.find(x => x.id == 1)!.name = translator.t('card1Title')
+  commonCards.find(x => x.id == 2)!.name = translator.t('card2Title')
+  commonCards.find(x => x.id == 3)!.name = translator.t('card3Title')
+  commonCards.find(x => x.id == 4)!.name = translator.t('card4Title')
+  uncommonCards.find(x => x.id == 5)!.name = translator.t('card5Title')
+  uncommonCards.find(x => x.id == 6)!.name = translator.t('card6Title')
+  uncommonCards.find(x => x.id == 7)!.name = translator.t('card7Title')
+  uncommonCards.find(x => x.id == 8)!.name = translator.t('card8Title')
+  uncommonCards.find(x => x.id == 9)!.name = translator.t('card9Title')
+  uncommonCards.find(x => x.id == 10)!.name = translator.t('card10Title')
+  epicCards.find(x => x.id == 11)!.name = translator.t('card11Title')
+  epicCards.find(x => x.id == 12)!.name = translator.t('card12Title')
+  epicCards.find(x => x.id == 13)!.name = translator.t('card13Title')
+  epicCards.find(x => x.id == 14)!.name = translator.t('card14Title')
+  epicCards.find(x => x.id == 15)!.name = translator.t('card15Title')
+  epicCards.find(x => x.id == 16)!.name = translator.t('card16Title')
+  epicCards.find(x => x.id == 17)!.name = translator.t('card17Title')
+  legendaryCards.find(x => x.id == 18)!.name = translator.t('card18Title')
+  legendaryCards.find(x => x.id == 19)!.name = translator.t('card19Title')
+  legendaryCards.find(x => x.id == 20)!.name = translator.t('card20Title')
+  legendaryCards.find(x => x.id == 21)!.name = translator.t('card21Title')
+  legendaryCards.find(x => x.id == 22)!.name = translator.t('card22Title')
+  legendaryCards.find(x => x.id == 23)!.name = translator.t('card23Title')
 }

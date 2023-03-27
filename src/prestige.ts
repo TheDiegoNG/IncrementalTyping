@@ -1,18 +1,19 @@
 import * as utilModule from "./util";
 import * as upgradesmodule from "./upgrades";
 import { gameObjects } from "./classes/game";
+import translator from "./translator";
 
 export function SetPrestige() {
   const prestigePointsToGet = document.querySelector("#prestigePointsToGet");
   if (prestigePointsToGet)
     prestigePointsToGet.textContent =
-      "Prestige Points when Prestige: " +
-      Math.round(Math.cbrt(gameObjects.game.allTimePoints));
+    `${translator.t('prestigePointsToGet')}
+      ${Math.round(Math.cbrt(gameObjects.game.allTimePoints))}`
 
   const prestigePointsAmount = document.querySelector("#prestigePointsAmount");
   if (prestigePointsAmount)
     prestigePointsAmount.textContent =
-      "Prestige Points: " + gameObjects.game.prestigePoints;
+    `${translator.t('prestigePointsAmount')} ${gameObjects.game.prestigePoints}`
 }
 
 const prestigeButton = document.querySelector("#prestigeButton");

@@ -29,10 +29,10 @@ passiveUpgrades.push(new Upgrade("More modules! This time you found a synergy mo
 
 export const prestigeUpgrades: Upgrade[] = [];
 
-passiveUpgrades.push(new Upgrade("Welcome to Prestige! Take a free x2 multiplier", "Yes", 10, 1));
-passiveUpgrades.push(new Upgrade("The Gacha Gods have spoken", "+2 Cards Per Roll", 50, 2));
-passiveUpgrades.push(new Upgrade("Better Scaling for MultiUpgrades!", "x1.25 Points", 100, 3));
-passiveUpgrades.push(new Upgrade("It seems that the next time you Prestige you can bring the enhancer with you. But the upgrades must wear out", "Keep your Passive Income (Not your upgrades) when Prestige! (PP resets too)", 500, 4));
+prestigeUpgrades.push(new Upgrade("Welcome to Prestige! Take a free x2 multiplier", "Yes", 10, 1));
+prestigeUpgrades.push(new Upgrade("The Gacha Gods have spoken", "+2 Cards Per Roll", 50, 2));
+prestigeUpgrades.push(new Upgrade("Better Scaling for MultiUpgrades!", "x1.25 Points", 100, 3));
+prestigeUpgrades.push(new Upgrade("It seems that the next time you Prestige you can bring the enhancer with you. But the upgrades must wear out", "Keep your Passive Income (Not your upgrades) when Prestige! (PP resets too)", 500, 4));
 
 function ChangeBasicUpgradesText(upgradeNumber: number) {
     const basicUpgradesTitle = document.querySelector("#basicUpgradesTitle");

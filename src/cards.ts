@@ -2,7 +2,7 @@ import * as utilModule from "./util";
 import { gameObjects } from "./classes/game";
 import { Card } from "./classes/card";
 
-var commonCards: Card[] = [];
+export const commonCards: Card[] = [];
 
 commonCards.push(
   new Card(
@@ -10,11 +10,11 @@ commonCards.push(
     "+5% Points",
     "Common",
     "PointsPercentage",
-    1.05
+    1.05, 1
   )
 );
 commonCards.push(
-  new Card("+1 Points (C)", "+1 Point Per Word", "Common", "PointsAmount", 1)
+  new Card("+1 Points (C)", "+1 Point Per Word", "Common", "PointsAmount", 1, 2)
 );
 commonCards.push(
   new Card(
@@ -22,7 +22,7 @@ commonCards.push(
     "10% Passive Points!",
     "Common",
     "PassivePointsPercentage",
-    1.1
+    1.1, 3
   )
 );
 commonCards.push(
@@ -31,11 +31,11 @@ commonCards.push(
     "+2 Passive Points Per Word!",
     "Common",
     "PassivePointsAmount",
-    2
+    2, 4
   )
 );
 
-var uncommonCards: Card[] = [];
+export const uncommonCards: Card[] = [];
 
 uncommonCards.push(
   new Card(
@@ -43,7 +43,7 @@ uncommonCards.push(
     "+25% Points",
     "Uncommon",
     "PointsPercentage",
-    1.25
+    1.25, 5
   )
 );
 uncommonCards.push(
@@ -52,7 +52,7 @@ uncommonCards.push(
     "+3 Points Per Word",
     "Uncommon",
     "PointsAmount",
-    3
+    3, 6
   )
 );
 uncommonCards.push(
@@ -61,7 +61,7 @@ uncommonCards.push(
     "25% Passive Points!",
     "Uncommon",
     "PassivePointsPercentage",
-    1.25
+    1.25, 7
   )
 );
 uncommonCards.push(
@@ -70,7 +70,7 @@ uncommonCards.push(
     "+5 Passive Points Per Word!",
     "Uncommon",
     "PassivePointsAmount",
-    5
+    5, 8
   )
 );
 uncommonCards.push(
@@ -79,7 +79,7 @@ uncommonCards.push(
     "Generate Passive Words 5% Faster",
     "Uncommon",
     "PassivePointsSpeed",
-    1.05
+    1.05, 9
   )
 );
 uncommonCards.push(
@@ -88,11 +88,11 @@ uncommonCards.push(
     "+1 Letter Per Passive Word",
     "Uncommon",
     "PassivePointsLength",
-    1
+    1, 10
   )
 );
 
-var epicCards: Card[] = [];
+export const epicCards: Card[] = [];
 
 epicCards.push(
   new Card(
@@ -100,7 +100,7 @@ epicCards.push(
     "+50% Points",
     "Epic",
     "PointsPercentage",
-    1.5
+    1.5, 11
   )
 );
 epicCards.push(
@@ -109,11 +109,11 @@ epicCards.push(
     "From now on, every word is lowercase",
     "Epic",
     "Lowercase",
-    0
+    0, 12
   )
 );
 epicCards.push(
-  new Card("+6 Points (E)", "+6 Points Per Word", "Epic", "PointsAmount", 6)
+  new Card("+6 Points (E)", "+6 Points Per Word", "Epic", "PointsAmount", 6, 13)
 );
 epicCards.push(
   new Card(
@@ -121,7 +121,7 @@ epicCards.push(
     "50% Passive Points!",
     "Epic",
     "PassivePointsPercentage",
-    1.5
+    1.5, 14
   )
 );
 epicCards.push(
@@ -130,7 +130,7 @@ epicCards.push(
     "+10 Passive Points Per Word!",
     "Epic",
     "PassivePointsAmount",
-    10
+    10, 15
   )
 );
 epicCards.push(
@@ -139,7 +139,7 @@ epicCards.push(
     "Generate Passive Words 10% Faster",
     "Epic",
     "PassivePointsSpeed",
-    1.1
+    1.1, 16
   )
 );
 epicCards.push(
@@ -148,11 +148,11 @@ epicCards.push(
     "+2 Letters Per Passive Word",
     "Epic",
     "PassivePointsLength",
-    2
+    2, 17
   )
 );
 
-var legendaryCards: Card[] = [];
+export const legendaryCards: Card[] = [];
 
 legendaryCards.push(
   new Card(
@@ -160,7 +160,7 @@ legendaryCards.push(
     "+100% Points",
     "Legendary",
     "PointsPercentage",
-    2
+    2, 18
   )
 );
 legendaryCards.push(
@@ -169,7 +169,7 @@ legendaryCards.push(
     "+10 Points Per Word",
     "Legendary",
     "PointsAmount",
-    10
+    10, 19
   )
 );
 legendaryCards.push(
@@ -178,7 +178,7 @@ legendaryCards.push(
     "Double Passive Points!",
     "Legendary",
     "PassivePointsPercentage",
-    2
+    2, 20
   )
 );
 legendaryCards.push(
@@ -187,7 +187,7 @@ legendaryCards.push(
     "+25 Passive Points Per Word!",
     "Legendary",
     "PassivePointsAmount",
-    25
+    25, 21
   )
 );
 legendaryCards.push(
@@ -196,7 +196,7 @@ legendaryCards.push(
     "Generate Passive Words 20% Faster",
     "Legendary",
     "PassivePointsSpeed",
-    1.2
+    1.2, 22
   )
 );
 legendaryCards.push(
@@ -205,7 +205,7 @@ legendaryCards.push(
     "+5 Letters Per Passive Word",
     "Legendary",
     "PassivePointsLength",
-    5
+    5, 23
   )
 );
 
@@ -240,7 +240,7 @@ function GetCards() {
         card = GetLegendaryCard();
       }
       if (
-        card.name == "All Lowercase (E)" &&
+        card.id == 12 &&
         utilModule.HasCard("All Lowercase (E)")
       ) {
         index--;
@@ -248,19 +248,19 @@ function GetCards() {
       }
       AppendCard(card);
       gameObjects.game.cards.push(card);
-      if (card.name === "Longer Passive Words (UC)")
+      if (card.id == 10)
         gameObjects.game.passiveLength++;
-      if (card.name === "Longerer Passive Words (E)")
+      if (card.id == 17)
         gameObjects.game.passiveLength += 2;
-      if (card.name === "Longest Passive Words (L)")
+      if (card.id == 23)
         gameObjects.game.passiveLength += 5;
-      if (card.name === "Faster Passive Words (UC)")
+      if (card.id == 9)
         gameObjects.game.passiveRate -=
           (gameObjects.game.passiveRate * 5) / 100;
-      if (card.name === "Fasterer Passive Words (E)")
+      if (card.id == 16)
         gameObjects.game.passiveRate -=
           (gameObjects.game.passiveRate * 10) / 100;
-      if (card.name === "Fastest Passive Words (L)")
+      if (card.id == 22)
         gameObjects.game.passiveRate -=
           (gameObjects.game.passiveRate * 20) / 100;
     }
