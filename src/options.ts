@@ -56,11 +56,5 @@ if (languageSelector) {
       languageSelector.selectedIndex = currentIndex;
       translator.changeLanguage(options[currentIndex].value);
     });
-
-    // languageSelector.addEventListener('change', function () {
-    //   const selectedValue = languageSelector.value;
-    //   console.log(selectedValue);
-    //   translator.changeLanguage(selectedValue);
-    // });
 }
 

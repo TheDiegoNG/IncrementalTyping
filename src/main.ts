@@ -621,5 +621,3 @@ function updateText() {
   multiUpgrade3.textContent = multiUpgrade3Desc;
 
 }
-
-updateText();
