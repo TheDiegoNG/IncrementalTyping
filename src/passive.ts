@@ -38,22 +38,22 @@ function GetPassivePoints(passiveWord: string) {
   totalPoints += passiveWord.length;
   if (utilModule.IsPurchasedPassiveUpgrade(4))
     totalPoints += activeModule.GetPointsLetters(passiveWord);
-  if (utilModule.HasCard("+2 Passive Points (C)"))
+  if (utilModule.HasCard(4))
     totalPoints +=
       2 *
       gameObjects.game.cards.filter((x) => x.name === "+2 Passive Points (C)")
         .length;
-  if (utilModule.HasCard("+5 Passive Points (UC)"))
+  if (utilModule.HasCard(8))
     totalPoints +=
       5 *
       gameObjects.game.cards.filter((x) => x.name === "+5 Passive Points (UC)")
         .length;
-  if (utilModule.HasCard("+10 Passive Points (E)"))
+  if (utilModule.HasCard(15))
     totalPoints +=
       10 *
       gameObjects.game.cards.filter((x) => x.name === "+10 Passive Points (E)")
         .length;
-  if (utilModule.HasCard("+25 Passive Points (L)"))
+  if (utilModule.HasCard(21))
     totalPoints +=
       25 *
       gameObjects.game.cards.filter((x) => x.name === "+25 Passive Points (L)")
@@ -61,28 +61,28 @@ function GetPassivePoints(passiveWord: string) {
   if (utilModule.IsPurchasedPassiveUpgrade(2)) totalPoints += 5;
   if (utilModule.IsPurchasedPassiveUpgrade(1)) totalPoints *= 1.25;
   if (utilModule.IsPurchasedPassiveUpgrade(3)) totalPoints *= 1.5;
-  if (utilModule.HasCard("10% Passive Points (C)"))
+  if (utilModule.HasCard(3))
     totalPoints *=
       1 +
       0.1 *
         gameObjects.game.cards.filter(
           (x) => x.name === "10% Passive Points (C)"
         ).length;
-  if (utilModule.HasCard("25% Passive Points (UC)"))
+  if (utilModule.HasCard(7))
     totalPoints *=
       1 +
       0.25 *
         gameObjects.game.cards.filter(
           (x) => x.name === "25% Passive Points (UC)"
         ).length;
-  if (utilModule.HasCard("50% Passive Points (E)"))
+  if (utilModule.HasCard(14))
     totalPoints *=
       1 +
       0.5 *
         gameObjects.game.cards.filter(
           (x) => x.name === "50% Passive Points (E)"
         ).length;
-  if (utilModule.HasCard("x2 Passive Points (L)"))
+  if (utilModule.HasCard(20))
     totalPoints *=
       1 +
       1 *

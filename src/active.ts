@@ -9,19 +9,19 @@ export function CalculatePoints(wordLength: number) {
   totalPoints += multiUpgrade1 ? multiUpgrade1.amountBought : 0;
   if (utilModule.IsPurchasedUpgrade(2)) totalPoints += 4;
   if (utilModule.IsPurchasedUpgrade(12)) totalPoints += 20;
-  if (utilModule.HasCard("+1 Points (C)"))
+  if (utilModule.HasCard(2))
     totalPoints +=
       1 *
       gameObjects.game.cards.filter((x) => x.name === "+1 Points (C)").length;
-  if (utilModule.HasCard("+3 Points (UC)"))
+  if (utilModule.HasCard(6))
     totalPoints +=
       1 *
       gameObjects.game.cards.filter((x) => x.name === "+3 Points (UC)").length;
-  if (utilModule.HasCard("+6 Points (E)"))
+  if (utilModule.HasCard(13))
     totalPoints +=
       1 *
       gameObjects.game.cards.filter((x) => x.name === "+6 Points (E)").length;
-  if (utilModule.HasCard("+10 Points (L)"))
+  if (utilModule.HasCard(19))
     totalPoints +=
       1 *
       gameObjects.game.cards.filter((x) => x.name === "+10 Points (L)").length;
@@ -36,25 +36,25 @@ export function CalculatePoints(wordLength: number) {
     totalPoints *= Math.sqrt(gameObjects.game.achievements.length);
   if (utilModule.IsPurchasedUpgrade(4) && gameObjects.game.passivePoints > 0)
     totalPoints *= Math.log10(gameObjects.game.passivePoints);
-  if (utilModule.HasCard("Fast+ Progress (C)"))
+  if (utilModule.HasCard(1))
     totalPoints *=
       1 +
       0.05 *
         gameObjects.game.cards.filter((x) => x.name === "Fast+ Progress (C)")
           .length;
-  if (utilModule.HasCard("Faster Progress (UC)"))
+  if (utilModule.HasCard(5))
     totalPoints *=
       1 +
       0.25 *
         gameObjects.game.cards.filter((x) => x.name === "Faster Progress (UC)")
           .length;
-  if (utilModule.HasCard("Fasterer Progress (E)"))
+  if (utilModule.HasCard(11))
     totalPoints *=
       1 +
       0.5 *
         gameObjects.game.cards.filter((x) => x.name === "Fasterer Progress (E)")
           .length;
-  if (utilModule.HasCard("Fastest Progress (L)"))
+  if (utilModule.HasCard(18))
     totalPoints *=
       1 +
       1 *

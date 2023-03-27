@@ -129,7 +129,7 @@ function GenerateWord() {
   var generatedWord =
     filteredWordList[Math.floor(Math.random() * filteredWordList.length)];
 
-  if (utilModule.HasCard("All Lowercase") || utilModule.IsInChallenge(1))
+  if (utilModule.HasCard(12) || utilModule.IsInChallenge(1))
     generatedWord = generatedWord.toLowerCase();
 
   return generatedWord;

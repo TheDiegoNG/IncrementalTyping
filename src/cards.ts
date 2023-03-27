@@ -241,7 +241,7 @@ function GetCards() {
       }
       if (
         card.id == 12 &&
-        utilModule.HasCard("All Lowercase (E)")
+        utilModule.HasCard(12)
       ) {
         index--;
         continue;
@@ -292,7 +292,7 @@ function AppendCard(cardData: Card) {
       break;
   }
 
-  card.textContent = cardData.description;
+  card.textContent = cardData.name;
   if (viewerCards) viewerCards.appendChild(card);
 }
 
