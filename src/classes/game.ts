@@ -56,7 +56,7 @@ class Game {
   }
 }
 
-let game = new Game(0);
+let game = new Game(10000000000000000);
 let challengeGame = new Game(0);
 let activeGame = new Game(0);
 

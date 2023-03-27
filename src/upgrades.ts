@@ -1,7 +1,8 @@
 import { gameObjects } from "./classes/game";
 import { Upgrade } from "./classes/upgrade";
+import { generators } from "./passive";
 
-const basicUpgrades: Upgrade[] = [];
+export const basicUpgrades: Upgrade[] = [];
 
 basicUpgrades.push(new Upgrade("First Upgrade of them all", "x1.3 Points", 50, 1));
 basicUpgrades.push(new Upgrade("Your words value a little bit more, absolutely", "+4 Points per Word", 200, 2));
@@ -17,7 +18,7 @@ basicUpgrades.push(new Upgrade("You can challenge yourself to be better next tim
 basicUpgrades.push(new Upgrade("Last Basic Upgrade! Your words value MORE, a bit more", "+20 points per word", 10000000, 12));
 
 
-const passiveUpgrades: Upgrade[] = [];
+export const passiveUpgrades: Upgrade[] = [];
 
 passiveUpgrades.push(new Upgrade("You force the enhancer to be enhancerer", "x1.25 Points", 100, 1));
 passiveUpgrades.push(new Upgrade("Here's a little bonus for you", "+5 points per Word", 250, 2));
@@ -26,7 +27,7 @@ passiveUpgrades.push(new Upgrade("Wow, it seems that they made a Scrabble module
 passiveUpgrades.push(new Upgrade("Horizontal scaling ftw", "+1 Letter", 8000, 5));
 passiveUpgrades.push(new Upgrade("More modules! This time you found a synergy module.", "Every Generator Bought gives a Bonus to the other Generators!", 20000, 6));
 
-const prestigeUpgrades: Upgrade[] = [];
+export const prestigeUpgrades: Upgrade[] = [];
 
 passiveUpgrades.push(new Upgrade("Welcome to Prestige! Take a free x2 multiplier", "Yes", 10, 1));
 passiveUpgrades.push(new Upgrade("The Gacha Gods have spoken", "+2 Cards Per Roll", 50, 2));
@@ -104,7 +105,11 @@ export function GetUpgrade(upgradeNumber: number) {
     {
         gameObjects.game.points -= upgrade.cost;
         gameObjects.game.upgrades.push(upgrade);
-        console.timeLog("GameTime")
+        if(upgradeNumber == 4) {
+            gameObjects.game.passiveGenerators.push(generators.find(x => x.id == 1)!);
+            gameObjects.game.passiveGenerators.find(x => x.id == 1)!.amountBought++;
+            gameObjects.game.passiveGenerators.find(x => x.id == 1)!.amountGained++;
+        }
     } 
 }
 

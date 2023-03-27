@@ -3,7 +3,7 @@ import * as utilModule from "./util";
 import * as activeModule from "./active";
 import { Generator } from "./classes/generator";
 
-const generators: Generator[] = [];
+export const generators: Generator[] = [];
 
 generators.push(new Generator("Portable Generator", 5, 1));
 generators.push(new Generator("Small Generator", 6, 2));
@@ -106,55 +106,55 @@ const basicGenerator = document.querySelector("#PassivePointsGenerator0");
 
 if (basicGenerator)
   basicGenerator.addEventListener("click", (e) => {
-    BuyGenerator(0);
+    BuyGenerator(1);
   });
 
 const PPGenerator = document.querySelector("#PassivePointsGenerator1");
 
 if (PPGenerator)
   PPGenerator.addEventListener("click", (e) => {
-    BuyGenerator(1);
+    BuyGenerator(2);
   });
 
 const PPGenerator2 = document.querySelector("#PassivePointsGenerator2");
 
 if (PPGenerator2)
   PPGenerator2.addEventListener("click", (e) => {
-    BuyGenerator(2);
+    BuyGenerator(3);
   });
 
 const PPGenerator3 = document.querySelector("#PassivePointsGenerator3");
 
 if (PPGenerator3)
   PPGenerator3.addEventListener("click", (e) => {
-    BuyGenerator(3);
+    BuyGenerator(4);
   });
 
 const PPGenerator4 = document.querySelector("#PassivePointsGenerator4");
 
 if (PPGenerator4)
   PPGenerator4.addEventListener("click", (e) => {
-    BuyGenerator(4);
+    BuyGenerator(5);
   });
 
 const PPGenerator5 = document.querySelector("#PassivePointsGenerator5");
 
 if (PPGenerator5)
   PPGenerator5.addEventListener("click", (e) => {
-    BuyGenerator(5);
+    BuyGenerator(6);
   });
 
 const PPGenerator6 = document.querySelector("#PassivePointsGenerator6");
 
 if (PPGenerator6)
   PPGenerator6.addEventListener("click", (e) => {
-    BuyGenerator(6);
+    BuyGenerator(7);
   });
 
 const GeneratorButton = document.querySelector("#GeneratorButton");
 
-if (PPGenerator)
-  PPGenerator.addEventListener("click", (e) => {
+if (GeneratorButton)
+  GeneratorButton.addEventListener("click", (e) => {
     BuyGeneratorTier();
   });
 
@@ -162,7 +162,7 @@ export function SetGenerators() {
   const portableGenerator = gameObjects.game.passiveGenerators.find(
     (x) => x.name == "Portable Generator"
   );
-  if (basicGenerator)
+  if (basicGenerator) {
     basicGenerator.textContent = `Generate Passive Points! | Generators: ${
       portableGenerator ? portableGenerator.amountGained.toFixed(2) : 0
     } (Bought: ${
@@ -170,6 +170,7 @@ export function SetGenerators() {
     }) | Cost: ${
       portableGenerator ? portableGenerator.cost.toFixed(2) : 5
     } Passive Points`;
+  }
   const smallGenerator = gameObjects.game.passiveGenerators.find(
     (x) => x.name == "Small Generator"
   );
@@ -242,33 +243,33 @@ function BuyGenerator(generatorNumber: number) {
   const yourGenerator = gameObjects.game.passiveGenerators.find(
     (x) => x.id == generatorNumber
   );
-  const generator = generators.find((x) => x.id == generatorNumber);
-  if (!generator || !yourGenerator) return;
-  if (
-    generatorNumber == 0 &&
-    gameObjects.game.passivePoints >= yourGenerator.cost
-  ) {
-    gameObjects.game.passivePoints -= yourGenerator.cost;
-    yourGenerator.amountBought++;
-    yourGenerator.amountGained++;
-    yourGenerator.cost =
-      yourGenerator.cost *
-      (yourGenerator.amountBought + 1) **
-        Math.log10(yourGenerator.amountBought + 1);
-  }
-  if (
-    gameObjects.game.passiveGenerators.find((x) => x.id == generatorNumber - 1)!
-      .amountGained >= yourGenerator.amountGained
-  ) {
-    gameObjects.game.passiveGenerators.find(
-      (x) => x.id == generatorNumber - 1
-    )!.amountGained -= yourGenerator.cost;
-    yourGenerator.amountBought++;
-    yourGenerator.amountGained++;
-    yourGenerator.cost =
-      yourGenerator.cost *
-      (yourGenerator.amountBought + 1) **
-        Math.log10(yourGenerator.amountBought + 1);
+  if (!yourGenerator) return;
+  if (generatorNumber == 1) {
+    if (gameObjects.game.passivePoints >= yourGenerator.cost) {
+      gameObjects.game.passivePoints -= yourGenerator.cost;
+      yourGenerator.amountBought++;
+      yourGenerator.amountGained++;
+      yourGenerator.cost =
+        yourGenerator.cost *
+        (yourGenerator.amountBought + 1) **
+          Math.log10(yourGenerator.amountBought + 1);
+    }
+  } else {
+    if (
+      gameObjects.game.passiveGenerators.find((x) => x.id == generatorNumber - 1)!
+        .amountGained >= yourGenerator.cost
+    ) {
+      console.log(yourGenerator);
+      gameObjects.game.passiveGenerators.find(
+        (x) => x.id == generatorNumber - 1
+      )!.amountGained -= yourGenerator.cost;
+      yourGenerator.amountBought++;
+      yourGenerator.amountGained++;
+      yourGenerator.cost =
+        yourGenerator.cost *
+        (yourGenerator.amountBought + 1) **
+          Math.log10(yourGenerator.amountBought + 1);
+    }
   }
 }
 
@@ -276,6 +277,7 @@ function BuyGeneratorTier() {
   const generatorToBuy = generators.find(
     (x) => x.id == gameObjects.game.passiveGenerators.length + 1
   );
+  console.log(generatorToBuy);
   if (!generatorToBuy) return;
   if (
     gameObjects.game.passiveGenerators.find(
@@ -285,13 +287,14 @@ function BuyGeneratorTier() {
     gameObjects.game.passiveGenerators.find(
       (x) => x.id == generatorToBuy.id - 1
     )!.amountGained -= generatorToBuy.cost;
+    gameObjects.game.passiveGenerators.push(generatorToBuy);
     gameObjects.game.passiveGenerators.find((x) => x.id == generatorToBuy.id)!
       .amountBought++;
     gameObjects.game.passiveGenerators.find((x) => x.id == generatorToBuy.id)!
       .amountGained++;
 
     const generator = document.querySelector(
-      `#PassivePointsGenerator${generatorToBuy.id}`
+      `#PassivePointsGenerator${generatorToBuy.id - 1}`
     );
     if (generator && generator instanceof HTMLElement)
       generator.style.display = "block";
@@ -299,9 +302,10 @@ function BuyGeneratorTier() {
 }
 
 export function CalculatePassiveGenerators() {
+  if(gameObjects.game.passiveGenerators.length == 1) return;
   for (
-    let index = 1;
-    index < gameObjects.game.passiveGenerators.length;
+    let index = 2;
+    index <= gameObjects.game.passiveGenerators.length;
     index++
   ) {
     if (utilModule.IsPurchasedPassiveUpgrade(6)) {

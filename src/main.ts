@@ -6,6 +6,7 @@ import { achievements } from "./achievements";
 import * as statsModule from "./stats";
 import * as prestigeModule from "./prestige";
 import * as upgradesModule from "./upgrades";
+import { basicUpgrades, passiveUpgrades, prestigeUpgrades } from "./upgrades";
 import * as cardsModule from "./cards";
 import * as optionsModule from "./options";
 import * as challengesModule from "./challenges";
@@ -620,4 +621,28 @@ function updateText() {
   const multiUpgrade3Desc = translator.t('multiUpgrade3Desc');
   multiUpgrade3.textContent = multiUpgrade3Desc;
 
+  basicUpgrades.find(x => x.id == 1)!.name = translator.t('basicUpgrade1Title')
+  basicUpgrades.find(x => x.id == 1)!.description = translator.t('basicUpgrade1Desc')
+  basicUpgrades.find(x => x.id == 2)!.name = translator.t('basicUpgrade2Title')
+  basicUpgrades.find(x => x.id == 2)!.description = translator.t('basicUpgrade2Desc')
+  basicUpgrades.find(x => x.id == 3)!.name = translator.t('basicUpgrade3Title')
+  basicUpgrades.find(x => x.id == 3)!.description = translator.t('basicUpgrade3Desc')
+  basicUpgrades.find(x => x.id == 4)!.name = translator.t('basicUpgrade4Title')
+  basicUpgrades.find(x => x.id == 4)!.description = translator.t('basicUpgrade4Desc')
+  basicUpgrades.find(x => x.id == 5)!.name = translator.t('basicUpgrade5Title')
+  basicUpgrades.find(x => x.id == 5)!.description = translator.t('basicUpgrade5Desc')
+  basicUpgrades.find(x => x.id == 6)!.name = translator.t('basicUpgrade6Title')
+  basicUpgrades.find(x => x.id == 6)!.description = translator.t('basicUpgrade6Desc')
+  basicUpgrades.find(x => x.id == 7)!.name = translator.t('basicUpgrade7Title')
+  basicUpgrades.find(x => x.id == 7)!.description = translator.t('basicUpgrade7Desc')
+  basicUpgrades.find(x => x.id == 8)!.name = translator.t('basicUpgrade8Title')
+  basicUpgrades.find(x => x.id == 8)!.description = translator.t('basicUpgrade8Desc')
+  basicUpgrades.find(x => x.id == 9)!.name = translator.t('basicUpgrade9Title')
+  basicUpgrades.find(x => x.id == 9)!.description = translator.t('basicUpgrade9Desc')
+  basicUpgrades.find(x => x.id == 10)!.name = translator.t('basicUpgrade10Title')
+  basicUpgrades.find(x => x.id == 10)!.description = translator.t('basicUpgrade10Desc')
+  basicUpgrades.find(x => x.id == 11)!.name = translator.t('basicUpgrade11Title')
+  basicUpgrades.find(x => x.id == 11)!.description = translator.t('basicUpgrade11Desc')
+  basicUpgrades.find(x => x.id == 12)!.name = translator.t('basicUpgrade12Title')
+  basicUpgrades.find(x => x.id == 12)!.description = translator.t('basicUpgrade12Desc')
 }
