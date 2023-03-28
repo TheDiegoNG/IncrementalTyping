@@ -1,6 +1,7 @@
 import * as utilModule from "./util";
 import { gameObjects } from "./classes/game";
 import { Card } from "./classes/card";
+import translator from "./translator";
 
 export const commonCards: Card[] = [];
 
@@ -226,7 +227,7 @@ function GetCards() {
   if (gameObjects.game.points >= gameObjects.game.cardCost) {
     gameObjects.game.points -= gameObjects.game.cardCost;
     gameObjects.game.cardCost =
-      100000 * 2 ** (gameObjects.game.cards.length / 10);
+      100000 * 2 ** (gameObjects.game.cards.length / gameObjects.game.rollsAmount);
     var card;
     for (let index = 0; index < gameObjects.game.rollsAmount; index++) {
       var randomNumber = Math.floor(Math.random() * 100);
@@ -292,7 +293,7 @@ function AppendCard(cardData: Card) {
       break;
   }
 
-  card.textContent = cardData.name;
+  card.textContent = cardData.description;
   if (viewerCards) viewerCards.appendChild(card);
 }
 
@@ -358,14 +359,14 @@ export function CalculateBonus() {
 
   const cardBonus = document.querySelector("#cardBonus");
   if (cardBonus)
-    cardBonus.textContent = `You have x${bonusPercentage.toFixed(
+    cardBonus.textContent = `${translator.t('YouHave')} x${bonusPercentage.toFixed(
       2
-    )} + ${bonusPointAmount} bonus Points,
+    )} + ${bonusPointAmount} ${translator.t('BonusPoints')},
     x${bonusPassivePercentage.toFixed(
       2
-    )} + ${bonusPassiveAmount} bonus Passive Points, x${bonusPassiveSpeed.toFixed(
+    )} + ${bonusPassiveAmount} ${translator.t('BonusPassivePoints')}, x${bonusPassiveSpeed.toFixed(
       2
-    )} faster and ${bonusPassiveLength} letter/s longer Passive Words ${extraBonus}`;
+    )} ${translator.t('Faster')} ${translator.t('And')} ${bonusPassiveLength} ${translator.t('LetterLongerPassiveWords')} ${extraBonus}`;
 }
 
 var GetCommonCard = () =>

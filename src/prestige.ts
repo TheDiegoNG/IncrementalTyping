@@ -3,6 +3,8 @@ import * as upgradesmodule from "./upgrades";
 import { gameObjects } from "./classes/game";
 import translator from "./translator";
 
+const prestigeButton = document.querySelector("#prestigeButton");
+
 export function SetPrestige() {
   const prestigePointsToGet = document.querySelector("#prestigePointsToGet");
   if (prestigePointsToGet)
@@ -14,9 +16,11 @@ export function SetPrestige() {
   if (prestigePointsAmount)
     prestigePointsAmount.textContent =
     `${translator.t('prestigePointsAmount')} ${gameObjects.game.prestigePoints}`
+
+    if(prestigeButton)
+      prestigeButton.textContent = `${translator.t('prestigeButton')}`
 }
 
-const prestigeButton = document.querySelector("#prestigeButton");
 
 if (prestigeButton)
   prestigeButton.addEventListener("click", (e) => {

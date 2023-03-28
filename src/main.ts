@@ -510,9 +510,9 @@ function SetCosts() {
 
   const cardsButton = document.querySelector("#cardsButton");
   if (cardsButton)
-    cardsButton.textContent = `Get a Pack! Cost: ${
+    cardsButton.textContent = `${translator.t('GetAPack')}! ${translator.t('cost')}: ${
       Math.round(gameObjects.game.cardCost) == 0
-        ? "Free!"
+        ? `${translator.t('Free')}!`
         : utilModule.formatNumber(Math.round(gameObjects.game.cardCost))
     }`;
 }
@@ -688,26 +688,49 @@ function updateText() {
 
   //Cards
   commonCards.find(x => x.id == 1)!.name = translator.t('card1Title')
+  commonCards.find(x => x.id == 1)!.description = translator.t('card1Desc')
   commonCards.find(x => x.id == 2)!.name = translator.t('card2Title')
+  commonCards.find(x => x.id == 2)!.description = translator.t('card2Desc')
   commonCards.find(x => x.id == 3)!.name = translator.t('card3Title')
+  commonCards.find(x => x.id == 3)!.description = translator.t('card3Desc')
   commonCards.find(x => x.id == 4)!.name = translator.t('card4Title')
+  commonCards.find(x => x.id == 4)!.description = translator.t('card4Desc')
   uncommonCards.find(x => x.id == 5)!.name = translator.t('card5Title')
+  uncommonCards.find(x => x.id == 5)!.description = translator.t('card5Desc')
   uncommonCards.find(x => x.id == 6)!.name = translator.t('card6Title')
+  uncommonCards.find(x => x.id == 6)!.description = translator.t('card6Desc')
   uncommonCards.find(x => x.id == 7)!.name = translator.t('card7Title')
+  uncommonCards.find(x => x.id == 7)!.description = translator.t('card7Desc')
   uncommonCards.find(x => x.id == 8)!.name = translator.t('card8Title')
+  uncommonCards.find(x => x.id == 8)!.description = translator.t('card8Desc')
   uncommonCards.find(x => x.id == 9)!.name = translator.t('card9Title')
+  uncommonCards.find(x => x.id == 9)!.description = translator.t('card9Desc')
   uncommonCards.find(x => x.id == 10)!.name = translator.t('card10Title')
+  uncommonCards.find(x => x.id == 10)!.description = translator.t('card10Desc')
   epicCards.find(x => x.id == 11)!.name = translator.t('card11Title')
+  epicCards.find(x => x.id == 11)!.description = translator.t('card11Desc')
   epicCards.find(x => x.id == 12)!.name = translator.t('card12Title')
+  epicCards.find(x => x.id == 12)!.description = translator.t('card12Desc')
   epicCards.find(x => x.id == 13)!.name = translator.t('card13Title')
+  epicCards.find(x => x.id == 13)!.description = translator.t('card13Desc')
   epicCards.find(x => x.id == 14)!.name = translator.t('card14Title')
+  epicCards.find(x => x.id == 14)!.description = translator.t('card14Desc')
   epicCards.find(x => x.id == 15)!.name = translator.t('card15Title')
+  epicCards.find(x => x.id == 15)!.description = translator.t('card15Desc')
   epicCards.find(x => x.id == 16)!.name = translator.t('card16Title')
+  epicCards.find(x => x.id == 16)!.description = translator.t('card16Desc')
   epicCards.find(x => x.id == 17)!.name = translator.t('card17Title')
+  epicCards.find(x => x.id == 17)!.description = translator.t('card17Desc')
   legendaryCards.find(x => x.id == 18)!.name = translator.t('card18Title')
+  legendaryCards.find(x => x.id == 18)!.description = translator.t('card18Desc')
   legendaryCards.find(x => x.id == 19)!.name = translator.t('card19Title')
+  legendaryCards.find(x => x.id == 19)!.description = translator.t('card19Desc')
   legendaryCards.find(x => x.id == 20)!.name = translator.t('card20Title')
+  legendaryCards.find(x => x.id == 20)!.description = translator.t('card20Desc')
   legendaryCards.find(x => x.id == 21)!.name = translator.t('card21Title')
+  legendaryCards.find(x => x.id == 21)!.description = translator.t('card21Desc')
   legendaryCards.find(x => x.id == 22)!.name = translator.t('card22Title')
+  legendaryCards.find(x => x.id == 22)!.description = translator.t('card22Desc')
   legendaryCards.find(x => x.id == 23)!.name = translator.t('card23Title')
+  legendaryCards.find(x => x.id == 23)!.description = translator.t('card23Desc')
 }
