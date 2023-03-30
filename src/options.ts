@@ -56,5 +56,17 @@ if (languageSelector) {
       languageSelector.selectedIndex = currentIndex;
       translator.changeLanguage(options[currentIndex].value);
     });
+
+    const preferredLanguage = navigator.language.substring(0, 2);
+    console.log(preferredLanguage);
+
+    for (let i = 0; i < optionCount; i++) {
+      if (options[i].value === preferredLanguage) {
+        console.log(options[i].value);
+        options[i].selected = true;
+        console.log(options[i].selected);
+        break;
+      }
+    }
 }
 

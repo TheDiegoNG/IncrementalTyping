@@ -11,6 +11,7 @@ import * as cardsModule from "./cards";
 import { commonCards, uncommonCards, epicCards, legendaryCards } from "./cards";
 import * as optionsModule from "./options";
 import * as challengesModule from "./challenges";
+import { challenges } from "./challenges";
 import * as passiveModule from "./passive";
 import * as activeModule from "./active";
 import { multiUpgrades } from "./active";
@@ -223,6 +224,7 @@ window.setInterval(function () {
   passiveModule.SetGenerators();
   passiveModule.CalculatePassiveGenerators();
   achievementModule.SetUnlockedAchievements();
+  challengesModule.SetChallenges();
 
   const pointsCounter = document.querySelector("#PointsCounter");
   if (pointsCounter)
@@ -618,6 +620,10 @@ function SetTexts() {
 
 function updateText() {
 
+  //HeaderButtons
+  document.querySelector('#saveButton')!.textContent = translator.t('save');
+  document.querySelector('#logButton')!.textContent = translator.t('log');
+
   //Buttons
   document.querySelector('#activeMenuButton')!.textContent = translator.t('activeMenuButton');
   document.querySelector('#passiveMenuButton')!.textContent = translator.t('passiveMenuButton');
@@ -733,4 +739,15 @@ function updateText() {
   legendaryCards.find(x => x.id == 22)!.description = translator.t('card22Desc')
   legendaryCards.find(x => x.id == 23)!.name = translator.t('card23Title')
   legendaryCards.find(x => x.id == 23)!.description = translator.t('card23Desc')
+
+  //Challenges
+  challenges.find(x => x.id == 1)!.name = translator.t('challenge1Title');
+  challenges.find(x => x.id == 1)!.description = translator.t('challenge1Desc');
+  challenges.find(x => x.id == 2)!.name = translator.t('challenge2Title');
+  challenges.find(x => x.id == 2)!.description = translator.t('challenge2Desc');
+  
+  document.querySelector("#challenge1Reward")!.textContent = translator.t('challenge1Reward');
+  document.querySelector("#challenge2Reward")!.textContent = translator.t('challenge2Reward');
+  document.querySelector("#exitChallengeButton")!.textContent = translator.t('exitChallenge'); 
+
 }

@@ -15,10 +15,10 @@ challengesElements.forEach((challenge, index) => {
   }
 });
 
-const challenges: Challenge[] = [];
+export const challenges: Challenge[] = [];
 
-challenges.push(new Challenge("Accuracy", 50, 210, 1));
-challenges.push(new Challenge("Speed", 50, 0, 2));
+challenges.push(new Challenge("Accuracy", "Write 4-letter Words with only a set amount of key presses" , 50, 210, 1));
+challenges.push(new Challenge("Speed", "Write 4-letter words in only 1 minute" , 50, 0, 2));
 
 function StartChallenge(challengeNumber: number) {
   if (gameObjects.game.isInChallenge)
@@ -144,4 +144,9 @@ export function CheckProgress() {
 function GetActiveChallengeObjective() {
   const challenge = gameObjects.game.challenges.find((x) => x.onChallenge);
   if(challenge) return challenge.objective;
+}
+
+export function SetChallenges() { 
+  document.querySelector("#challenge1Description")!.textContent = challenges.find(x => x.id == 1)!.description;
+  document.querySelector("#challenge2Description")!.textContent = challenges.find(x => x.id == 2)!.description;
 }

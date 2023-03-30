@@ -1,5 +1,6 @@
 export class Challenge {
   name: string;
+  description: string;
   onChallenge: boolean;
   objective: number;
   amount: number;
@@ -8,11 +9,13 @@ export class Challenge {
 
   constructor(
     challengeName: string,
+    challengeDescription: string,
     challengeObjective: number,
     challengeRestriction: number,
     challengeNumber: number
   ) {
     this.name = challengeName;
+    this.description = challengeDescription;
     this.onChallenge = false;
     this.objective = challengeObjective;
     this.amount = 0;
